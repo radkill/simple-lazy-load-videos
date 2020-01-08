@@ -24,9 +24,9 @@ if ( ! class_exists( 'SLLV_template' ) ) {
 		 * Video container
 		 */
 		public function video( $args = array() ) {
-		  $args = wp_parse_args( $args, array(
+			$args = wp_parse_args( $args, array(
 
-		  ) );
+			) );
 
 			ob_start();
 			?>
