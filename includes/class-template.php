@@ -35,7 +35,7 @@ if ( ! class_exists( 'SLLV_template' ) ) {
 				<a class="b-video__link" href="<?php echo $args['url']; ?>" rel="external noopener" target="_blank">
 					<img class="b-video__media" src="<?php echo $args['thumbnail']; ?>" alt="<?php echo $args['title']; ?>">
 				</a>
-				<button class="b-video__button" type="button" aria-label="<?php _e( 'Play Video' ); ?>"><?php echo $args['play']; ?></button>
+				<button class="b-video__button" type="button" aria-label="<?php _e( 'Play Video', 'simple-lazy-load-videos' ); ?>"><?php echo $args['play']; ?></button>
 			</div>
 
 			<?php
