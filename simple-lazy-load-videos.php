@@ -3,7 +3,7 @@
  * Plugin Name:       Simple Lazy Load Videos
  * Plugin URI:        https://rad.org.ua/simple-lazy-load-videos/
  * Description:       Simple Lazy Load Videos from Youtube & Vimeo
- * Version:           0.1.13
+ * Version:           0.2
  * Requires PHP:      5.6
  * Author:            Valerii Bohdanov
  * Author URI:        https://profiles.wordpress.org/rad_/
