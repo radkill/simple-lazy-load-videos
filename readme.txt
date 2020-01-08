@@ -22,6 +22,10 @@ Simple Lazy Load Videos from Youtube & Vimeo
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 == Changelog ==
+= 0.3 =
+* Fix compatible with language packs
+* Some small fix
+
 = 0.2 =
 * Update Add play button for Vimeo version
 * Fix in WP Dashboard
