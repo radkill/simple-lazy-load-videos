@@ -3,15 +3,16 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Simple Lazy Load Videos\n"
-"POT-Creation-Date: 2020-01-05 20:52+0200\n"
-"PO-Revision-Date: 2020-01-05 20:52+0200\n"
-"Last-Translator: Valery Bogdanov <valery.bogdanov@ideus.biz>\n"
-"Language-Team: Valery Bogdanov <valery.bogdanov@ideus.biz>\n"
+"POT-Creation-Date: 2020-01-08 15:53+0200\n"
+"PO-Revision-Date: 2020-01-08 15:52+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 2.0.7\n"
 "X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: simple-lazy-load-videos.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -20,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: simple-lazy-load-videos.php:114 simple-lazy-load-videos.php:139
+#: includes/class-template.php:38
 msgid "Play Video"
 msgstr ""
 
@@ -29,7 +30,7 @@ msgid "Simple Lazy Load Videos"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://rad.org.ua/simple-lazy-load-videos/"
+msgid "https://github.com/radkill/simple-lazy-load-videos"
 msgstr ""
 
 #. Description of the plugin/theme
