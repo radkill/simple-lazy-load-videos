@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Simple Lazy Load Videos
- * Plugin URI:        https://rad.org.ua/simple-lazy-load-videos/
+ * Plugin URI:        https://github.com/radkill/simple-lazy-load-videos
  * Description:       Simple Lazy Load Videos from Youtube & Vimeo
  * Version:           0.2
  * Requires PHP:      5.6
