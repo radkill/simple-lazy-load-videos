@@ -1,0 +1,106 @@
+/**
+ * @section video
+ */
+.b-video {
+	$block: &;
+	position: relative;
+	padding-bottom: 56.25%;
+	width: 100%;
+	height: 0;
+	background-color: #000;
+	box-shadow: 0 0 10px rgba(#333, .3);
+
+	&.-state_enabled {
+		cursor: pointer;
+	}
+
+	.wp-editor &,
+	.wp-admin & {
+		width: 90%;
+		padding-bottom: 50%;
+		box-shadow: none;
+		cursor: pointer;
+	}
+
+	&__link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	&__media {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: none;
+		object-fit: cover;
+
+		.wp-editor &,
+		.wp-admin & {
+			height: 100%;
+		}
+	}
+
+	&__button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 1;
+		display: none;
+		padding: 0;
+		width: 68px;
+		height: 48px;
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+		transform: translate(-50%, -50%);
+
+		#{$block}.-type_vimeo & {
+			width: 76px;
+			height: 43px;
+		}
+
+		#{$block}.-state_enabled & {
+			display: block;
+		}
+
+		.wp-editor &,
+		.wp-admin & {
+			display: block;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__button-shape {
+		fill: #212121;
+		fill-opacity: .8;
+
+		#{$block}.-type_vimeo & {
+			fill: #2a2929;
+		}
+
+		#{$block}:hover &,
+		#{$block}__button:focus & {
+			fill: #f00;
+			fill-opacity: 1;
+		}
+
+		#{$block}.-type_vimeo:hover &,
+		#{$block}.-type_vimeo #{$block}__button:focus & {
+			fill: #00adef;
+			fill-opacity: 1;
+		}
+	}
+
+	&__button-icon {
+		fill: #fff;
+	}
+}
+

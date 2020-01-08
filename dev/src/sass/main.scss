@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+@import 'mixins';
+
+/* Project files… */
+@import 'settings';
+
+/* Generated… */
+@import 'sprites';
+@import 'base64';
+
+
+/* ==|== primary styles =====================================================
+   Authors: Valerii Bohdanov
+   ========================================================================== */
+
+@import 'blocks/b-video';
