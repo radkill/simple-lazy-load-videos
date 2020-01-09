@@ -4,7 +4,7 @@ Tags: performance, video, vimeo, youtube
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V5Q9SBB54LMDC&source=url
 Tested up to: 5.3.2
 Requires PHP: 5.6
-Stable tag: trunk
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
