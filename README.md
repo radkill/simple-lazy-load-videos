@@ -1,6 +1,8 @@
 # Simple Lazy Load Videos
 Simple Lazy Load Videos from Youtube & Vimeo
 
+https://wordpress.org/plugins/simple-lazy-load-videos/
+
 ## Installation
 1. Upload the plugin to your WordPress site
 2. Activate the plugin in the Plugin dashboard
