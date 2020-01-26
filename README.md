@@ -12,6 +12,9 @@ https://wordpress.org/plugins/simple-lazy-load-videos/
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.3.2
+* Changed css prefix for greater compatibility
+
 ### 0.3.1
 * Fix compatible with language packs (again)
 
