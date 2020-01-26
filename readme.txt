@@ -8,10 +8,12 @@ Stable tag: 0.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Lazy Load Videos from Youtube & Vimeo
+Simple Lazy Load Videos for embeded Youtube & Vimeo
 
 == Description ==
-Simple Lazy Load Videos from Youtube & Vimeo
+The plugin reduces page load time and increases your Google PageSpeed score.
+
+It replaces the embedded Youtube and Vimeo videos with a video preview image, third-party CSS & JS are downloaded only after a click.
 
 == Installation ==
 1. Upload the plugin to your WordPress site
