@@ -42,26 +42,32 @@ register_uninstall_hook( __FILE__, 'sllv_plugin_uninstall');
 /**
  * Activate
  */
-function sllv_plugin_activate() {
-	$oembed_cache = new SLLV_Oembed_Cache();
-	$oembed_cache->flush_all();
+if ( ! function_exists( 'sllv_plugin_activate' ) ) {
+	function sllv_plugin_activate() {
+		$oembed_cache = new SLLV_Oembed_Cache();
+		$oembed_cache->flush_all();
+	}
 }
 
 
 /**
  * Deactivate
  */
-function sllv_plugin_deactivate() {
-	$oembed_cache = new SLLV_Oembed_Cache();
-	$oembed_cache->flush_all();
+if ( ! function_exists( 'sllv_plugin_deactivate' ) ) {
+	function sllv_plugin_deactivate() {
+		$oembed_cache = new SLLV_Oembed_Cache();
+		$oembed_cache->flush_all();
+	}
 }
 
 
 /**
  * Uninstall
  */
-function sllv_plugin_uninstall() {
-	delete_option( 'sllv_version' );
+if ( ! function_exists( 'sllv_plugin_uninstall' ) ) {
+	function sllv_plugin_uninstall() {
+		delete_option( 'sllv_version' );
+	}
 }
 
 
