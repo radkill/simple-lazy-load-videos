@@ -7,7 +7,7 @@ jQuery(function() {
 });
 
 function sllv_findVideos() {
-  let videos = document.querySelectorAll('.b-video');
+  let videos = document.querySelectorAll('.sllv-video');
 
   for (let i = 0; i < videos.length; i++) {
     sllv_setupVideo(videos[i]);
@@ -15,9 +15,9 @@ function sllv_findVideos() {
 }
 
 function sllv_setupVideo(video) {
-  let link   = video.querySelector('.b-video__link');
-  let media  = video.querySelector('.b-video__media');
-  let button = video.querySelector('.b-video__button');
+  let link   = video.querySelector('.sllv-video__link');
+  let media  = video.querySelector('.sllv-video__media');
+  let button = video.querySelector('.sllv-video__button');
 
   let provider = video.getAttribute('data-provider');
   let id       = video.getAttribute('data-video');
@@ -40,7 +40,7 @@ function sllv_createIframe(provider, id) {
   iframe.setAttribute('allowfullscreen', '');
   iframe.setAttribute('allow', 'autoplay');
   iframe.setAttribute('src', sllv_generateURL(provider, id));
-  iframe.classList.add('b-video__media');
+  iframe.classList.add('sllv-video__media');
 
   return iframe;
 }
