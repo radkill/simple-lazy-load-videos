@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Simple Lazy Load Videos\n"
-"POT-Creation-Date: 2020-01-26 05:33+0200\n"
+"POT-Creation-Date: 2020-01-26 06:12+0200\n"
 "PO-Revision-Date: 2020-01-08 15:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -34,7 +34,7 @@ msgid "https://github.com/radkill/simple-lazy-load-videos"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Simple Lazy Load Videos for embeded Youtube & Vimeo"
+msgid "Simple Lazy Load Videos for embedded Youtube & Vimeo"
 msgstr ""
 
 #. Author of the plugin/theme

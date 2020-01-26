@@ -1,5 +1,5 @@
 # Simple Lazy Load Videos
-Simple Lazy Load Videos for embeded Youtube & Vimeo
+Simple Lazy Load Videos for embedded Youtube & Vimeo
 
 https://wordpress.org/plugins/simple-lazy-load-videos/
 
