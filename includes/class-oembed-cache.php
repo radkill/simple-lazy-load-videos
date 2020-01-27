@@ -1,6 +1,7 @@
 <?php
 if ( ! class_exists( 'SLLV_Oembed_Cache' ) ) {
 	class SLLV_Oembed_Cache {
+
 		/**
 		 * Flush all oembed caches
 		 */
@@ -40,5 +41,6 @@ if ( ! class_exists( 'SLLV_Oembed_Cache' ) ) {
 				)
 			);
 		}
+
 	}
 }
