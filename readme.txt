@@ -8,7 +8,7 @@ Stable tag: 0.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Lazy Load Videos for embedded Youtube & Vimeo
+Simple Lazy Load for embedded video from Youtube and Vimeo
 
 == Description ==
 The plugin reduces page load time and increases your Google PageSpeed score.
