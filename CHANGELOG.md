@@ -1,3 +1,13 @@
+### 0.3.4
+* Improved compatibility
+* Fixed grammar error
+
+### 0.3.3
+* Translate to Ukrainian and Russian
+
+### 0.3.2
+* Changed css prefix for greater compatibility
+
 ### 0.3.1
 * Fix compatible with language packs (again)
 
@@ -11,5 +21,5 @@
 * Add multilang support
 
 ### 0.1
-* Initial release.
+* Initial release
 

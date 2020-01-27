@@ -40,4 +40,4 @@ Instead of loading the iframe of your video on page load, it only loads the vide
 * Add multilang support
 
 ### 0.1
-* Initial release.
+* Initial release
