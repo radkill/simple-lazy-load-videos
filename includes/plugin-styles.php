@@ -16,9 +16,11 @@ if ( ! function_exists( 'sllv_styles' ) ) {
 /**
  * Editor styles
  */
-add_action( 'after_setup_theme', 'sllv_editor_style' );
-function sllv_editor_style() {
-  if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
-    add_editor_style( SLLV_URL . 'assets/css/main.min.css' );
-  }
+if ( ! function_exists( 'sllv_editor_style' ) ) {
+	add_action( 'after_setup_theme', 'sllv_editor_style' );
+	function sllv_editor_style() {
+		if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
+			add_editor_style( SLLV_URL . 'assets/css/main.min.css' );
+		}
+	}
 }
