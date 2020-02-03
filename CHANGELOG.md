@@ -1,3 +1,7 @@
+### 0.4
+* Native Lazy Loading for images
+* Some small fix
+
 ### 0.3.4
 * Improved compatibility
 * Fixed grammar error

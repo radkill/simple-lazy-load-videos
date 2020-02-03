@@ -17,6 +17,10 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.4
+* Native Lazy Loading for images
+* Some small fix
+
 ### 0.3.4
 * Improved compatibility
 * Fixed grammar error
