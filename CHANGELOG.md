@@ -1,3 +1,7 @@
+### 0.5
+* Fixed fatal error on some installs
+* Fixed file_exists check for scripts & styles
+
 ### 0.4
 * Native Lazy Loading for images
 * Some small fix
