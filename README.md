@@ -18,8 +18,8 @@ Instead of loading the iframe of your video on page load, it only loads the vide
 
 ## Changelog
 ### 0.5.1
-* Fix for Visual Composer
-* Update ukrainian translate
+* Fixed compatible with Visual Composer
+* Updated ukrainian translate
 * Improved compatibility
 
 ### 0.5
@@ -35,22 +35,22 @@ Instead of loading the iframe of your video on page load, it only loads the vide
 * Fixed grammar error
 
 ### 0.3.3
-* Translate to Ukrainian and Russian
+* Translated to Ukrainian and Russian
 
 ### 0.3.2
 * Changed css prefix for greater compatibility
 
 ### 0.3.1
-* Fix compatible with language packs (again)
+* Fixed compatible with language packs (again)
 
 ### 0.3
-* Fix compatible with language packs
+* Fixed compatible with language packs
 * Some small fix
 
 ### 0.2
-* Update Add play button for Vimeo version
+* Update play button for Vimeo version
 * Fix in WP Dashboard
-* Add multilang support
+* Added multilang support
 
 ### 0.1
-* Initial release
+* Initial release.
