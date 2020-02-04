@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Simple Lazy Load Videos\n"
-"POT-Creation-Date: 2020-01-27 20:50+0200\n"
-"PO-Revision-Date: 2020-01-27 20:50+0200\n"
+"POT-Creation-Date: 2020-02-04 05:46+0200\n"
+"PO-Revision-Date: 2020-02-04 05:46+0200\n"
 "Last-Translator: Valery Bogdanov <valery.bogdanov@ideus.biz>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: simple-lazy-load-videos.php\n"
@@ -28,7 +28,7 @@ msgstr "Відтворити відео"
 
 #. Plugin Name of the plugin/theme
 msgid "Simple Lazy Load Videos"
-msgstr ""
+msgstr "Простий Lazy Load для відео"
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/radkill/simple-lazy-load-videos"
@@ -36,11 +36,11 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid "Simple Lazy Load for embedded video from Youtube and Vimeo"
-msgstr ""
+msgstr "Простий Lazy Load для вбудованого відео з Youtube та Vimeo"
 
 #. Author of the plugin/theme
 msgid "Valerii Bohdanov"
-msgstr ""
+msgstr "Валерій Богданов"
 
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/rad_/"
