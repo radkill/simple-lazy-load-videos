@@ -17,6 +17,11 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.5.1
+* Fix for Visual Composer
+* Update ukrainian translate
+* Improved compatibility
+
 ### 0.5
 * Fixed fatal error on some installs
 * Fixed file_exists check for scripts & styles
