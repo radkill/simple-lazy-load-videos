@@ -2,7 +2,7 @@
 Contributors: rad_
 Tags: performance, video, vimeo, youtube
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V5Q9SBB54LMDC&source=url
-Tested up to: 5.4
+Tested up to: 5.4.1
 Requires PHP: 5.6
 Stable tag: 0.5.1
 License: GPLv2 or later
