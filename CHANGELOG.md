@@ -1,3 +1,6 @@
+### 0.5.2
+* Fixed some bug with image width & height
+
 ### 0.5.1
 * Fixed compatible with Visual Composer
 * Updated ukrainian translate
