@@ -1,3 +1,6 @@
+### 0.5.3
+* Some small fixes
+
 ### 0.5.2
 * Fixed some bug with image width & height
 
