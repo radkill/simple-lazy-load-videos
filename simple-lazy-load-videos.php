@@ -36,7 +36,7 @@ require_once( SLLV_PATH . 'includes/class-template.php' );
 
 register_activation_hook( __FILE__, 'sllv_plugin_activate' );
 register_deactivation_hook( __FILE__, 'sllv_plugin_deactivate' );
-register_uninstall_hook( __FILE__, 'sllv_plugin_uninstall');
+register_uninstall_hook( __FILE__, 'sllv_plugin_uninstall' );
 
 
 /**
