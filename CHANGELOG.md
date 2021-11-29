@@ -1,3 +1,7 @@
+### 0.6
+* Changed CSS & JS fileversion, now it is plugin version
+* Сode refactoring
+
 ### 0.5.3
 * Some small fixes
 
