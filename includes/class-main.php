@@ -33,7 +33,7 @@ if ( ! class_exists( 'SLLV_main' ) ) {
 		 */
 		public function enqueue_scripts() {
 			if ( file_exists( SLLV_PATH . 'assets/js/scripts.js' ) ) {
-				wp_enqueue_script( 'sllv-js-main', SLLV_URL . 'assets/js/scripts.js', array( 'jquery' ), filemtime( SLLV_PATH . 'assets/js/scripts.js' ), true );
+				wp_enqueue_script( 'sllv-js-main', SLLV_URL . 'assets/js/scripts.js', array( 'jquery' ), SLLV_VERSION, true );
 			}
 		}
 
@@ -43,7 +43,7 @@ if ( ! class_exists( 'SLLV_main' ) ) {
 		 */
 		public function enqueue_styles() {
 			if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
-				wp_enqueue_style( 'sllv-css-main', SLLV_URL . 'assets/css/main.min.css', false, filemtime( SLLV_PATH . 'assets/css/main.min.css' ) );
+				wp_enqueue_style( 'sllv-css-main', SLLV_URL . 'assets/css/main.min.css', false, SLLV_VERSION );
 			}
 		}
 
