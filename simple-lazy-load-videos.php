@@ -53,7 +53,7 @@ register_uninstall_hook( __FILE__, array( $actions, 'uninstall' ) );
 
 
 /**
- * Start this plugin once all other plugins are fully loaded
+ * Start plugin
  */
 add_action( 'plugins_loaded', function() {
 	new SLLV_main();

@@ -7,8 +7,10 @@ if ( ! class_exists( 'SLLV_Oembed_Cache' ) ) {
 		 */
 		public function flush_all() {
 			global $wpdb;
+
 			$meta_key_1 = "|_oembed|_%%";
 			$meta_key_2 = "|_oembed|_time|_%%";
+
 			$wpdb->query(
 				$query = $wpdb->prepare(
 					"DELETE FROM `" . $wpdb->postmeta . "`
@@ -25,8 +27,10 @@ if ( ! class_exists( 'SLLV_Oembed_Cache' ) ) {
 		 */
 		public function flush( $post_id ) {
 			global $wpdb;
+
 			$meta_key_1 = "|_oembed|_%%";
 			$meta_key_2 = "|_oembed|_time|_%%";
+
 			$wpdb->query(
 				$query = $wpdb->prepare(
 					"DELETE FROM `" . $wpdb->postmeta . "`
