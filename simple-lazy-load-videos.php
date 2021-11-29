@@ -31,44 +31,22 @@ if ( ! defined( 'SLLV_VERSION' ) ) {
 require_once( SLLV_PATH . 'includes/plugin-styles.php' );
 require_once( SLLV_PATH . 'includes/plugin-scripts.php' );
 
+
+/**
+ * Classes
+ */
+require_once( SLLV_PATH . 'includes/class-actions.php' );
 require_once( SLLV_PATH . 'includes/class-oembed-cache.php' );
 require_once( SLLV_PATH . 'includes/class-template.php' );
 
-register_activation_hook( __FILE__, 'sllv_plugin_activate' );
-register_deactivation_hook( __FILE__, 'sllv_plugin_deactivate' );
-register_uninstall_hook( __FILE__, 'sllv_plugin_uninstall' );
-
 
 /**
- * Activate
+ * Activation, deactivation and uninstall actions
  */
-if ( ! function_exists( 'sllv_plugin_activate' ) ) {
-	function sllv_plugin_activate() {
-		$oembed_cache = new SLLV_Oembed_Cache();
-		$oembed_cache->flush_all();
-	}
-}
-
-
-/**
- * Deactivate
- */
-if ( ! function_exists( 'sllv_plugin_deactivate' ) ) {
-	function sllv_plugin_deactivate() {
-		$oembed_cache = new SLLV_Oembed_Cache();
-		$oembed_cache->flush_all();
-	}
-}
-
-
-/**
- * Uninstall
- */
-if ( ! function_exists( 'sllv_plugin_uninstall' ) ) {
-	function sllv_plugin_uninstall() {
-		delete_option( 'sllv_version' );
-	}
-}
+$actions = new SLLV_Actions();
+register_activation_hook( __FILE__, array( $actions, 'activate' ) );
+register_deactivation_hook( __FILE__, array( $actions, 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( $actions, 'uninstall' ) );
 
 
 /**
