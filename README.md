@@ -17,6 +17,10 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.6.1
+* Removed Russian translation since it is now available at translate.wordpress.org
+* Updated Ukrainian translation
+
 ### 0.6
 * Changed CSS & JS fileversion, now it is plugin version
 * Сode refactoring
