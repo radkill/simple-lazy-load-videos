@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Simple Lazy Load Videos\n"
 "POT-Creation-Date: 2020-02-04 05:46+0200\n"
-"PO-Revision-Date: 2020-02-04 05:46+0200\n"
+"PO-Revision-Date: 2021-12-10 11:29+0200\n"
 "Last-Translator: Valery Bogdanov <valery.bogdanov@ideus.biz>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -28,11 +28,11 @@ msgstr "Відтворити відео"
 
 #. Plugin Name of the plugin/theme
 msgid "Simple Lazy Load Videos"
-msgstr "Простий Lazy Load для відео"
+msgstr "Simple Lazy Load Videos"
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/radkill/simple-lazy-load-videos"
-msgstr ""
+msgstr "https://github.com/radkill/simple-lazy-load-videos"
 
 #. Description of the plugin/theme
 msgid "Simple Lazy Load for embedded video from Youtube and Vimeo"
@@ -44,4 +44,4 @@ msgstr "Валерій Богданов"
 
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/rad_/"
-msgstr ""
+msgstr "https://profiles.wordpress.org/rad_/"
