@@ -1,3 +1,6 @@
+### 0.6.4
+* Fixed some PHP warnings that occurred during actions with the plugin
+
 ### 0.6.3
 * Removed Ukrainian translation since it is now available at translate.wordpress.org
 
