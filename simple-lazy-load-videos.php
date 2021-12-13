@@ -44,12 +44,11 @@ require_once( SLLV_PATH . 'includes/class-template.php' );
 
 
 /**
- * Activation, deactivation and uninstall actions
+ * Activation, deactivation and uninstalling actions
  */
-$actions = new SLLV_Actions();
-register_activation_hook( __FILE__, array( $actions, 'activate' ) );
-register_deactivation_hook( __FILE__, array( $actions, 'deactivate' ) );
-register_uninstall_hook( __FILE__, array( $actions, 'uninstall' ) );
+register_activation_hook( __FILE__, array( 'SLLV_Actions', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'SLLV_Actions', 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( 'SLLV_Actions', 'uninstall' ) );
 
 
 /**

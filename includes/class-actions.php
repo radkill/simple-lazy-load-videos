@@ -3,27 +3,27 @@ if ( ! class_exists( 'SLLV_Actions' ) ) {
 	class SLLV_Actions {
 
 		/**
-		 * Activate actions
+		 * Plugin activation actions
 		 */
-		public function activate( $network_wide ) {
+		public static function activate( $network_wide ) {
 			$oembed_cache = new SLLV_Oembed_Cache();
 			$oembed_cache->flush_all();
 		}
 
 
 		/**
-		 * Deactivate actions
+		 * Plugin deactivation actions
 		 */
-		public function deactivate() {
+		public static function deactivate() {
 			$oembed_cache = new SLLV_Oembed_Cache();
 			$oembed_cache->flush_all();
 		}
 
 
 		/**
-		 * Uninstall actions
+		 * Plugin uninstalling actions
 		 */
-		public function uninstall() {
+		public static function uninstall() {
 			delete_option( 'sllv_version' );
 		}
 
