@@ -1,3 +1,6 @@
+### 0.6.3
+* Removed Ukrainian translation since it is now available at translate.wordpress.org
+
 ### 0.6.2
 * Removed native Lazy Loading
 
