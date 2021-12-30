@@ -1,11 +1,19 @@
 # Simple Lazy Load Videos
 
+> Simple Lazy Load for embedded video from Youtube and Vimeo
+
+[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/)
+[![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/)
+[![WordPress Plugin: Required WP Version](https://img.shields.io/wordpress/plugin/wp-version/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/)
+[![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/)
+[![License](https://img.shields.io/github/license/radkill/simple-lazy-load-videos)](https://github.com/radkill/simple-lazy-load-videos/blob/master/LICENSE)
+
+[![WordPress Plugin Last Updated](https://img.shields.io/wordpress/plugin/last-updated/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/)
+[![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/)
+[![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/rating/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/#reviews)
+
 [![WP compatibility](https://plugintests.com/plugins/wporg/simple-lazy-load-videos/wp-badge.svg)](https://plugintests.com/plugins/wporg/simple-lazy-load-videos/latest)
 [![PHP compatibility](https://plugintests.com/plugins/wporg/simple-lazy-load-videos/php-badge.svg)](https://plugintests.com/plugins/wporg/simple-lazy-load-videos/latest)
-
-Simple Lazy Load for embedded video from Youtube and Vimeo
-
-https://wordpress.org/plugins/simple-lazy-load-videos/
 
 ## Description
 The plugin reduces page load time and increases your Google PageSpeed score.
