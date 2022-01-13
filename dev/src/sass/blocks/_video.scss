@@ -1,7 +1,8 @@
 /**
  * @section video
  */
-.sllv-video {
+.sllv-video,
+#et-boc .et-l .sllv-video {
 	$block: &;
 	position: relative;
 	padding-bottom: 56.25%;
