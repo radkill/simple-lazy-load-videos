@@ -29,6 +29,9 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.6.5
+* Fixed styles for Divi Builder
+
 ### 0.6.4
 * Fixed some PHP warnings that occurred during actions with the plugin
 

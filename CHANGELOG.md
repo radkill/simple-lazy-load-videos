@@ -1,3 +1,6 @@
+### 0.6.5
+* Fixed styles for Divi Builder
+
 ### 0.6.4
 * Fixed some PHP warnings that occurred during actions with the plugin
 
