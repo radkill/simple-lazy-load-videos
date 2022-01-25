@@ -1,112 +1,111 @@
 /**
  * @section video
  */
-.sllv-video,
-#et-boc .et-l .sllv-video {
+.sllv-video {
 	$block: &;
-	position: relative;
-	padding-bottom: 56.25%;
-	width: 100%;
-	height: 0;
-	background-color: #000;
-	box-shadow: 0 0 10px rgba(#333, .3);
+	position: relative !important;
+	padding-bottom: 56.25% !important;
+	width: 100% !important;
+	height: 0 !important;
+	background-color: #000 !important;
+	box-shadow: 0 0 10px rgba(#333, .3) !important;
 
 	/** Fix for Visual Composer */
 	.wpb_video_wrapper & {
-		padding-bottom: 0;
+		padding-bottom: 0 !important;
 	}
 
 	&.-state_enabled {
-		cursor: pointer;
+		cursor: pointer !important;
 	}
 
 	.wp-editor &,
 	.wp-admin & {
-		width: 90%;
-		padding-bottom: 50%;
-		box-shadow: none;
-		cursor: pointer;
+		width: 90% !important;
+		padding-bottom: 50% !important;
+		box-shadow: none !important;
+		cursor: pointer !important;
 	}
 
 	&__link {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
+		width: 100% !important;
+		height: 100% !important;
 	}
 
 	&__media {
-		position: absolute;
-		top: 0;
-		left: 0;
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
 		width: 100% !important;
 		height: 100% !important;
-		border: none;
-		object-fit: cover;
+		border: none !important;
+		object-fit: cover !important;
 
 		.wp-editor &,
 		.wp-admin & {
-			height: 100%;
+			height: 100% !important;
 		}
 	}
 
 	&__button {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		z-index: 1;
-		display: none;
-		padding: 0;
-		width: 68px;
-		height: 48px;
-		border: none;
-		background-color: transparent;
-		cursor: pointer;
-		transform: translate(-50%, -50%);
+		position: absolute !important;
+		top: 50% !important;
+		left: 50% !important;
+		z-index: 1 !important;
+		display: none !important;
+		padding: 0 !important;
+		width: 68px !important;
+		height: 48px !important;
+		border: none !important;
+		background-color: transparent !important;
+		cursor: pointer !important;
+		transform: translate(-50%, -50%) !important;
 
 		#{$block}.-type_vimeo & {
-			width: 76px;
-			height: 43px;
+			width: 76px !important;
+			height: 43px !important;
 		}
 
 		#{$block}.-state_enabled & {
-			display: block;
+			display: block !important;
 		}
 
 		.wp-editor &,
 		.wp-admin & {
-			display: block;
+			display: block !important;
 		}
 
 		&:focus {
-			outline: none;
+			outline: none !important;
 		}
 	}
 
 	&__button-shape {
-		fill: #212121;
-		fill-opacity: .8;
+		fill: #212121 !important;
+		fill-opacity: .8 !important;
 
 		#{$block}.-type_vimeo & {
-			fill: #2a2929;
+			fill: #2a2929 !important;
 		}
 
 		#{$block}:hover &,
 		#{$block}__button:focus & {
-			fill: #f00;
-			fill-opacity: 1;
+			fill: #f00 !important;
+			fill-opacity: 1 !important;
 		}
 
 		#{$block}.-type_vimeo:hover &,
 		#{$block}.-type_vimeo #{$block}__button:focus & {
-			fill: #00adef;
-			fill-opacity: 1;
+			fill: #00adef !important;
+			fill-opacity: 1 !important;
 		}
 	}
 
 	&__button-icon {
-		fill: #fff;
+		fill: #fff !important;
 	}
 }
 
