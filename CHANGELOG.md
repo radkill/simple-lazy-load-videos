@@ -1,3 +1,6 @@
+### 0.6.6
+* Fixed some broken styles
+
 ### 0.6.5
 * Fixed styles for Divi Builder
 
