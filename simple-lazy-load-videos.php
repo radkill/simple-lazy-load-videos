@@ -3,7 +3,7 @@
  * Plugin Name:       Simple Lazy Load Videos
  * Plugin URI:        https://github.com/radkill/simple-lazy-load-videos
  * Description:       Simple Lazy Load for embedded video from Youtube and Vimeo
- * Version:           0.6.6
+ * Version:           0.6.7
  * Requires PHP:      5.6
  * Author:            Valerii Bohdanov
  * Author URI:        https://profiles.wordpress.org/rad_/
