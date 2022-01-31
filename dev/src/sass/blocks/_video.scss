@@ -10,11 +10,6 @@
 	background-color: #000 !important;
 	box-shadow: 0 0 10px rgba(#333, .3) !important;
 
-	/** Fix for Visual Composer */
-	.wpb_video_wrapper & {
-		padding-bottom: 0 !important;
-	}
-
 	&.-state_enabled {
 		cursor: pointer !important;
 	}
