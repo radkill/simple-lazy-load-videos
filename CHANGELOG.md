@@ -1,3 +1,6 @@
+### 0.6.8
+* Fixed styles for WPBakery Page Builder
+
 ### 0.6.7
 * Fixed styles for WPBakery Page Builder
 
