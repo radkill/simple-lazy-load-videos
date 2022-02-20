@@ -1,6 +1,6 @@
 <?php
-if ( ! class_exists( 'SLLV_template' ) ) {
-	class SLLV_template {
+if ( ! class_exists( 'SLLV_Template' ) ) {
+	class SLLV_Template {
 
 		/**
 		 * Youtube play button

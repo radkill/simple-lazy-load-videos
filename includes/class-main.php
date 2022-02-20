@@ -1,6 +1,6 @@
 <?php
-if ( ! class_exists( 'SLLV_main' ) ) {
-	class SLLV_main {
+if ( ! class_exists( 'SLLV_Main' ) ) {
+	class SLLV_Main {
 
 		/**
 		 * Class initialization
@@ -17,6 +17,9 @@ if ( ! class_exists( 'SLLV_main' ) ) {
 
 			add_filter( 'oembed_dataparse', array( $this, 'change_oembed' ), 10, 3 );
 			add_action( 'save_post', array( $this, 'flush_oembed_cache' ), 10, 3 );
+
+			/** Plugin options page */
+			new SLLV_Options();
 		}
 
 
@@ -77,7 +80,8 @@ if ( ! class_exists( 'SLLV_main' ) ) {
 		 * Change video oEmbed
 		 */
 		function change_oembed( $return, $data, $url ) {
-			$video = new SLLV_template();
+			$video          = new SLLV_Template();
+			$plugin_options = new SLLV_Options();
 
 			if ( 'YouTube' === $data->provider_name ) {
 				preg_match( "/embed\/([-\w]+)\?feature=/", $data->html, $matches );
@@ -88,7 +92,7 @@ if ( ! class_exists( 'SLLV_main' ) ) {
 					'title'     => $data->title,
 					'id'        => $video_id,
 					'url'       => 'https://youtu.be/' . $video_id,
-					'thumbnail' => 'https://i.ytimg.com/vi/' . $video_id . '/hqdefault.jpg',
+					'thumbnail' => 'https://i.ytimg.com/vi/' . $video_id . '/' . $plugin_options->get_options( 'youtube_thumbnail_size' ) . '.jpg',
 					'play'      => $video->youtube,
 				) );
 			}

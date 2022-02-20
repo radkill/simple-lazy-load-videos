@@ -27,6 +27,10 @@ if ( ! defined( 'SLLV_PLUGIN_DIRNAME' ) ) {
 	define( 'SLLV_PLUGIN_DIRNAME', dirname( plugin_basename( __FILE__ ) ) );
 }
 
+if ( ! defined( 'SLLV_PLUGIN_FILE' ) ) {
+	define( 'SLLV_PLUGIN_FILE', basename( __FILE__ ) );
+}
+
 if ( ! defined( 'SLLV_VERSION' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	$plugin_data = get_plugin_data( __FILE__ );
@@ -41,6 +45,7 @@ require_once( SLLV_PATH . 'includes/class-actions.php' );
 require_once( SLLV_PATH . 'includes/class-main.php' );
 require_once( SLLV_PATH . 'includes/class-oembed-cache.php' );
 require_once( SLLV_PATH . 'includes/class-template.php' );
+require_once( SLLV_PATH . 'includes/class-options.php' );
 
 
 /**
@@ -55,5 +60,5 @@ register_uninstall_hook( __FILE__, array( 'SLLV_Actions', 'uninstall' ) );
  * Start plugin
  */
 add_action( 'plugins_loaded', function() {
-	new SLLV_main();
+	new SLLV_Main();
 } );
