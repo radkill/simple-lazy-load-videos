@@ -29,6 +29,12 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.7.0
+* Fixed class names
+* Added plugins options page
+* Made it possible to change YouTube thumbnail size
+
+
 ### 0.6.8
 * Fixed styles for WPBakery Page Builder
 

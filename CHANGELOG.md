@@ -1,3 +1,8 @@
+### 0.7.0
+* Fixed class names
+* Added plugins options page
+* Made it possible to change YouTube thumbnail size
+
 ### 0.6.8
 * Fixed styles for WPBakery Page Builder
 
