@@ -103,7 +103,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 					'title'     => $data->title,
 					'id'        => $data->video_id,
 					'url'       => 'https://vimeo.com/' . $data->video_id,
-					'thumbnail' => $data->thumbnail_url,
+					'thumbnail' => substr( $data->thumbnail_url, 0, -3 ) . $plugin_options->get_options( 'vimeo_thumbnail_size' ),
 					'play'      => $video->vimeo,
 				) );
 			}

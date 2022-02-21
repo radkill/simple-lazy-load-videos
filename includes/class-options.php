@@ -19,6 +19,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		 */
 		public $default = array(
 			'youtube_thumbnail_size' => 'sddefault',
+			'vimeo_thumbnail_size'   => '640',
 		);
 
 
@@ -119,6 +120,14 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 				$this->page_slug,
 				'sllv_settings_id'
 			);
+
+			add_settings_field(
+				'vimeo_thumbnail_size',
+				__( 'Vimeo Thumbnail Size', 'simple-lazy-load-videos' ),
+				array( $this, 'vimeo_thumbnail_size' ),
+				$this->page_slug,
+				'sllv_settings_id'
+			);
 		}
 
 
@@ -150,6 +159,32 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 
 		/**
+		 * Vimeo thumbnail size
+		 */
+		public function vimeo_thumbnail_size() {
+			$name           = 'vimeo_thumbnail_size';
+			$values         = array(
+				'640'  => 'default (640×360)',
+				'1280' => 'HD (1280×720)',
+			);
+			$current_value  = $this->get_options( $name );
+		?>
+
+			<select name="<?php echo $this->option_name; ?>[<?php echo $name; ?>]">
+
+				<?php foreach ( $values as $key => $value ) : ?>
+
+					<option value="<?php echo $key; ?>" <?php selected( $current_value, $key ); ?>><?php echo $value; ?></option>
+
+				<?php endforeach; ?>
+
+			</select>
+
+		<?php
+		}
+
+
+		/**
 		 * Sanitize input
 		 */
 		public function sanitize_callback( $options ) {
@@ -158,14 +193,14 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 			if ( $options ) {
 				foreach ( $options as $name => & $value ) {
-					if ( in_array( $name, array( 'youtube_thumbnail_size' ) ) ) {
+					if ( in_array( $name, array( 'youtube_thumbnail_size', 'vimeo_thumbnail_size' ) ) ) {
 						$value = sanitize_text_field( $value );
 					}
+				}
 
-					/** Flush oembed cache if thumbnails size change */
-					if ( 'youtube_thumbnail_size' == $name && $value != $plugin_options['youtube_thumbnail_size'] ) {
-						$oembed_cache->flush_all();
-					}
+				/** Flush oembed cache if thumbnails size change */
+				if ( $options['youtube_thumbnail_size'] != $plugin_options['youtube_thumbnail_size'] || $options['vimeo_thumbnail_size'] != $plugin_options['vimeo_thumbnail_size'] ) {
+					$oembed_cache->flush_all();
 				}
 			}
 
