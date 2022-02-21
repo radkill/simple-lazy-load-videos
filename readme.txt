@@ -23,6 +23,10 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 = How does this plugin work? =
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
+== Screenshots ==
+
+1. screenshot-1.png
+
 == Changelog ==
 = 0.7.1 =
 * Made it possible to change Vimeo thumbnail size
