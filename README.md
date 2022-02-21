@@ -29,39 +29,12 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.7.1
+* Made it possible to change Vimeo thumbnail size
+
 ### 0.7.0
-* Fixed class names
+* Сode refactoring
 * Added plugins options page
 * Made it possible to change YouTube thumbnail size
-
-
-### 0.6.8
-* Fixed styles for WPBakery Page Builder
-
-### 0.6.7
-* Fixed styles for WPBakery Page Builder
-
-### 0.6.6
-* Fixed some broken styles
-
-### 0.6.5
-* Fixed styles for Divi Builder
-
-### 0.6.4
-* Fixed some PHP warnings that occurred during actions with the plugin
-
-### 0.6.3
-* Removed Ukrainian translation since it is now available at translate.wordpress.org
-
-### 0.6.2
-* Removed native Lazy Loading
-
-### 0.6.1
-* Removed Russian translation since it is now available at translate.wordpress.org
-* Updated Ukrainian translation
-
-### 0.6
-* Changed CSS & JS fileversion, now it is plugin version
-* Сode refactoring
 
 [View full changelog](https://github.com/radkill/simple-lazy-load-videos/blob/master/CHANGELOG.md)

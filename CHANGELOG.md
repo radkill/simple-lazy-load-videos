@@ -1,5 +1,8 @@
+### 0.7.1
+* Made it possible to change Vimeo thumbnail size
+
 ### 0.7.0
-* Fixed class names
+* Сode refactoring
 * Added plugins options page
 * Made it possible to change YouTube thumbnail size
 

@@ -4,7 +4,7 @@ Tags: performance, video, vimeo, youtube
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V5Q9SBB54LMDC&source=url
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 0.7.0
+Stable tag: 0.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,8 +24,11 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 == Changelog ==
+= 0.7.1 =
+* Made it possible to change Vimeo thumbnail size
+
 = 0.7.0 =
-* Fixed class names
+* Сode refactoring
 * Added plugins options page
 * Made it possible to change YouTube thumbnail size
 
