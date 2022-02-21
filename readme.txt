@@ -25,7 +25,7 @@ Instead of loading the iframe of your video on page load, it only loads the vide
 
 == Screenshots ==
 
-1. screenshot-1.png
+1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
 = 0.7.1 =
