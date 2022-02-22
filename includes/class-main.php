@@ -21,63 +21,15 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		 * Class initialization
 		 */
 		public function __construct() {
-			/** Create plugin options if not exist */
-			if ( ! get_option( $this->option_name ) ) {
-				add_option( $this->option_name, $this->default );
-			}
+			new SLLV_Resources();
+			new SLLV_Options();
 
 			$this->check_version();
+			$this->check_options();
 
 			/** Register all hooks */
-			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-			add_action( 'after_setup_theme', array( $this, 'editor_style' ) );
-
 			add_filter( 'oembed_dataparse', array( $this, 'change_oembed' ), 10, 3 );
 			add_action( 'save_post', array( $this, 'flush_oembed_cache' ), 10, 3 );
-
-			/** Plugin options page */
-			new SLLV_Options();
-		}
-
-
-		/**
-		 * Load plugin textdomain
-		 */
-		function load_textdomain() {
-			load_plugin_textdomain( 'simple-lazy-load-videos', false, SLLV_PLUGIN_DIRNAME . '/languages/' );
-		}
-
-
-		/**
-		 * Enqueue JavaScripts
-		 */
-		public function enqueue_scripts() {
-			if ( file_exists( SLLV_PATH . 'assets/js/scripts.js' ) ) {
-				wp_enqueue_script( 'sllv-js-main', SLLV_URL . 'assets/js/scripts.js', array( 'jquery' ), SLLV_VERSION, true );
-			}
-		}
-
-
-		/**
-		 * Enqueue CSS
-		 */
-		public function enqueue_styles() {
-			if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
-				wp_enqueue_style( 'sllv-css-main', SLLV_URL . 'assets/css/main.min.css', false, SLLV_VERSION );
-			}
-		}
-
-
-		/**
-		 * Editor CSS
-		 */
-		public function editor_style() {
-			if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
-				add_editor_style( SLLV_URL . 'assets/css/main.min.css' );
-			}
 		}
 
 
@@ -92,6 +44,16 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 				$oembed_cache->flush_all();
 
 				update_option( 'sllv_version', SLLV_VERSION );
+			}
+		}
+
+
+		/**
+		 * Create plugin options if not exist
+		 */
+		public function check_options() {
+			if ( ! get_option( $this->option_name ) ) {
+				add_option( $this->option_name, $this->default );
 			}
 		}
 

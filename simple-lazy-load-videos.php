@@ -48,6 +48,7 @@ if ( ! defined( 'SLLV_VERSION' ) ) {
 require_once( SLLV_PATH . 'includes/class-actions.php' );
 require_once( SLLV_PATH . 'includes/class-main.php' );
 require_once( SLLV_PATH . 'includes/class-oembed-cache.php' );
+require_once( SLLV_PATH . 'includes/class-resources.php' );
 require_once( SLLV_PATH . 'includes/class-template.php' );
 require_once( SLLV_PATH . 'includes/class-options.php' );
 
