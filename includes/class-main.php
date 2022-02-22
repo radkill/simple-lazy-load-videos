@@ -3,9 +3,9 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 	class SLLV_Main {
 
 		/**
-		 * Options name
+		 * Settings name
 		 */
-		public $option_name = 'sllv';
+		public $settings_name = 'sllv_settings';
 
 
 		/**
@@ -52,8 +52,12 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		 * Create plugin options if not exist
 		 */
 		public function check_options() {
-			if ( ! get_option( $this->option_name ) ) {
-				add_option( $this->option_name, $this->default );
+			if ( ! get_option( $this->settings_name ) ) {
+				add_option( $this->settings_name, $this->default );
+			}
+
+			if ( get_option( 'sllv' ) ) {
+				delete_option( 'sllv' );
 			}
 		}
 
@@ -61,8 +65,8 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		/**
 		 * Get options
 		 */
-		public function get_options( $option = false ) {
-			$plugin_options = get_option( $this->option_name, $this->default );
+		public function get_settings( $option = false ) {
+			$plugin_options = get_option( $this->settings_name, $this->default );
 
 			if ( $option ) {
 				return $plugin_options[ $option ];
@@ -87,7 +91,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 					'title'     => $data->title,
 					'id'        => $video_id,
 					'url'       => 'https://youtu.be/' . $video_id,
-					'thumbnail' => 'https://i.ytimg.com/vi/' . $video_id . '/' . $this->get_options( 'youtube_thumbnail_size' ) . '.jpg',
+					'thumbnail' => 'https://i.ytimg.com/vi/' . $video_id . '/' . $this->get_settings( 'youtube_thumbnail_size' ) . '.jpg',
 					'play'      => $video->youtube,
 				) );
 			}
@@ -98,7 +102,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 					'title'     => $data->title,
 					'id'        => $data->video_id,
 					'url'       => 'https://vimeo.com/' . $data->video_id,
-					'thumbnail' => substr( $data->thumbnail_url, 0, -3 ) . $this->get_options( 'vimeo_thumbnail_size' ),
+					'thumbnail' => substr( $data->thumbnail_url, 0, -3 ) . $this->get_settings( 'vimeo_thumbnail_size' ),
 					'play'      => $video->vimeo,
 				) );
 			}

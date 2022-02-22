@@ -75,7 +75,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 			global $sllv;
 
 			/** Add settings */
-			register_setting( 'sllv_settings', $sllv->option_name, array( $this, 'sanitize_callback' ) );
+			register_setting( 'sllv_settings', $sllv->settings_name, array( $this, 'sanitize_callback' ) );
 
 			/** Add section */
 			add_settings_section( 'sllv_settings_id', __( 'Settings' ), '', $this->page_slug );
@@ -111,10 +111,10 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 				'sddefault'     => 'sddefault (640×480)',
 				'maxresdefault' => 'maxresdefault (1280x720)',
 			);
-			$current_value  = $sllv->get_options( $name );
+			$current_value  = $sllv->get_settings( $name );
 		?>
 
-			<select name="<?php echo $sllv->option_name; ?>[<?php echo $name; ?>]">
+			<select name="<?php echo $sllv->settings_name; ?>[<?php echo $name; ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
@@ -134,15 +134,15 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		public function vimeo_thumbnail_size() {
 			global $sllv;
 
-			$name           = 'vimeo_thumbnail_size';
-			$values         = array(
+			$name          = 'vimeo_thumbnail_size';
+			$values        = array(
 				'640'  => 'default (640×360)',
 				'1280' => 'HD (1280×720)',
 			);
-			$current_value  = $sllv->get_options( $name );
+			$current_value = $sllv->get_settings( $name );
 		?>
 
-			<select name="<?php echo $sllv->option_name; ?>[<?php echo $name; ?>]">
+			<select name="<?php echo $sllv->settings_name; ?>[<?php echo $name; ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
@@ -163,7 +163,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 			global $sllv;
 
 			$oembed_cache   = new SLLV_Oembed_Cache();
-			$plugin_options = $sllv->get_options();
+			$plugin_settings = $sllv->get_settings();
 
 			if ( $options ) {
 				foreach ( $options as $name => & $value ) {
@@ -173,7 +173,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 				}
 
 				/** Flush oembed cache if thumbnails size change */
-				if ( $options['youtube_thumbnail_size'] != $plugin_options['youtube_thumbnail_size'] || $options['vimeo_thumbnail_size'] != $plugin_options['vimeo_thumbnail_size'] ) {
+				if ( $options['youtube_thumbnail_size'] != $plugin_settings['youtube_thumbnail_size'] || $options['vimeo_thumbnail_size'] != $plugin_settings['vimeo_thumbnail_size'] ) {
 					$oembed_cache->flush_all();
 				}
 			}
