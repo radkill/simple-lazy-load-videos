@@ -9,46 +9,12 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 
 		/**
-		 * Options name
-		 */
-		public $option_name = 'sllv';
-
-
-		/**
-		 * Default settings
-		 */
-		public $default = array(
-			'youtube_thumbnail_size' => 'sddefault',
-			'vimeo_thumbnail_size'   => '640',
-		);
-
-
-		/**
 		 * Class initialization
 		 */
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
 			add_action( 'admin_init', array( $this, 'plugin_settings' ) );
 			add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
-
-			/** Create plugin options if not exist */
-			if ( ! get_option( $this->option_name ) ) {
-				add_option( $this->option_name, $this->default );
-			}
-		}
-
-
-		/**
-		 * Get settings
-		 */
-		public function get_options( $option = false ) {
-			$plugin_options = get_option( $this->option_name, $this->default );
-
-			if ( $option ) {
-				return $plugin_options[ $option ];
-			}
-
-			return $plugin_options;
 		}
 
 
@@ -106,8 +72,10 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		 * Registering options
 		 */
 		public function plugin_settings() {
+			global $sllv;
+
 			/** Add settings */
-			register_setting( 'sllv_settings', $this->option_name, array( $this, 'sanitize_callback' ) );
+			register_setting( 'sllv_settings', $sllv->option_name, array( $this, 'sanitize_callback' ) );
 
 			/** Add section */
 			add_settings_section( 'sllv_settings_id', __( 'Settings' ), '', $this->page_slug );
@@ -135,16 +103,18 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		 * YouTube thumbnail size
 		 */
 		public function youtube_thumbnail_size() {
+			global $sllv;
+
 			$name           = 'youtube_thumbnail_size';
 			$values         = array(
 				'hqdefault'     => 'hqdefault (480×360)',
 				'sddefault'     => 'sddefault (640×480)',
 				'maxresdefault' => 'maxresdefault (1280x720)',
 			);
-			$current_value  = $this->get_options( $name );
+			$current_value  = $sllv->get_options( $name );
 		?>
 
-			<select name="<?php echo $this->option_name; ?>[<?php echo $name; ?>]">
+			<select name="<?php echo $sllv->option_name; ?>[<?php echo $name; ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
@@ -162,15 +132,17 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		 * Vimeo thumbnail size
 		 */
 		public function vimeo_thumbnail_size() {
+			global $sllv;
+
 			$name           = 'vimeo_thumbnail_size';
 			$values         = array(
 				'640'  => 'default (640×360)',
 				'1280' => 'HD (1280×720)',
 			);
-			$current_value  = $this->get_options( $name );
+			$current_value  = $sllv->get_options( $name );
 		?>
 
-			<select name="<?php echo $this->option_name; ?>[<?php echo $name; ?>]">
+			<select name="<?php echo $sllv->option_name; ?>[<?php echo $name; ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
@@ -188,8 +160,10 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		 * Sanitize input
 		 */
 		public function sanitize_callback( $options ) {
+			global $sllv;
+
 			$oembed_cache   = new SLLV_Oembed_Cache();
-			$plugin_options = $this->get_options();
+			$plugin_options = $sllv->get_options();
 
 			if ( $options ) {
 				foreach ( $options as $name => & $value ) {

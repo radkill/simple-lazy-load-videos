@@ -15,6 +15,10 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' ); // Exit if accessed directly
 
+if ( isset( $sllv ) ) {
+	return;
+}
+
 if ( ! defined( 'SLLV_URL' ) ) {
 	define( 'SLLV_URL', plugin_dir_url( __FILE__ ) );
 }
@@ -60,5 +64,7 @@ register_uninstall_hook( __FILE__, array( 'SLLV_Actions', 'uninstall' ) );
  * Start plugin
  */
 add_action( 'plugins_loaded', function() {
-	new SLLV_Main();
+	global $sllv;
+
+	$sllv = new SLLV_Main();
 } );

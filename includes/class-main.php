@@ -3,9 +3,29 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 	class SLLV_Main {
 
 		/**
+		 * Options name
+		 */
+		public $option_name = 'sllv';
+
+
+		/**
+		 * Default settings
+		 */
+		public $default = array(
+			'youtube_thumbnail_size' => 'sddefault',
+			'vimeo_thumbnail_size'   => '640',
+		);
+
+
+		/**
 		 * Class initialization
 		 */
 		public function __construct() {
+			/** Create plugin options if not exist */
+			if ( ! get_option( $this->option_name ) ) {
+				add_option( $this->option_name, $this->default );
+			}
+
 			$this->check_version();
 
 			/** Register all hooks */
@@ -77,11 +97,24 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 
 		/**
+		 * Get options
+		 */
+		public function get_options( $option = false ) {
+			$plugin_options = get_option( $this->option_name, $this->default );
+
+			if ( $option ) {
+				return $plugin_options[ $option ];
+			}
+
+			return $plugin_options;
+		}
+
+
+		/**
 		 * Change video oEmbed
 		 */
 		function change_oembed( $return, $data, $url ) {
-			$video          = new SLLV_Template();
-			$plugin_options = new SLLV_Options();
+			$video = new SLLV_Template();
 
 			if ( 'YouTube' === $data->provider_name ) {
 				preg_match( "/embed\/([-\w]+)\?feature=/", $data->html, $matches );
@@ -92,7 +125,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 					'title'     => $data->title,
 					'id'        => $video_id,
 					'url'       => 'https://youtu.be/' . $video_id,
-					'thumbnail' => 'https://i.ytimg.com/vi/' . $video_id . '/' . $plugin_options->get_options( 'youtube_thumbnail_size' ) . '.jpg',
+					'thumbnail' => 'https://i.ytimg.com/vi/' . $video_id . '/' . $this->get_options( 'youtube_thumbnail_size' ) . '.jpg',
 					'play'      => $video->youtube,
 				) );
 			}
@@ -103,7 +136,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 					'title'     => $data->title,
 					'id'        => $data->video_id,
 					'url'       => 'https://vimeo.com/' . $data->video_id,
-					'thumbnail' => substr( $data->thumbnail_url, 0, -3 ) . $plugin_options->get_options( 'vimeo_thumbnail_size' ),
+					'thumbnail' => substr( $data->thumbnail_url, 0, -3 ) . $this->get_options( 'vimeo_thumbnail_size' ),
 					'play'      => $video->vimeo,
 				) );
 			}
