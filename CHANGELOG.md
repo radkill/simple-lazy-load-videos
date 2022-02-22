@@ -1,3 +1,6 @@
+### 0.7.2
+* Сode refactoring
+
 ### 0.7.1
 * Made it possible to change Vimeo thumbnail size
 
