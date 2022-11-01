@@ -83,7 +83,9 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			$video = new SLLV_Template();
 
 			if ( 'YouTube' === $data->provider_name ) {
-				preg_match( "/embed\/([-\w]+)\?feature=/", $data->html, $matches );
+				$params = '&' . explode('?', $data->html)[1];
+				preg_match( "/embed\/([-\w]+)/", $data->html, $matches );
+				$matches[0] .= $params;
 				$video_id = $matches[1];
 
 				$return = $video->video( array(
