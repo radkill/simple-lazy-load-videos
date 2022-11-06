@@ -29,6 +29,12 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.7.3
+* Repair params in embed youtube
+* Delete plugin settings if uninstall
+* Сode refactoring
+* Tested up to WordPress 6.1
+
 ### 0.7.2
 * Сode refactoring
 
