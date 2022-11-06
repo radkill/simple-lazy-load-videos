@@ -1,6 +1,3 @@
-/**
- * @section video
- */
 .sllv-video {
 	$block: &;
 	position: relative !important;
@@ -16,8 +13,8 @@
 
 	.wp-editor &,
 	.wp-admin & {
-		width: 90% !important;
 		padding-bottom: 50% !important;
+		width: 90% !important;
 		box-shadow: none !important;
 		cursor: pointer !important;
 	}
@@ -103,4 +100,3 @@
 		fill: #fff !important;
 	}
 }
-
