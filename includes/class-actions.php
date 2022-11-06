@@ -25,7 +25,7 @@ if ( ! class_exists( 'SLLV_Actions' ) ) {
 		 */
 		public static function uninstall() {
 			delete_option( 'sllv_version' );
-      delete_option( 'sllv_settings' );
+			delete_option( 'sllv_settings' );
 		}
 
 	}
