@@ -1,8 +1,6 @@
 module.exports = {
   options: {
-    map: {
-      inline: false,
-    },
+    map: false,
 
     processors: [
       require('pixrem')(), // add fallbacks for rem units

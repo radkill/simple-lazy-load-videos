@@ -1,7 +1,7 @@
 module.exports = {
   options: {
     implementation: require('dart-sass'),
-    sourceMap: true,
+    sourceMap: false,
   },
 
   dist: {
