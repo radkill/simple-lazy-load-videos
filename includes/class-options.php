@@ -78,7 +78,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 			register_setting( 'sllv_settings', $sllv->settings_name, array( $this, 'sanitize_callback' ) );
 
 			/** Add section */
-			add_settings_section( 'sllv_settings_id', __( 'Settings' ), '', $this->page_slug );
+			add_settings_section( 'sllv_section_settings', __( 'Settings' ), '', $this->page_slug );
 
 			/** Add fields */
 			add_settings_field(
@@ -86,7 +86,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 				__( 'YouTube Thumbnail Size', 'simple-lazy-load-videos' ),
 				array( $this, 'youtube_thumbnail_size' ),
 				$this->page_slug,
-				'sllv_settings_id'
+				'sllv_section_settings'
 			);
 
 			add_settings_field(
@@ -94,7 +94,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 				__( 'Vimeo Thumbnail Size', 'simple-lazy-load-videos' ),
 				array( $this, 'vimeo_thumbnail_size' ),
 				$this->page_slug,
-				'sllv_settings_id'
+				'sllv_section_settings'
 			);
 		}
 
