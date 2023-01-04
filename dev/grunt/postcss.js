@@ -3,8 +3,6 @@ module.exports = {
     map: false,
 
     processors: [
-      require('pixrem')(), // add fallbacks for rem units
-
       require('autoprefixer')(), // add vendor prefixes
 
       require('cssnano')({
