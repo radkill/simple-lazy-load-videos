@@ -1,3 +1,7 @@
+### 0.7.4
+* Fix aspect ratio in some themes
+* Fix "PHP Warning: Undefined property: stdClass::$title" if title is empty for any reason
+
 ### 0.7.3
 * Repair params in embed youtube
 * Delete plugin settings if uninstall
