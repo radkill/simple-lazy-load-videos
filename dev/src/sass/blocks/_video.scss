@@ -1,9 +1,8 @@
 .sllv-video {
 	$block: &;
 	position: relative !important;
-	padding-bottom: 56.25% !important;
+	aspect-ratio: 16 / 9 !important;
 	width: 100% !important;
-	height: 0 !important;
 	background-color: #000 !important;
 	box-shadow: 0 0 10px rgba(#333, .3) !important;
 
