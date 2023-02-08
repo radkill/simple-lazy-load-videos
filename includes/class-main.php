@@ -81,6 +81,11 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		 */
 		function change_oembed( $return, $data, $url ) {
 			$video = new SLLV_Template();
+			if ( isset( $data->title ) ) {
+				$video_title = $data->title;
+			} else {
+				$video_title = __( 'Video', 'simple-lazy-load-videos' );
+			}
 
 			if ( 'YouTube' === $data->provider_name ) {
 				preg_match( "/embed\/([-\w]+)/", $data->html, $matches );
@@ -88,7 +93,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 				$return = $video->video( array(
 					'provider'  => 'youtube',
-					'title'     => $data->title,
+					'title'     => $video_title,
 					'id'        => $video_id,
 					'url'       => 'https://youtu.be/' . $video_id,
 					'thumbnail' => 'https://i.ytimg.com/vi/' . $video_id . '/' . $this->get_settings( 'youtube_thumbnail_size' ) . '.jpg',
@@ -99,7 +104,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			if ( 'Vimeo' === $data->provider_name ) {
 				$return = $video->video( array(
 					'provider'  => 'vimeo',
-					'title'     => $data->title,
+					'title'     => $video_title,
 					'id'        => $data->video_id,
 					'url'       => 'https://vimeo.com/' . $data->video_id,
 					'thumbnail' => substr( $data->thumbnail_url, 0, -3 ) . $this->get_settings( 'vimeo_thumbnail_size' ),
