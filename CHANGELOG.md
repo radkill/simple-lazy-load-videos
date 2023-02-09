@@ -1,3 +1,6 @@
+### 0.7.5
+* Add some data clearing
+
 ### 0.7.4
 * Fix aspect ratio in some themes
 * Fix "PHP Warning: Undefined property: stdClass::$title" if title is empty for any reason
