@@ -31,9 +31,9 @@ if ( ! class_exists( 'SLLV_Template' ) ) {
 			ob_start();
 			?>
 
-			<div class="sllv-video -type_<?php echo $args['provider']; ?>" data-provider="<?php echo $args['provider']; ?>" data-video="<?php echo $args['id']; ?>">
-				<a class="sllv-video__link" href="<?php echo $args['url']; ?>" rel="external noopener" target="_blank">
-					<img class="sllv-video__media" src="<?php echo $args['thumbnail']; ?>" alt="<?php echo $args['title']; ?>">
+			<div class="sllv-video -type_<?php echo $args['provider']; ?>" data-provider="<?php echo $args['provider']; ?>" data-video="<?php echo esc_attr( $args['id'] ); ?>">
+				<a class="sllv-video__link" href="<?php echo esc_url( $args['url'] ); ?>" rel="external noopener" target="_blank">
+					<img class="sllv-video__media" src="<?php echo $args['thumbnail']; ?>" alt="<?php echo esc_attr( $args['title'] ); ?>">
 				</a>
 				<button class="sllv-video__button" type="button" aria-label="<?php _e( 'Play Video', 'simple-lazy-load-videos' ); ?>"><?php echo $args['play']; ?></button>
 			</div>
