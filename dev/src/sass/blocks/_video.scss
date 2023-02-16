@@ -12,10 +12,9 @@
 
 	.wp-editor &,
 	.wp-admin & {
-		padding-bottom: 50% !important;
-		width: 90% !important;
+		max-width: 600px;
 		box-shadow: none !important;
-		cursor: pointer !important;
+		cursor: pointer;
 	}
 
 	&__link {
