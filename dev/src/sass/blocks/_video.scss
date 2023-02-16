@@ -17,6 +17,10 @@
 		cursor: pointer;
 	}
 
+	& + & {
+		margin-top: 1em;
+	}
+
 	&__link {
 		position: absolute !important;
 		top: 0 !important;
