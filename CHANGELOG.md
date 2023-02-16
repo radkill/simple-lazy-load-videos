@@ -1,3 +1,7 @@
+### 0.7.6
+* Fix editor styles
+* Add margins between videos
+
 ### 0.7.5
 * Add some data clearing
 

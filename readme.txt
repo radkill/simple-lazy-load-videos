@@ -4,7 +4,7 @@ Tags: performance, video, vimeo, youtube
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V5Q9SBB54LMDC&source=url
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 0.7.5
+Stable tag: 0.7.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,10 @@ Instead of loading the iframe of your video on page load, it only loads the vide
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 0.7.6 =
+* Fix editor styles
+* Add margins between videos
+
 = 0.7.5 =
 * Add some data clearing
 
