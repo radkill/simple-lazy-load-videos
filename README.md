@@ -27,6 +27,20 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 ## Frequently Asked Questions
 ### How does this plugin work?
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
+This will work automatically for all videos that have been inserted through the standard page editor.
+
+### Is it possible to insert a video using a shortcode?
+Yes, you can use the `[sllv_video]` shortcode using a link to a YouTube or Vimeo video as its value, like:
+```php
+[sllv_video]https://youtu.be/GywDFkY3z-c[/sllv_video]
+```
+
+### Can I embed a lazy loaded video into my template file?
+Yes, but you cannot insert a shortcode `[sllv_video]` into your template file directly.
+You will need to pass the code into apply_shortcodes() function and display its output like this:
+```php
+<?php echo apply_shortcodes( '[sllv_video]https://youtu.be/GywDFkY3z-c[/sllv_video]' ); ?>
+```
 
 ## Changelog
 ### 0.8.1
