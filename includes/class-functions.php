@@ -6,26 +6,26 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 		 * Get remote JSON & cache with Transients API
 		 */
 		function remote_api_get( $api_url, $expiration = HOUR_IN_SECONDS ) {
-		  $api_url_hash = 'sllv_cache_' . md5( $api_url );
-		  $cache = get_transient( $api_url_hash );
+			$api_url_hash = 'sllv_cache_' . md5( $api_url );
+			$cache = get_transient( $api_url_hash );
 
-		  if ( $cache ) {
-		    $body = $cache;
-		  } else {
-		    $request = wp_remote_get( $api_url );
+			if ( $cache ) {
+				$body = $cache;
+			} else {
+				$request = wp_remote_get( $api_url );
 
-		    if ( is_wp_error( $request ) ) {
-		      return false;
-		    }
+				if ( is_wp_error( $request ) ) {
+					return false;
+				}
 
-		    $body = wp_remote_retrieve_body( $request );
+				$body = wp_remote_retrieve_body( $request );
 
-		    if ( $expiration ) {
-		      set_transient( $api_url_hash, $body, $expiration );
-		    }
-		  }
+				if ( $expiration ) {
+					set_transient( $api_url_hash, $body, $expiration );
+				}
+			}
 
-		  return json_decode( $body );
+			return json_decode( $body );
 		}
 
 		/**
@@ -35,27 +35,27 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 		 * @return array       Video type & ID
 		 */
 		public function determine_video_url( $url ) {
-		  $is_match_youtube = preg_match( '/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/', $url, $youtube_matches );
+			$is_match_youtube = preg_match( '/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/', $url, $youtube_matches );
 
-		  $is_match_vimeo = preg_match( '/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/', $url, $vimeo_matches );
+			$is_match_vimeo = preg_match( '/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/', $url, $vimeo_matches );
 
-		  if ( $is_match_youtube ) {
-		    $video_type = 'youtube';
-		    $video_id   = $youtube_matches[5];
-		  } elseif ( $is_match_vimeo ) {
-		    $video_type = 'vimeo';
-		    $video_id   = $vimeo_matches[5];
-		  } else {
-		    $video_type = false;
-		    $video_id   = 0;
-		  }
+			if ( $is_match_youtube ) {
+				$video_type = 'youtube';
+				$video_id   = $youtube_matches[5];
+			} elseif ( $is_match_vimeo ) {
+				$video_type = 'vimeo';
+				$video_id   = $vimeo_matches[5];
+			} else {
+				$video_type = false;
+				$video_id   = 0;
+			}
 
-		  $data = array(
-		    'type' => $video_type,
-		    'id'   => $video_id,
-		  );
+			$data = array(
+				'type' => $video_type,
+				'id'   => $video_id,
+			);
 
-		  return $data;
+			return $data;
 		}
 
 		/**
@@ -66,9 +66,9 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 		 * @return string           Thumbnail URL
 		 */
 		public function get_youtube_thumb( $video_id, $size = 'sddefault' ) {
-		  $thumbnail_url = 'https://i.ytimg.com/vi/' . $video_id . '/' . $size . '.jpg';
+			$thumbnail_url = 'https://i.ytimg.com/vi/' . $video_id . '/' . $size . '.jpg';
 
-		  return $thumbnail_url;
+			return $thumbnail_url;
 		}
 
 
@@ -80,10 +80,10 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 		 * @return string           Thumbnail URL
 		 */
 		public function get_vimeo_thumb( $video_id, $size = 'thumbnail_large' ) {
-		  $data = $this->remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
-		  $thumbnail_url = str_replace( 'http://', 'https://', $data[0]->$size );
+			$data = $this->remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
+			$thumbnail_url = str_replace( 'http://', 'https://', $data[0]->$size );
 
-		  return $thumbnail_url;
+			return $thumbnail_url;
 		}
 
 	}

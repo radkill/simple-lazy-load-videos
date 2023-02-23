@@ -162,7 +162,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		public function sanitize_callback( $options ) {
 			global $sllv;
 
-			$oembed_cache   = new SLLV_Oembed_Cache();
+			$oembed_cache    = new SLLV_Oembed_Cache();
 			$plugin_settings = $sllv->get_settings();
 
 			if ( $options ) {
