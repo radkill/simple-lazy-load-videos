@@ -138,28 +138,30 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			$template  = new SLLV_Template();
 			$functions = new SLLV_Functions();
 
-			$video_url   = $content;
+			$video_url = $content;
 
 			$determine_video = $functions->determine_video_url( $video_url );
 
-			if ( 'youtube' === $determine_video['type'] ) {
-				$thumbnail = $functions->get_youtube_thumb( $determine_video['id'], $this->get_settings( 'youtube_thumbnail_size' ) );
-				$play      = $template->youtube;
-			} elseif ( 'vimeo' === $determine_video['type'] ) {
-				$thumbnail = $functions->get_vimeo_thumb( $determine_video['id'] );
-				$play      = $template->vimeo;
+			if ( $determine_video['type'] ) {
+				if ( 'youtube' === $determine_video['type'] ) {
+					$thumbnail = $functions->get_youtube_thumb( $determine_video['id'], $this->get_settings( 'youtube_thumbnail_size' ) );
+					$play      = $template->youtube;
+				} elseif ( 'vimeo' === $determine_video['type'] ) {
+					$thumbnail = $functions->get_vimeo_thumb( $determine_video['id'] );
+					$play      = $template->vimeo;
+				}
+
+				$content = $template->video( array(
+					'provider'  => $determine_video['type'],
+					'title'     => __( 'Video', 'simple-lazy-load-videos' ),
+					'id'        => $determine_video['id'],
+					'url'       => $video_url,
+					'thumbnail' => $thumbnail,
+					'play'      => $play,
+				) );
 			}
 
-			$return = $template->video( array(
-				'provider'  => $determine_video['type'],
-				'title'     => __( 'Video', 'simple-lazy-load-videos' ),
-				'id'        => $determine_video['id'],
-				'url'       => $video_url,
-				'thumbnail' => $thumbnail,
-				'play'      => $play,
-			) );
-
-			return $return;
+			return $content;
 		}
 
 	}

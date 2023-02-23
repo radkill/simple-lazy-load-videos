@@ -46,7 +46,7 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 		    $video_type = 'vimeo';
 		    $video_id   = $vimeo_matches[5];
 		  } else {
-		    $video_type = 'none';
+		    $video_type = false;
 		    $video_id   = 0;
 		  }
 
