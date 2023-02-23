@@ -54,32 +54,4 @@ You will need to pass the code into apply_shortcodes() function and display its 
 * Update Frequently Asked Questions
 * Small code refactor
 
-### 0.7.6
-* Fix editor styles
-* Add margins between videos
-
-### 0.7.5
-* Add some data clearing
-
-### 0.7.4
-* Fix aspect ratio in some themes
-* Fix "PHP Warning: Undefined property: stdClass::$title" if title is empty for any reason
-
-### 0.7.3
-* Repair params in embed youtube
-* Delete plugin settings if uninstall
-* Сode refactoring
-* Tested up to WordPress 6.1
-
-### 0.7.2
-* Сode refactoring
-
-### 0.7.1
-* Made it possible to change Vimeo thumbnail size
-
-### 0.7.0
-* Сode refactoring
-* Added plugins options page
-* Made it possible to change YouTube thumbnail size
-
 [View full changelog](https://github.com/radkill/simple-lazy-load-videos/blob/master/CHANGELOG.md)
