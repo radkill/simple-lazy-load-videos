@@ -43,6 +43,9 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 0.8.2
+* Add a check if the link in the shortcode is a video link
+
 ### 0.8.1
 * Fix the missing file problem
 

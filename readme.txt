@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Requires at least: 5.0
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 0.8.1
+Stable tag: 0.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,12 @@ You will need to pass the code into apply_shortcodes() function and display its 
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 0.8.2 =
+* Add a check if the link in the shortcode is a video link
+
+= 0.8.1 =
+* Fix the missing file problem
+
 = 0.8 =
 * Add shortcode to display SLLV in theme templates
 * Update Frequently Asked Questions
