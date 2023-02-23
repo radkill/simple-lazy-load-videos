@@ -1,3 +1,8 @@
+### 0.8
+* Add shortcode to display SLLV in theme templates
+* Update Frequently Asked Questions
+* Small code refactor
+
 ### 0.7.6
 * Fix editor styles
 * Add margins between videos

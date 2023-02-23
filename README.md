@@ -29,6 +29,11 @@ It replaces the embedded Youtube and Vimeo videos with a video preview image, th
 Instead of loading the iframe of your video on page load, it only loads the video preview image.
 
 ## Changelog
+### 0.8
+* Add shortcode to display SLLV in theme templates
+* Update Frequently Asked Questions
+* Small code refactor
+
 ### 0.7.6
 * Fix editor styles
 * Add margins between videos

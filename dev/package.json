@@ -1,6 +1,6 @@
 {
   "name": "simple-lazy-load-videos",
-  "version": "0.7.6",
+  "version": "0.8",
   "description": "Simple Lazy Load Videos",
   "devDependencies": {
     "@babel/core": "7.21.0",
