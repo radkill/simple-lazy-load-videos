@@ -1,3 +1,6 @@
+### 0.8.1
+* Fix the missing file problem
+
 ### 0.8
 * Add shortcode to display SLLV in theme templates
 * Update Frequently Asked Questions
