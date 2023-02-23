@@ -51,6 +51,7 @@ require_once( SLLV_PATH . 'includes/class-oembed-cache.php' );
 require_once( SLLV_PATH . 'includes/class-resources.php' );
 require_once( SLLV_PATH . 'includes/class-template.php' );
 require_once( SLLV_PATH . 'includes/class-options.php' );
+require_once( SLLV_PATH . 'includes/class-functions.php' );
 
 
 /**

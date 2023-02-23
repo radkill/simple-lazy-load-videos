@@ -30,6 +30,9 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			/** Register all hooks */
 			add_filter( 'oembed_dataparse', array( $this, 'change_oembed' ), 10, 3 );
 			add_action( 'save_post', array( $this, 'flush_oembed_cache' ), 10, 3 );
+
+			/** Add shortcodes */
+			add_shortcode( 'sllv_video', array( $this, 'shortcode' ) );
 		}
 
 
@@ -122,6 +125,42 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		public function flush_oembed_cache( $post_ID, $post, $update ) {
 			$oembed_cache = new SLLV_Oembed_Cache();
 			$oembed_cache->flush( $post_ID );
+		}
+
+
+		/**
+		 * Shortcode [sllv_video]
+		 */
+		public function shortcode( $atts, $content ) {
+			$atts = shortcode_atts( array(
+
+			), $atts );
+
+			$template  = new SLLV_Template();
+			$functions = new SLLV_Functions();
+
+			$video_url   = $content;
+
+			$determine_video = $functions->determine_video_url( $video_url );
+
+			if ( 'youtube' === $determine_video['type'] ) {
+				$thumbnail = $functions->get_youtube_thumb( $determine_video['id'], $this->get_settings( 'youtube_thumbnail_size' ) );
+				$play      = $template->youtube;
+			} elseif ( 'vimeo' === $determine_video['type'] ) {
+				$thumbnail = $functions->get_vimeo_thumb( $determine_video['id'] );
+				$play      = $template->vimeo;
+			}
+
+			$return = $template->video( array(
+				'provider'  => $determine_video['type'],
+				'title'     => __( 'Video', 'simple-lazy-load-videos' ),
+				'id'        => $determine_video['id'],
+				'url'       => $video_url,
+				'thumbnail' => $thumbnail,
+				'play'      => $play,
+			) );
+
+			return $return;
 		}
 
 	}
