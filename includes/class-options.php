@@ -1,15 +1,24 @@
 <?php
 if ( ! class_exists( 'SLLV_Options' ) ) {
+	/**
+	 * Options page
+	 *
+	 * @since 0.7.0
+	 */
 	class SLLV_Options {
 
 		/**
 		 * Page slug
+		 *
+		 * @since 0.7.0
 		 */
-		public $page_slug = 'simple-lazy-load-videos';
+		private $page_slug = 'simple-lazy-load-videos';
 
 
 		/**
 		 * Class initialization
+		 *
+		 * @since 0.7.0
 		 */
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
@@ -20,6 +29,8 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 		/**
 		 * Add options page link to plugin actions
+		 *
+		 * @since 0.7.0
 		 */
 		public function plugin_action_links( $actions, $plugin_file ) {
 			if ( false === strpos( $plugin_file, SLLV_PLUGIN_FILE ) ) {
@@ -34,6 +45,8 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 		/**
 		 * Add options page
+		 *
+		 * @since 0.7.0
 		 */
 		public function add_plugin_page() {
 			add_options_page(
@@ -48,6 +61,8 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 		/**
 		 * Options page output
+		 *
+		 * @since 0.7.0
 		 */
 		public function options_page_output() {
 		?>
@@ -70,12 +85,14 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 		/**
 		 * Registering options
+		 *
+		 * @since 0.7.0
 		 */
 		public function plugin_settings() {
 			global $sllv;
 
 			/** Add settings */
-			register_setting( 'sllv_settings', $sllv->settings_name, array( $this, 'sanitize_callback' ) );
+			register_setting( 'sllv_settings', $sllv->get_settings_name(), array( $this, 'sanitize_callback' ) );
 
 			/** Add section */
 			add_settings_section( 'sllv_section_settings', __( 'Settings' ), '', $this->page_slug );
@@ -101,6 +118,8 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 		/**
 		 * YouTube thumbnail size
+		 *
+		 * @since 0.7.0
 		 */
 		public function youtube_thumbnail_size() {
 			global $sllv;
@@ -114,7 +133,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 			$current_value  = $sllv->get_settings( $name );
 		?>
 
-			<select name="<?php echo $sllv->settings_name; ?>[<?php echo $name; ?>]">
+			<select name="<?php echo $sllv->get_settings_name(); ?>[<?php echo $name; ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
@@ -130,6 +149,8 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 		/**
 		 * Vimeo thumbnail size
+		 *
+		 * @since 0.7.1
 		 */
 		public function vimeo_thumbnail_size() {
 			global $sllv;
@@ -142,7 +163,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 			$current_value = $sllv->get_settings( $name );
 		?>
 
-			<select name="<?php echo $sllv->settings_name; ?>[<?php echo $name; ?>]">
+			<select name="<?php echo $sllv->get_settings_name(); ?>[<?php echo $name; ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
@@ -158,6 +179,8 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 
 		/**
 		 * Sanitize input
+		 *
+		 * @since 0.7.0
 		 */
 		public function sanitize_callback( $options ) {
 			global $sllv;
