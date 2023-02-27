@@ -1,9 +1,20 @@
 <?php
 if ( ! class_exists( 'SLLV_Functions' ) ) {
+	/**
+	 * Functions
+	 *
+	 * @since 0.8.0
+	 */
 	class SLLV_Functions {
 
 		/**
 		 * Get remote JSON & cache with Transients API
+		 *
+		 * @since 0.8.0
+		 *
+		 * @param  string $api_url    URL of remote json file
+		 * @param  int    $expiration Time until expiration in seconds
+		 * @return object             Remote API as object
 		 */
 		public function remote_api_get( $api_url, $expiration = HOUR_IN_SECONDS ) {
 			$api_url_hash = 'sllv_cache_' . md5( $api_url );
@@ -28,8 +39,11 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 			return json_decode( $body );
 		}
 
+
 		/**
 		 * Get YouTube/Vimeo video type & ID
+		 *
+		 * @since 0.8.0
 		 *
 		 * @param  string $url YouTube or Vimeo video URL
 		 * @return array       Video type & ID
@@ -58,8 +72,11 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 			return $data;
 		}
 
+
 		/**
 		 * Get YouTube thumbnail
+		 *
+		 * @since 0.8.0
 		 *
 		 * @param  string $video_id YouTube video ID
 		 * @param  string $size     Thumbnail size: hqdefault / sddefault / maxresdefault
@@ -74,6 +91,8 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 
 		/**
 		 * Get Vimeo thumbnail
+		 *
+		 * @since 0.8.0
 		 *
 		 * @param  string $video_id Vimeo video ID
 		 * @param  string $size     Thumbnail size: thumbnail_small / thumbnail_medium / thumbnail_large
