@@ -5,7 +5,7 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 		/**
 		 * Get remote JSON & cache with Transients API
 		 */
-		function remote_api_get( $api_url, $expiration = HOUR_IN_SECONDS ) {
+		public function remote_api_get( $api_url, $expiration = HOUR_IN_SECONDS ) {
 			$api_url_hash = 'sllv_cache_' . md5( $api_url );
 			$cache = get_transient( $api_url_hash );
 

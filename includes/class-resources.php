@@ -17,7 +17,7 @@ if ( ! class_exists( 'SLLV_Resources' ) ) {
 		/**
 		 * Load plugin textdomain
 		 */
-		function load_textdomain() {
+		public function load_textdomain() {
 			load_plugin_textdomain( 'simple-lazy-load-videos', false, SLLV_PLUGIN_DIRNAME . '/languages/' );
 		}
 

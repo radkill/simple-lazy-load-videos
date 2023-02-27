@@ -82,7 +82,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		/**
 		 * Change video oEmbed
 		 */
-		function change_oembed( $return, $data, $url ) {
+		public function change_oembed( $return, $data, $url ) {
 			$template = new SLLV_Template();
 
 			if ( isset( $data->title ) ) {
