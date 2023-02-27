@@ -1,9 +1,16 @@
 <?php
 if ( ! class_exists( 'SLLV_Oembed_Cache' ) ) {
+	/**
+	 * Oembed Cache
+	 *
+	 * @since 0.2.0
+	 */
 	class SLLV_Oembed_Cache {
 
 		/**
 		 * Flush all oembed caches
+		 *
+		 * @since 0.2.0
 		 */
 		public function flush_all() {
 			global $wpdb;
@@ -24,6 +31,8 @@ if ( ! class_exists( 'SLLV_Oembed_Cache' ) ) {
 
 		/**
 		 * Flush oembed cache for single post
+		 *
+		 * @since 0.2.0
 		 */
 		public function flush( $post_id ) {
 			global $wpdb;

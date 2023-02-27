@@ -1,9 +1,16 @@
 <?php
 if ( ! class_exists( 'SLLV_Resources' ) ) {
+	/**
+	 * Resources
+	 *
+	 * @since 0.7.2
+	 */
 	class SLLV_Resources {
 
 		/**
 		 * Class initialization
+		 *
+		 * @since 0.7.2
 		 */
 		public function __construct() {
 			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
@@ -16,6 +23,8 @@ if ( ! class_exists( 'SLLV_Resources' ) ) {
 
 		/**
 		 * Load plugin textdomain
+		 *
+		 * @since 0.2.0
 		 */
 		public function load_textdomain() {
 			load_plugin_textdomain( 'simple-lazy-load-videos', false, SLLV_PLUGIN_DIRNAME . '/languages/' );
@@ -24,6 +33,8 @@ if ( ! class_exists( 'SLLV_Resources' ) ) {
 
 		/**
 		 * Enqueue JavaScripts
+		 *
+		 * @since 0.2.0
 		 */
 		public function enqueue_scripts() {
 			if ( file_exists( SLLV_PATH . 'assets/js/scripts.js' ) ) {
@@ -34,6 +45,8 @@ if ( ! class_exists( 'SLLV_Resources' ) ) {
 
 		/**
 		 * Enqueue CSS
+		 *
+		 * @since 0.2.0
 		 */
 		public function enqueue_styles() {
 			if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
@@ -44,6 +57,8 @@ if ( ! class_exists( 'SLLV_Resources' ) ) {
 
 		/**
 		 * Editor CSS
+		 *
+		 * @since 0.5.0
 		 */
 		public function editor_style() {
 			if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
