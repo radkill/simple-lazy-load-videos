@@ -1,8 +1,8 @@
 .sllv-video {
 	$block: &;
 	position: relative !important;
-	aspect-ratio: 16 / 9 !important;
 	width: 100% !important;
+	aspect-ratio: 16 / 9 !important;
 	background-color: #000 !important;
 	box-shadow: 0 0 10px rgba(#333, .3) !important;
 
@@ -37,11 +37,6 @@
 		height: 100% !important;
 		border: none !important;
 		object-fit: cover !important;
-
-		.wp-editor &,
-		.wp-admin & {
-			height: 100% !important;
-		}
 	}
 
 	&__button {
