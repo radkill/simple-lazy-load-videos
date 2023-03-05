@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Simple Lazy Load Videos\n"
-"POT-Creation-Date: 2023-02-23 18:46+0200\n"
+"POT-Creation-Date: 2023-03-05 03:43+0200\n"
 "PO-Revision-Date: 2020-01-08 15:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,28 +21,28 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/class-main.php:91 includes/class-main.php:156
+#: includes/class-main.php:130 includes/class-main.php:208
 msgid "Video"
 msgstr ""
 
-#: includes/class-options.php:29 includes/class-options.php:81
+#: includes/class-options.php:40 includes/class-options.php:98
 msgid "Settings"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: includes/class-options.php:40 includes/class-options.php:41
+#: includes/class-options.php:53 includes/class-options.php:54
 msgid "Simple Lazy Load Videos"
 msgstr ""
 
-#: includes/class-options.php:86
+#: includes/class-options.php:103
 msgid "YouTube Thumbnail Size"
 msgstr ""
 
-#: includes/class-options.php:94
+#: includes/class-options.php:111
 msgid "Vimeo Thumbnail Size"
 msgstr ""
 
-#: includes/class-template.php:38
+#: includes/class-template.php:83
 msgid "Play Video"
 msgstr ""
 
