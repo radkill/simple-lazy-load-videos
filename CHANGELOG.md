@@ -1,3 +1,9 @@
+### 0.9.0
+* Stop all other video or HTML media if new video starts playing
+* Stop all video if HTML media starts playing
+* Code refactoring
+* Fix documentation standards
+
 ### 0.8.2
 * Add a check if the link in the shortcode is a video link
 
