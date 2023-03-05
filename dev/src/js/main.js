@@ -1,6 +1,7 @@
 (function() {
 
 	sllv_find_videos();
+	sllv_media_playing();
 
 
 	/**
@@ -14,6 +15,21 @@
 		for ( let i = 0; i < videos.length; i++ ) {
 			sllv_setup_video( videos[i] );
 		}
+	}
+
+
+	/**
+	 * Do some actions if HTML media starts playing
+	 *
+	 * @since X.X.X
+	 */
+	function sllv_media_playing() {
+		const html_media = document.querySelectorAll( 'video, audio' );
+		html_media.forEach( ( media ) => {
+			media.addEventListener( 'play', () => {
+				sllv_stop_all_video();
+			} );
+		} );
 	}
 
 
