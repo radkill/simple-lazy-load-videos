@@ -22,22 +22,20 @@
 	 *
 	 * @since 0.2.0
 	 *
-	 * @param  {object} video Video container
+	 * @param {object} video Video container
 	 */
 	function sllv_setup_video( video ) {
-		let link   = video.querySelector( '.sllv-video__link' );
-		let media  = video.querySelector( '.sllv-video__media' );
-		let button = video.querySelector( '.sllv-video__button' );
-
+		let link     = video.querySelector( '.sllv-video__link' );
 		let provider = video.getAttribute( 'data-provider' );
 		let id       = video.getAttribute( 'data-video' );
 
 		video.addEventListener( 'click', () => {
 			let iframe = sllv_create_iframe( provider, id );
 
-			link.remove();
-			button.remove();
+			sllv_stop_all_video();
+			sllv_pause_all_media();
 			video.appendChild( iframe );
+			video.classList.add( '-state_started' );
 		} );
 
 		link.removeAttribute( 'href' );
@@ -60,7 +58,7 @@
 		iframe.setAttribute( 'allowfullscreen', '' );
 		iframe.setAttribute( 'allow', 'autoplay' );
 		iframe.setAttribute( 'src', sllv_generate_url( provider, id ) );
-		iframe.classList.add( 'sllv-video__media' );
+		iframe.classList.add( 'sllv-video__iframe' );
 
 		return iframe;
 	}
@@ -84,6 +82,43 @@
 		}
 
 		return url;
+	}
+
+
+	/**
+	 * Stop all video (YouTube, Vimeo)
+	 *
+	 * @since X.X.X
+	 */
+	function sllv_stop_all_video() {
+		const videos = document.querySelectorAll( '.sllv-video.-state_started' );
+
+		// Remove all the iframe videos
+		if ( videos.length > 0 ) {
+			videos.forEach( ( video ) => {
+				let iframe = video.querySelector( '.sllv-video__iframe' );
+
+				iframe.remove();
+				video.classList.remove( '-state_started' );
+			} );
+		}
+	}
+
+
+	/**
+	 * Pause all HTML media (video & audio)
+	 *
+	 * @since X.X.X
+	 */
+	function sllv_pause_all_media() {
+		const html_media = document.querySelectorAll( 'video, audio' );
+
+		// Pause all the HTML video and audio
+		if ( html_media.length > 0 ) {
+			html_media.forEach( ( media ) => {
+				media.pause();
+			} );
+		}
 	}
 
 })();

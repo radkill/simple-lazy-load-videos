@@ -34,7 +34,7 @@ if ( ! class_exists( 'SLLV_Template' ) ) {
 		/**
 		 * Get YouTube button
 		 *
-		 * @since 0.8.3
+		 * @since X.X.X
 		 *
 		 * @return string YouTube button SVG
 		 */
@@ -46,7 +46,7 @@ if ( ! class_exists( 'SLLV_Template' ) ) {
 		/**
 		 * Get Vimeo button
 		 *
-		 * @since 0.8.3
+		 * @since X.X.X
 		 *
 		 * @return string Vimeo button SVG
 		 */
