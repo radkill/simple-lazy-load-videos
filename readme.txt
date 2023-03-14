@@ -1,8 +1,8 @@
 === Simple Lazy Load Videos ===
-Contributors: rad_
+Contributors: rad_, ideus
 Tags: performance, video, vimeo, youtube
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V5Q9SBB54LMDC&source=url
-Requires at least: 5.0
+Requires at least: 4.9
 Tested up to: 6.1.1
 Requires PHP: 5.6
 Stable tag: 0.9.0
