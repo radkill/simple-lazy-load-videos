@@ -75,6 +75,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		public function check_version() {
 			$version = get_option( 'sllv_version' );
 
+			// If version changed then update it in site options
 			if ( ! $version || version_compare( $version, SLLV_VERSION, '!=' ) ) {
 				$oembed_cache = new SLLV_Oembed_Cache();
 				$oembed_cache->flush_all();
@@ -94,6 +95,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 				add_option( $this->get_settings_name(), $this->default );
 			}
 
+			// Delete all plugin options (before v0.7.2)
 			if ( get_option( 'sllv' ) ) {
 				delete_option( 'sllv' );
 			}
