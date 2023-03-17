@@ -129,17 +129,20 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		public function change_oembed_html( $cache, $url, $attr, $post_ID ) {
 			$template  = new SLLV_Template();
 
-			// Just some video for test
-			// $url = 'https://youtu.be/D5LF3WChRrA';
+			// do replacement only on frontend
+			if ( ! is_admin() ) {
+				// Just some video for test
+				// $url = 'https://youtu.be/D5LF3WChRrA';
 
-			// Get oEmbed HTML from URL
-			$html = $template->get_html_from_url( array(
-				'url' => $url,
-			) );
+				// Get oEmbed HTML from URL
+				$html = $template->get_html_from_url( array(
+					'url' => $url,
+				) );
 
-			// replace default HTML by custom if exist
-			if ( $html ) {
-				$cache = $html;
+				// replace default HTML by custom if exist
+				if ( $html ) {
+					$cache = $html;
+				}
 			}
 
 			return $cache;
