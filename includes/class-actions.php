@@ -15,8 +15,7 @@ if ( ! class_exists( 'SLLV_Actions' ) ) {
 		 * @since 0.6.0
 		 */
 		public static function activate( $network_wide ) {
-			$oembed_cache = new SLLV_Oembed_Cache();
-			$oembed_cache->flush_all();
+
 		}
 
 
@@ -26,8 +25,7 @@ if ( ! class_exists( 'SLLV_Actions' ) ) {
 		 * @since 0.6.0
 		 */
 		public static function deactivate() {
-			$oembed_cache = new SLLV_Oembed_Cache();
-			$oembed_cache->flush_all();
+
 		}
 
 

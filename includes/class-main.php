@@ -69,12 +69,15 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		public function check_version() {
 			$version = get_option( 'sllv_version' );
 
-			// If version changed then update it in site options
+			// If version changed
 			if ( ! $version || version_compare( $version, SLLV_VERSION, '!=' ) ) {
-				$oembed_cache = new SLLV_Oembed_Cache();
-				$oembed_cache->flush_all();
-
 				update_option( 'sllv_version', SLLV_VERSION );
+			}
+
+			// Flush oEmbed cache if plugin update from version 0.9.0 or older
+			if ( ! $version || version_compare( $version, '0.9.0', '<=' ) ) {
+				$oembed_cache = new SLLV_Oembed_Cache();
+				$oembed_cache->flush_old_cache();
 			}
 		}
 
