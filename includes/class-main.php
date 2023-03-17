@@ -35,11 +35,19 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			new SLLV_Resources();
 			new SLLV_Options();
 
+			// Plugin version check & update
 			$this->check_version();
+
+			// Create plugin options if not exist
 			$this->check_options();
 
-			// Register hooks
+			// Change oEmbed HTML before cache by `oembed_dataparse`
 			add_filter( 'oembed_dataparse', array( $this, 'change_oembed' ), 10, 3 );
+
+			// Change oEmbed HTML after cache by `embed_oembed_html`
+			// add_filter( 'embed_oembed_html', array( $this, 'change_oembed_html' ), 10, 4 );
+
+			// Flush oembed cache if save post
 			add_action( 'save_post', array( $this, 'flush_oembed_cache' ), 10, 3 );
 
 			// Add shortcodes
@@ -158,6 +166,37 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 
 		/**
+		 * Change video oEmbed HTML
+		 *
+		 * @since X.X.X
+		 *
+		 * @param  string|false $cache   The cached HTML result, stored in post meta.
+		 * @param  string       $url     The attempted embed URL.
+		 * @param  array        $attr    An array of shortcode attributes.
+		 * @param  int          $post_ID Post ID.
+		 * @return string                The returned oEmbed HTML
+		 */
+		public function change_oembed_html( $cache, $url, $attr, $post_ID ) {
+			$template  = new SLLV_Template();
+
+			// Just some video for test
+			// $url = 'https://youtu.be/D5LF3WChRrA';
+
+			// Get oEmbed HTML from URL
+			$html = $template->get_html_from_url( array(
+				'url' => $url,
+			) );
+
+			// replace default HTML by custom if exist
+			if ( $html ) {
+				$cache = $html;
+			}
+
+			return $cache;
+		}
+
+
+		/**
 		 * Flush oembed cache
 		 *
 		 * @since 0.6.0
@@ -185,32 +224,19 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			$atts   = shortcode_atts( array(
 
 			), $atts );
-			$output = $content;
 
-			$template  = new SLLV_Template();
-			$functions = new SLLV_Functions();
+			$template = new SLLV_Template();
 
-			$video_url = $content;
+			// Get oEmbed HTML from URL
+			$html = $template->get_html_from_url( array(
+				'url' => $content,
+			) );
 
-			$determine_video = $functions->determine_video_url( $video_url );
-
-			if ( $determine_video['type'] ) {
-				if ( 'youtube' === $determine_video['type'] ) {
-					$thumbnail = $functions->get_youtube_thumb( $determine_video['id'], $this->get_settings( 'youtube_thumbnail_size' ) );
-					$play      = $template->get_youtube_button();
-				} elseif ( 'vimeo' === $determine_video['type'] ) {
-					$thumbnail = $functions->get_vimeo_thumb( $determine_video['id'] );
-					$play      = $template->get_vimeo_button();
-				}
-
-				$output = $template->video( array(
-					'provider'  => $determine_video['type'],
-					'title'     => __( 'Video', 'simple-lazy-load-videos' ),
-					'id'        => $determine_video['id'],
-					'url'       => $video_url,
-					'thumbnail' => $thumbnail,
-					'play'      => $play,
-				) );
+			// if oEmbed HTML not exist then show shortcode content
+			if ( $html ) {
+				$output = $html;
+			} else {
+				$output = $content;
 			}
 
 			return $output;

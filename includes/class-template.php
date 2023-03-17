@@ -56,6 +56,54 @@ if ( ! class_exists( 'SLLV_Template' ) ) {
 
 
 		/**
+		 * Get oEmbed HTML from URL
+		 *
+		 * @since X.X.X
+		 *
+		 * @param  array  $args Arguments
+		 * @return string       Returned video HTML
+		 */
+		public function get_html_from_url( $args = array() ) {
+			global $sllv;
+
+			$args = wp_parse_args( $args, array(
+				'url' => '',
+			) );
+
+			$functions = new SLLV_Functions();
+
+			$output = false;
+
+			if ( $args['url'] ) {
+				// Determine video from URL
+				$determine_video = $functions->determine_video_url( $args['url'] );
+
+				// Build HTML if URL is video
+				if ( $determine_video['type'] ) {
+					if ( 'youtube' === $determine_video['type'] ) {
+						$thumbnail = $functions->get_youtube_thumb( $determine_video['id'], $sllv->get_settings( 'youtube_thumbnail_size' ) );
+						$play      = $this->get_youtube_button();
+					} elseif ( 'vimeo' === $determine_video['type'] ) {
+						$thumbnail = $functions->get_vimeo_thumb( $determine_video['id'] );
+						$play      = $this->get_vimeo_button();
+					}
+
+					$output = $this->video( array(
+						'provider'  => $determine_video['type'],
+						'title'     => __( 'Video', 'simple-lazy-load-videos' ),
+						'id'        => $determine_video['id'],
+						'url'       => $args['url'],
+						'thumbnail' => $thumbnail,
+						'play'      => $play,
+					) );
+				}
+			}
+
+			return $output;
+		}
+
+
+		/**
 		 * Video container
 		 *
 		 * @since 0.2.0
