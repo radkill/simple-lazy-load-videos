@@ -41,14 +41,8 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			// Create plugin options if not exist
 			$this->check_options();
 
-			// Change oEmbed HTML before cache by `oembed_dataparse`
-			add_filter( 'oembed_dataparse', array( $this, 'change_oembed' ), 10, 3 );
-
 			// Change oEmbed HTML after cache by `embed_oembed_html`
-			// add_filter( 'embed_oembed_html', array( $this, 'change_oembed_html' ), 10, 4 );
-
-			// Flush oembed cache if save post
-			add_action( 'save_post', array( $this, 'flush_oembed_cache' ), 10, 3 );
+			add_filter( 'embed_oembed_html', array( $this, 'change_oembed_html' ), 10, 4 );
 
 			// Add shortcodes
 			add_shortcode( 'sllv_video', array( $this, 'shortcode' ) );
@@ -122,52 +116,6 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 
 		/**
-		 * Change video oEmbed
-		 *
-		 * @since 0.6.0
-		 *
-		 * @param  string $return The returned oEmbed HTML.
-		 * @param  object $data   A data object result from an oEmbed provider.
-		 * @param  string $url    The URL of the content to be embedded.
-		 * @return string         The returned oEmbed HTML
-		 */
-		public function change_oembed( $return, $data, $url ) {
-			$template = new SLLV_Template();
-
-			if ( isset( $data->title ) ) {
-				$video_title = $data->title;
-			} else {
-				$video_title = __( 'Video', 'simple-lazy-load-videos' );
-			}
-
-			if ( 'YouTube' === $data->provider_name ) {
-				preg_match( "/embed\/([-\w]+)/", $data->html, $matches );
-				$video_id = $matches[1];
-
-				$return = $template->video( array(
-					'provider'  => 'youtube',
-					'title'     => $video_title,
-					'id'        => $video_id,
-					'url'       => 'https://youtu.be/' . $video_id,
-					'thumbnail' => 'https://i.ytimg.com/vi/' . $video_id . '/' . $this->get_settings( 'youtube_thumbnail_size' ) . '.jpg',
-					'play'      => $template->get_youtube_button(),
-				) );
-			} elseif ( 'Vimeo' === $data->provider_name ) {
-				$return = $template->video( array(
-					'provider'  => 'vimeo',
-					'title'     => $video_title,
-					'id'        => $data->video_id,
-					'url'       => 'https://vimeo.com/' . $data->video_id,
-					'thumbnail' => substr( $data->thumbnail_url, 0, -3 ) . $this->get_settings( 'vimeo_thumbnail_size' ),
-					'play'      => $template->get_vimeo_button(),
-				) );
-			}
-
-			return $return;
-		}
-
-
-		/**
 		 * Change video oEmbed HTML
 		 *
 		 * @since X.X.X
@@ -195,21 +143,6 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			}
 
 			return $cache;
-		}
-
-
-		/**
-		 * Flush oembed cache
-		 *
-		 * @since 0.6.0
-		 *
-		 * @param int     $post_ID Post ID.
-		 * @param WP_Post $post    Post object.
-		 * @param bool    $update  Whether this is an existing post being updated.
-		 */
-		public function flush_oembed_cache( $post_ID, $post, $update ) {
-			$oembed_cache = new SLLV_Oembed_Cache();
-			$oembed_cache->flush( $post_ID );
 		}
 
 

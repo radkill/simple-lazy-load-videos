@@ -17,7 +17,6 @@ if ( ! class_exists( 'SLLV_Resources' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-			add_action( 'after_setup_theme', array( $this, 'editor_style' ) );
 		}
 
 
@@ -54,16 +53,5 @@ if ( ! class_exists( 'SLLV_Resources' ) ) {
 			}
 		}
 
-
-		/**
-		 * Editor CSS
-		 *
-		 * @since 0.5.0
-		 */
-		public function editor_style() {
-			if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
-				add_editor_style( SLLV_URL . 'assets/css/main.min.css' );
-			}
-		}
 	}
 }

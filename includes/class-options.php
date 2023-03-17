@@ -188,19 +188,11 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		public function sanitize_callback( $options ) {
 			global $sllv;
 
-			$oembed_cache    = new SLLV_Oembed_Cache();
-			$plugin_settings = $sllv->get_settings();
-
 			if ( $options ) {
 				foreach ( $options as $name => & $value ) {
 					if ( in_array( $name, array( 'youtube_thumbnail_size', 'vimeo_thumbnail_size' ) ) ) {
 						$value = sanitize_text_field( $value );
 					}
-				}
-
-				// Flush oembed cache if thumbnails size change
-				if ( $options['youtube_thumbnail_size'] != $plugin_settings['youtube_thumbnail_size'] || $options['vimeo_thumbnail_size'] != $plugin_settings['vimeo_thumbnail_size'] ) {
-					$oembed_cache->flush_all();
 				}
 			}
 
