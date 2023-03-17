@@ -50,7 +50,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		/**
 		 * Get option name for settings
 		 *
-		 * @since X.X.X
+		 * @since 0.9.0
 		 *
 		 * @return string Option name for settings
 		 */

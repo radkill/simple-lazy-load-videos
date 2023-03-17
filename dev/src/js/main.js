@@ -23,7 +23,7 @@
 	/**
 	 * Do some actions if HTML media starts playing
 	 *
-	 * @since X.X.X
+	 * @since 0.9.0
 	 */
 	function media_playing() {
 		const html_media = document.querySelectorAll( 'video, audio' );
@@ -106,7 +106,7 @@
 	/**
 	 * Stop all video (YouTube, Vimeo)
 	 *
-	 * @since X.X.X
+	 * @since 0.9.0
 	 */
 	function stop_all_video() {
 		const videos = document.querySelectorAll( '.sllv-video.-state_started' );
@@ -126,7 +126,7 @@
 	/**
 	 * Pause all HTML media (video & audio)
 	 *
-	 * @since X.X.X
+	 * @since 0.9.0
 	 */
 	function pause_all_media() {
 		const html_media = document.querySelectorAll( 'video, audio' );
