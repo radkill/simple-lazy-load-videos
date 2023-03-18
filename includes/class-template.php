@@ -84,7 +84,7 @@ if ( ! class_exists( 'SLLV_Template' ) ) {
 						$thumbnail = $functions->get_youtube_thumb( $determine_video['id'], $sllv->get_settings( 'youtube_thumbnail_size' ) );
 						$play      = $this->get_youtube_button();
 					} elseif ( 'vimeo' === $determine_video['type'] ) {
-						$thumbnail = $functions->get_vimeo_thumb( $determine_video['id'] );
+						$thumbnail = $functions->get_vimeo_thumb( $determine_video['id'], $sllv->get_settings( 'vimeo_thumbnail_size' ) );
 						$play      = $this->get_vimeo_button();
 					}
 

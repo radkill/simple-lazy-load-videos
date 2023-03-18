@@ -16,7 +16,7 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 		 * @param  int    $expiration Time until expiration in seconds
 		 * @return object             Remote API as object
 		 */
-		public function remote_api_get( $api_url, $expiration = HOUR_IN_SECONDS ) {
+		public function remote_api_get( $api_url, $expiration = DAY_IN_SECONDS ) {
 			$api_url_hash = 'sllv_cache_' . md5( $api_url );
 			$cache = get_transient( $api_url_hash );
 
@@ -95,12 +95,12 @@ if ( ! class_exists( 'SLLV_Functions' ) ) {
 		 * @since 0.8.0
 		 *
 		 * @param  string $video_id Vimeo video ID
-		 * @param  string $size     Thumbnail size: thumbnail_small / thumbnail_medium / thumbnail_large
+		 * @param  string $size     Thumbnail size: 640 / 1280
 		 * @return string           Thumbnail URL
 		 */
-		public function get_vimeo_thumb( $video_id, $size = 'thumbnail_large' ) {
+		public function get_vimeo_thumb( $video_id, $size = '640' ) {
 			$data = $this->remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
-			$thumbnail_url = str_replace( 'http://', 'https://', $data[0]->$size );
+			$thumbnail_url = str_replace( '-d_640', '-d_' . $size, $data[0]->thumbnail_large );
 
 			return $thumbnail_url;
 		}
