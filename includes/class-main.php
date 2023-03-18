@@ -121,7 +121,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		/**
 		 * Change video oEmbed HTML
 		 *
-		 * @since X.X.X
+		 * @since 1.0.0
 		 *
 		 * @param  string|false $cache   The cached HTML result, stored in post meta.
 		 * @param  string       $url     The attempted embed URL.

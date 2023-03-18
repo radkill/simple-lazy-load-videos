@@ -12,7 +12,7 @@ if ( ! class_exists( 'SLLV_Oembed_Cache' ) ) {
 		 *
 		 * Used if plugin version is 0.9.0 or older
 		 *
-		 * @since X.X.X
+		 * @since 1.0.0
 		 */
 		public function flush_old_cache() {
 			global $wpdb;

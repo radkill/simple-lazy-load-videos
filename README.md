@@ -43,6 +43,12 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.0.0
+* Add Gutenberg support
+* New oEmbed template logic
+* Do template replacement only on frontend
+* Fix Vimeo thumbnail
+
 ### 0.9.0
 * Stop all other video or HTML media if new video starts playing
 * Stop all video if HTML media starts playing

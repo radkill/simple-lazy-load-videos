@@ -58,7 +58,7 @@ if ( ! class_exists( 'SLLV_Template' ) ) {
 		/**
 		 * Get oEmbed HTML from URL
 		 *
-		 * @since X.X.X
+		 * @since 1.0.0
 		 *
 		 * @param  array  $args Arguments
 		 * @return string       Returned video HTML
