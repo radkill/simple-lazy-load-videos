@@ -1,11 +1,20 @@
 <?php
-if ( ! class_exists( 'SLLV_Options' ) ) {
+/**
+ * Class Options
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.7.0
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( 'Options' ) ) {
 	/**
 	 * Options page
 	 *
 	 * @since 0.7.0
 	 */
-	class SLLV_Options {
+	class Options {
 
 		/**
 		 * Page slug

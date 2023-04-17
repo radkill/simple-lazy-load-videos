@@ -1,11 +1,20 @@
 <?php
-if ( ! class_exists( 'SLLV_Main' ) ) {
+/**
+ * Class Plugin
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.6.0
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( 'Main' ) ) {
 	/**
-	 * Main
+	 * Main plugin class
 	 *
 	 * @since 0.6.0
 	 */
-	class SLLV_Main {
+	class Main {
 
 		/**
 		 * Options name for settings
@@ -32,8 +41,8 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		 * @since 0.6.0
 		 */
 		public function __construct() {
-			new SLLV_Resources();
-			new SLLV_Options();
+			new \SLLV\Resources();
+			new \SLLV\Options();
 
 			// Plugin version check & update
 			$this->check_version();
@@ -76,7 +85,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 			// Flush oEmbed cache if plugin update from version 0.9.0 or older
 			if ( ! $version || version_compare( $version, '0.9.0', '<=' ) ) {
-				$oembed_cache = new SLLV_Oembed_Cache();
+				$oembed_cache = new \SLLV\Oembed_Cache();
 				$oembed_cache->flush_old_cache();
 			}
 		}
@@ -130,7 +139,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		 * @return string                The returned oEmbed HTML
 		 */
 		public function change_oembed_html( $cache, $url, $attr, $post_ID ) {
-			$template  = new SLLV_Template();
+			$template  = new \SLLV\Template();
 
 			// do replacement only on frontend
 			if ( ! is_admin() ) {
@@ -166,7 +175,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 			), $atts );
 
-			$template = new SLLV_Template();
+			$template = new \SLLV\Template();
 
 			// Get oEmbed HTML from URL
 			$html = $template->get_html_from_url( array(

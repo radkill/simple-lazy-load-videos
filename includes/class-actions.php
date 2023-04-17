@@ -1,13 +1,22 @@
 <?php
-if ( ! class_exists( 'SLLV_Actions' ) ) {
+/**
+ * Class Actions
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.6.0
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( 'Actions' ) ) {
 	/**
 	 * Plugin actions
 	 *
-	 * Activation, deactivation, uninstalling
+	 * Activation, deactivation and uninstalling actions
 	 *
 	 * @since 0.6.0
 	 */
-	class SLLV_Actions {
+	class Actions {
 
 		/**
 		 * Plugin activation actions

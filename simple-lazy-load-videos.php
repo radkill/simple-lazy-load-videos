@@ -66,9 +66,9 @@ require_once( SLLV_PATH . 'includes/class-functions.php' );
 /**
  * Activation, deactivation and uninstalling actions
  */
-register_activation_hook( __FILE__, array( 'SLLV_Actions', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'SLLV_Actions', 'deactivate' ) );
-register_uninstall_hook( __FILE__, array( 'SLLV_Actions', 'uninstall' ) );
+register_activation_hook( __FILE__, array( 'SLLV\Actions', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'SLLV\Actions', 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( 'SLLV\Actions', 'uninstall' ) );
 
 
 /**
@@ -77,5 +77,5 @@ register_uninstall_hook( __FILE__, array( 'SLLV_Actions', 'uninstall' ) );
 add_action( 'plugins_loaded', function() {
 	global $sllv;
 
-	$sllv = new SLLV_Main();
+	$sllv = new \SLLV\Main();
 } );

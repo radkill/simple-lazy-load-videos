@@ -1,11 +1,20 @@
 <?php
-if ( ! class_exists( 'SLLV_Resources' ) ) {
+/**
+ * Class Resources
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.7.2
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( 'Resources' ) ) {
 	/**
 	 * Resources
 	 *
 	 * @since 0.7.2
 	 */
-	class SLLV_Resources {
+	class Resources {
 
 		/**
 		 * Class initialization

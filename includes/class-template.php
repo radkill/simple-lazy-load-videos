@@ -1,11 +1,20 @@
 <?php
-if ( ! class_exists( 'SLLV_Template' ) ) {
+/**
+ * Class Template
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.2.0
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( 'Template' ) ) {
 	/**
 	 * Template
 	 *
 	 * @since 0.2.0
 	 */
-	class SLLV_Template {
+	class Template {
 
 		/**
 		 * Youtube play button
@@ -70,7 +79,7 @@ if ( ! class_exists( 'SLLV_Template' ) ) {
 				'url' => '',
 			) );
 
-			$functions = new SLLV_Functions();
+			$functions = new \SLLV\Functions();
 
 			$output = false;
 

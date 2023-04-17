@@ -1,11 +1,20 @@
 <?php
-if ( ! class_exists( 'SLLV_Oembed_Cache' ) ) {
+/**
+ * Class Oembed_Cache
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.2.0
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( 'Oembed_Cache' ) ) {
 	/**
 	 * Oembed Cache
 	 *
 	 * @since 0.2.0
 	 */
-	class SLLV_Oembed_Cache {
+	class Oembed_Cache {
 
 		/**
 		 * Flush all old oembed caches
