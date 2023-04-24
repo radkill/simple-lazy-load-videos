@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( 'Main' ) ) {
+if ( ! class_exists( '\SLLV\Main' ) ) {
 	/**
 	 * Main plugin class
 	 *

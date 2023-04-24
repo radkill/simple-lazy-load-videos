@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( 'Options' ) ) {
+if ( ! class_exists( '\SLLV\Options' ) ) {
 	/**
 	 * Options page
 	 *

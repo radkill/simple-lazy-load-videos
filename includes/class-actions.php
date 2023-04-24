@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( 'Actions' ) ) {
+if ( ! class_exists( '\SLLV\Actions' ) ) {
 	/**
 	 * Plugin actions
 	 *

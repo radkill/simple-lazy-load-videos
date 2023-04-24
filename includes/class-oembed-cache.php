@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( 'Oembed_Cache' ) ) {
+if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
 	/**
 	 * Oembed Cache
 	 *
