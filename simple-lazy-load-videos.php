@@ -23,20 +23,30 @@ if ( isset( $sllv ) ) {
 	return;
 }
 
-if ( ! defined( 'SLLV_URL' ) ) {
-	define( 'SLLV_URL', plugin_dir_url( __FILE__ ) );
-}
 
+/**
+ * Constants
+ *
+ * SLLV_PATH            = plugin dir path, like '/var/www/html/wp-content/plugins/simple-lazy-load-videos/'
+ * SLLV_URL             = plugin url, like 'https://sitename.com/wp-content/plugins/simple-lazy-load-videos/'
+ * SLLV_PLUGIN_DIRNAME  = plugin dirname, like 'simple-lazy-load-videos'
+ * SLLV_PLUGIN_BASENAME = plugin main file basename, like 'simple-lazy-load-videos.php'
+ * SLLV_VERSION         = plugin version
+ */
 if ( ! defined( 'SLLV_PATH' ) ) {
 	define( 'SLLV_PATH', plugin_dir_path( __FILE__ ) );
+}
+
+if ( ! defined( 'SLLV_URL' ) ) {
+	define( 'SLLV_URL', plugin_dir_url( __FILE__ ) );
 }
 
 if ( ! defined( 'SLLV_PLUGIN_DIRNAME' ) ) {
 	define( 'SLLV_PLUGIN_DIRNAME', dirname( plugin_basename( __FILE__ ) ) );
 }
 
-if ( ! defined( 'SLLV_PLUGIN_FILE' ) ) {
-	define( 'SLLV_PLUGIN_FILE', basename( __FILE__ ) );
+if ( ! defined( 'SLLV_PLUGIN_BASENAME' ) ) {
+	define( 'SLLV_PLUGIN_BASENAME', basename( __FILE__ ) );
 }
 
 if ( ! defined( 'SLLV_VERSION' ) ) {

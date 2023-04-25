@@ -42,7 +42,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 * @since 0.7.0
 		 */
 		public function plugin_action_links( $actions, $plugin_file ) {
-			if ( false === strpos( $plugin_file, SLLV_PLUGIN_FILE ) ) {
+			if ( false === strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
 				return $actions;
 			}
 
