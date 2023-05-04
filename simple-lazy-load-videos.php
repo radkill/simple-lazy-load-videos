@@ -19,6 +19,10 @@
  */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+
+/**
+ * Exit if a duplicate of plugin is activated
+ */
 if ( isset( $sllv ) ) {
 	return;
 }
