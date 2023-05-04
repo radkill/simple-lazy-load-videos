@@ -55,6 +55,9 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 
 			// Add shortcodes
 			add_shortcode( 'sllv_video', array( $this, 'shortcode' ) );
+
+			// Add plugin row meta
+			add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_meta' ), 10, 2 );
 		}
 
 
@@ -190,6 +193,29 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 			}
 
 			return $output;
+		}
+
+		/**
+		 * Filters the array of row meta for each/specific plugin in the Plugins list table.
+		 * Appends additional links below each/specific plugin on the plugins page.
+		 *
+		 * @since X.X.X
+		 * @link https://team.baeldung.com/browse/UX-6840
+		 *
+		 * @param  array  $plugin_meta An array of the plugin's metadata
+		 * @param  string $plugin_file Path to the plugin file
+		 * @return array  $plugin_meta
+		 */
+		public function add_plugin_row_meta( $plugin_meta, $plugin_file ) {
+
+			if ( strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
+				$custom_meta = array(
+					'changelog' => '<a href="https://github.com/radkill/simple-lazy-load-videos" target="_blank" style="font-weight: bold;">' . __( 'GitHub' ) . '</a>',
+				);
+				$plugin_meta = array_merge( $plugin_meta, $custom_meta );
+			}
+
+			return $plugin_meta;
 		}
 
 	}
