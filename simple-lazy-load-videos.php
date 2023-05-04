@@ -69,9 +69,9 @@ if ( ! defined( 'SLLV_VERSION' ) ) {
  * Classes
  */
 require_once( SLLV_PATH . 'includes/class-actions.php' );
-require_once( SLLV_PATH . 'includes/class-main.php' );
-require_once( SLLV_PATH . 'includes/class-oembed-cache.php' );
+require_once( SLLV_PATH . 'includes/class-plugin.php' );
 require_once( SLLV_PATH . 'includes/class-resources.php' );
+require_once( SLLV_PATH . 'includes/class-oembed-cache.php' );
 require_once( SLLV_PATH . 'includes/class-template.php' );
 require_once( SLLV_PATH . 'includes/class-options.php' );
 require_once( SLLV_PATH . 'includes/class-functions.php' );
@@ -91,5 +91,5 @@ register_uninstall_hook( __FILE__, array( 'SLLV\Actions', 'uninstall' ) );
 add_action( 'plugins_loaded', function() {
 	global $sllv;
 
-	$sllv = new \SLLV\Main();
+	$sllv = new \SLLV\Plugin();
 } );

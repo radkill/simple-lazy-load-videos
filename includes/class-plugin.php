@@ -8,13 +8,13 @@
 
 namespace SLLV;
 
-if ( ! class_exists( '\SLLV\Main' ) ) {
+if ( ! class_exists( '\SLLV\Plugin' ) ) {
 	/**
 	 * Main plugin class
 	 *
 	 * @since 0.6.0
 	 */
-	class Main {
+	class Plugin {
 
 		/**
 		 * Options name for settings
