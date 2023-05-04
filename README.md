@@ -43,6 +43,10 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.1.0
+* Refactoring
+* Add GitHub link to plugin meta
+
 ### 1.0.0
 * Add Gutenberg support
 * New oEmbed template logic

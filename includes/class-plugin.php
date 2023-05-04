@@ -199,7 +199,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * Filters the array of row meta for each/specific plugin in the Plugins list table.
 		 * Appends additional links below each/specific plugin on the plugins page.
 		 *
-		 * @since X.X.X
+		 * @since 1.1.0
 		 * @link https://team.baeldung.com/browse/UX-6840
 		 *
 		 * @param  array  $plugin_meta An array of the plugin's metadata
