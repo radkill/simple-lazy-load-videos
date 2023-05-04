@@ -1,11 +1,20 @@
 <?php
-if ( ! class_exists( 'SLLV_Main' ) ) {
+/**
+ * Class Plugin
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.6.0
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( '\SLLV\Plugin' ) ) {
 	/**
-	 * Main
+	 * Main plugin class
 	 *
 	 * @since 0.6.0
 	 */
-	class SLLV_Main {
+	class Plugin {
 
 		/**
 		 * Options name for settings
@@ -32,8 +41,8 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		 * @since 0.6.0
 		 */
 		public function __construct() {
-			new SLLV_Resources();
-			new SLLV_Options();
+			new \SLLV\Resources();
+			new \SLLV\Options();
 
 			// Plugin version check & update
 			$this->check_version();
@@ -46,6 +55,9 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 			// Add shortcodes
 			add_shortcode( 'sllv_video', array( $this, 'shortcode' ) );
+
+			// Add plugin row meta
+			add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_meta' ), 10, 2 );
 		}
 
 
@@ -76,7 +88,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 			// Flush oEmbed cache if plugin update from version 0.9.0 or older
 			if ( ! $version || version_compare( $version, '0.9.0', '<=' ) ) {
-				$oembed_cache = new SLLV_Oembed_Cache();
+				$oembed_cache = new \SLLV\Oembed_Cache();
 				$oembed_cache->flush_old_cache();
 			}
 		}
@@ -130,7 +142,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 		 * @return string                The returned oEmbed HTML
 		 */
 		public function change_oembed_html( $cache, $url, $attr, $post_ID ) {
-			$template  = new SLLV_Template();
+			$template  = new \SLLV\Template();
 
 			// do replacement only on frontend
 			if ( ! is_admin() ) {
@@ -166,7 +178,7 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 
 			), $atts );
 
-			$template = new SLLV_Template();
+			$template = new \SLLV\Template();
 
 			// Get oEmbed HTML from URL
 			$html = $template->get_html_from_url( array(
@@ -181,6 +193,29 @@ if ( ! class_exists( 'SLLV_Main' ) ) {
 			}
 
 			return $output;
+		}
+
+		/**
+		 * Filters the array of row meta for each/specific plugin in the Plugins list table.
+		 * Appends additional links below each/specific plugin on the plugins page.
+		 *
+		 * @since X.X.X
+		 * @link https://team.baeldung.com/browse/UX-6840
+		 *
+		 * @param  array  $plugin_meta An array of the plugin's metadata
+		 * @param  string $plugin_file Path to the plugin file
+		 * @return array  $plugin_meta
+		 */
+		public function add_plugin_row_meta( $plugin_meta, $plugin_file ) {
+
+			if ( strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
+				$custom_meta = array(
+					'changelog' => '<a href="https://github.com/radkill/simple-lazy-load-videos" target="_blank" style="font-weight: bold;">' . __( 'GitHub' ) . '</a>',
+				);
+				$plugin_meta = array_merge( $plugin_meta, $custom_meta );
+			}
+
+			return $plugin_meta;
 		}
 
 	}

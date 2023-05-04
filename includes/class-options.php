@@ -1,11 +1,20 @@
 <?php
-if ( ! class_exists( 'SLLV_Options' ) ) {
+/**
+ * Class Options
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.7.0
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( '\SLLV\Options' ) ) {
 	/**
 	 * Options page
 	 *
 	 * @since 0.7.0
 	 */
-	class SLLV_Options {
+	class Options {
 
 		/**
 		 * Page slug
@@ -33,7 +42,7 @@ if ( ! class_exists( 'SLLV_Options' ) ) {
 		 * @since 0.7.0
 		 */
 		public function plugin_action_links( $actions, $plugin_file ) {
-			if ( false === strpos( $plugin_file, SLLV_PLUGIN_FILE ) ) {
+			if ( false === strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
 				return $actions;
 			}
 

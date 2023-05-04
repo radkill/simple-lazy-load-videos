@@ -1,11 +1,20 @@
 <?php
-if ( ! class_exists( 'SLLV_Functions' ) ) {
+/**
+ * Class Functions
+ *
+ * @package simple-lazy-load-videos
+ * @since 0.8.0
+ */
+
+namespace SLLV;
+
+if ( ! class_exists( '\SLLV\Functions' ) ) {
 	/**
 	 * Functions
 	 *
 	 * @since 0.8.0
 	 */
-	class SLLV_Functions {
+	class Functions {
 
 		/**
 		 * Get remote JSON & cache with Transients API
