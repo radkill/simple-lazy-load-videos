@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Simple Lazy Load Videos\n"
-"POT-Creation-Date: 2023-03-05 03:43+0200\n"
+"POT-Creation-Date: 2023-05-04 18:25+0300\n"
 "PO-Revision-Date: 2020-01-08 15:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,28 +21,32 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/class-main.php:130 includes/class-main.php:208
-msgid "Video"
-msgstr ""
-
-#: includes/class-options.php:40 includes/class-options.php:98
+#: includes/class-options.php:49 includes/class-options.php:107
 msgid "Settings"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: includes/class-options.php:53 includes/class-options.php:54
+#: includes/class-options.php:62 includes/class-options.php:63
 msgid "Simple Lazy Load Videos"
 msgstr ""
 
-#: includes/class-options.php:103
+#: includes/class-options.php:112
 msgid "YouTube Thumbnail Size"
 msgstr ""
 
-#: includes/class-options.php:111
+#: includes/class-options.php:120
 msgid "Vimeo Thumbnail Size"
 msgstr ""
 
-#: includes/class-template.php:83
+#: includes/class-plugin.php:213
+msgid "GitHub"
+msgstr ""
+
+#: includes/class-template.php:102
+msgid "Video"
+msgstr ""
+
+#: includes/class-template.php:140
 msgid "Play Video"
 msgstr ""
 
@@ -51,7 +55,7 @@ msgid "https://github.com/radkill/simple-lazy-load-videos"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Simple Lazy Load for embedded video from Youtube and Vimeo"
+msgid "Simple Lazy Load for embedded video from Youtube and Vimeo."
 msgstr ""
 
 #. Author of the plugin/theme
