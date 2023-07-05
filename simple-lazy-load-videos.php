@@ -56,7 +56,7 @@ if ( ! defined( 'SLLV_PLUGIN_BASENAME' ) ) {
 if ( ! defined( 'SLLV_VERSION' ) ) {
 	// include file with function 'get_plugin_data' if not exists
 	if ( ! function_exists( 'get_plugin_data' ) ) {
-		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 	}
 
 	// get plugin version from main plugin file
@@ -68,13 +68,13 @@ if ( ! defined( 'SLLV_VERSION' ) ) {
 /**
  * Classes
  */
-require_once( SLLV_PATH . 'includes/class-actions.php' );
-require_once( SLLV_PATH . 'includes/class-plugin.php' );
-require_once( SLLV_PATH . 'includes/class-resources.php' );
-require_once( SLLV_PATH . 'includes/class-oembed-cache.php' );
-require_once( SLLV_PATH . 'includes/class-template.php' );
-require_once( SLLV_PATH . 'includes/class-options.php' );
-require_once( SLLV_PATH . 'includes/class-functions.php' );
+require_once SLLV_PATH . 'includes/class-actions.php';
+require_once SLLV_PATH . 'includes/class-plugin.php';
+require_once SLLV_PATH . 'includes/class-resources.php';
+require_once SLLV_PATH . 'includes/class-oembed-cache.php';
+require_once SLLV_PATH . 'includes/class-template.php';
+require_once SLLV_PATH . 'includes/class-options.php';
+require_once SLLV_PATH . 'includes/class-functions.php';
 
 
 /**
