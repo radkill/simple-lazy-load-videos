@@ -43,6 +43,12 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.2.0
+* Add filters: `sllv_youtube_button`, `sllv_vimeo_button`, `sllv_video_template`
+* Remove jQuery from depends scripts
+* Rename CSS & JS handles
+* Tested up to WordPress 6.3
+
 ### 1.1.0
 * Refactoring
 * Add GitHub link to plugin meta

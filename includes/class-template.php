@@ -51,7 +51,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			/**
 			 * Filters the YouTube button code
 			 *
-			 * @since X.X.X
+			 * @since 1.2.0
 			 *
 			 * @param string $this->youtube YouTube button SVG
 			 */
@@ -70,7 +70,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			/**
 			 * Filters the Vimeo button code
 			 *
-			 * @since X.X.X
+			 * @since 1.2.0
 			 *
 			 * @param string $this->vimeo Vimeo button SVG
 			 */
@@ -160,7 +160,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			/**
 			 * Filters the video container HTML
 			 *
-			 * @since X.X.X
+			 * @since 1.2.0
 			 *
 			 * @param string $output Returned video HTML
 			 * @param array  $args   Arguments
