@@ -51,7 +51,7 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 		public function enqueue_scripts() {
 			if ( file_exists( SLLV_PATH . 'assets/js/scripts.js' ) ) {
 				wp_enqueue_script(
-					'sllv-js-main',
+					'sllv-main',
 					SLLV_URL . 'assets/js/scripts.js',
 					array(),
 					SLLV_VERSION,
@@ -69,7 +69,7 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 		public function enqueue_styles() {
 			if ( file_exists( SLLV_PATH . 'assets/css/main.min.css' ) ) {
 				wp_enqueue_style(
-					'sllv-css-main',
+					'sllv-main',
 					SLLV_URL . 'assets/css/main.min.css',
 					false,
 					SLLV_VERSION
