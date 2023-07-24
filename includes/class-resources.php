@@ -46,7 +46,7 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 		 */
 		public function enqueue_scripts() {
 			if ( file_exists( SLLV_PATH . 'assets/js/scripts.js' ) ) {
-				wp_enqueue_script( 'sllv-js-main', SLLV_URL . 'assets/js/scripts.js', array( 'jquery' ), SLLV_VERSION, true );
+				wp_enqueue_script( 'sllv-js-main', SLLV_URL . 'assets/js/scripts.js', array(), SLLV_VERSION, true );
 			}
 		}
 
