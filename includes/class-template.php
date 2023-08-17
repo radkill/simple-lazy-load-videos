@@ -48,7 +48,14 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 * @return string YouTube button SVG
 		 */
 		public function get_youtube_button() {
-			return $this->youtube;
+			/**
+			 * Filters the YouTube button code
+			 *
+			 * @since 1.2.0
+			 *
+			 * @param string $this->youtube YouTube button SVG
+			 */
+			return apply_filters( 'sllv_youtube_button', $this->youtube );
 		}
 
 
@@ -60,7 +67,14 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 * @return string Vimeo button SVG
 		 */
 		public function get_vimeo_button() {
-			return $this->vimeo;
+			/**
+			 * Filters the Vimeo button code
+			 *
+			 * @since 1.2.0
+			 *
+			 * @param string $this->vimeo Vimeo button SVG
+			 */
+			return apply_filters( 'sllv_vimeo_button', $this->vimeo );
 		}
 
 
@@ -141,8 +155,17 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			</div>
 
 			<?php
-			$return = ob_get_clean();
-			return $return;
+			$output = ob_get_clean();
+
+			/**
+			 * Filters the video container HTML
+			 *
+			 * @since 1.2.0
+			 *
+			 * @param string $output Returned video HTML
+			 * @param array  $args   Arguments
+			 */
+			return apply_filters( 'sllv_video_template', $output, $args );
 		}
 
 	}

@@ -3,9 +3,9 @@ Contributors: rad_, ideus
 Tags: performance, video, vimeo, youtube
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V5Q9SBB54LMDC&source=url
 Requires at least: 4.9
-Tested up to: 6.2.2
+Tested up to: 6.3
 Requires PHP: 5.6
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,12 @@ You will need to pass the code into apply_shortcodes() function and display its 
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 1.2.0 =
+* Add filters: `sllv_youtube_button`, `sllv_vimeo_button`, `sllv_video_template`
+* Remove jQuery from depends scripts
+* Rename CSS & JS handles
+* Tested up to WordPress 6.3
+
 = 1.1.0 =
 * Refactoring
 * Add GitHub link to plugin meta
