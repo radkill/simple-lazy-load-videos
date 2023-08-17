@@ -25,7 +25,6 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		}
 
 
