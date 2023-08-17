@@ -10,13 +10,6 @@
 		cursor: pointer !important;
 	}
 
-	.wp-editor &,
-	.wp-admin & {
-		max-width: 600px;
-		box-shadow: none !important;
-		cursor: pointer;
-	}
-
 	& + & {
 		margin-top: 1em;
 	}
@@ -76,11 +69,6 @@
 
 		#{$block}.-state_started & {
 			display: none !important;
-		}
-
-		.wp-editor &,
-		.wp-admin & {
-			display: block !important;
 		}
 
 		&:focus {
