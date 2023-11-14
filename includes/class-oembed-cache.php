@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Oembed_Cache
+ * Class Oembed_Cache.
  *
  * @package simple-lazy-load-videos
  * @since 0.2.0
@@ -10,14 +10,14 @@ namespace SLLV;
 
 if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
 	/**
-	 * Oembed Cache
+	 * Oembed Cache.
 	 *
 	 * @since 0.2.0
 	 */
 	class Oembed_Cache {
 
 		/**
-		 * Flush all old oembed caches
+		 * Flush all old oembed caches.
 		 *
 		 * Used if plugin version is 0.9.0 or older
 		 *
@@ -26,14 +26,14 @@ if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
 		public function flush_old_cache() {
 			global $wpdb;
 
-			$meta_key_1  = "|_oembed|_%%";
-			$meta_key_2  = "|_oembed|_time|_%%";
-			$option_name = "|_transient_oembed|_%%";
+			$meta_key_1  = '|_oembed|_%%';
+			$meta_key_2  = '|_oembed|_time|_%%';
+			$option_name = '|_transient_oembed|_%%';
 
-			// Flush common cache
+			// Flush common cache.
 			$wpdb->query(
-				$query = $wpdb->prepare(
-					"DELETE FROM `" . $wpdb->postmeta . "`
+				$wpdb->prepare(
+					"DELETE FROM $wpdb->postmeta
 						WHERE `meta_key` LIKE %s ESCAPE '|'
 							OR `meta_key` LIKE %s ESCAPE '|'",
 					$meta_key_1,
@@ -41,15 +41,14 @@ if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
 				)
 			);
 
-			// Flush Gutenberg cache
+			// Flush Gutenberg cache.
 			$wpdb->query(
-				$query = $wpdb->prepare(
-					"DELETE FROM `" . $wpdb->options . "`
+				$wpdb->prepare(
+					"DELETE FROM $wpdb->options
 						WHERE `option_name` LIKE %s ESCAPE '|'",
 					$option_name
 				)
 			);
 		}
-
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Options
+ * Class Options.
  *
  * @package simple-lazy-load-videos
  * @since 0.7.0
@@ -10,22 +10,24 @@ namespace SLLV;
 
 if ( ! class_exists( '\SLLV\Options' ) ) {
 	/**
-	 * Options page
+	 * Options page.
 	 *
 	 * @since 0.7.0
 	 */
 	class Options {
 
 		/**
-		 * Page slug
+		 * Page slug.
 		 *
 		 * @since 0.7.0
+		 *
+		 * @var string $page_slug Options page slug.
 		 */
 		private $page_slug = 'simple-lazy-load-videos';
 
 
 		/**
-		 * Class initialization
+		 * Class initialization.
 		 *
 		 * @since 0.7.0
 		 */
@@ -37,9 +39,13 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 
 
 		/**
-		 * Add options page link to plugin actions
+		 * Add options page link to plugin actions.
 		 *
 		 * @since 0.7.0
+		 *
+		 * @param  string[] $actions     An array of plugin action links.
+		 * @param  string   $plugin_file Path to the plugin file relative to the plugins directory.
+		 * @return string                An array of plugin action links.
 		 */
 		public function plugin_action_links( $actions, $plugin_file ) {
 			if ( false === strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
@@ -53,7 +59,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 
 
 		/**
-		 * Add options page
+		 * Add options page.
 		 *
 		 * @since 0.7.0
 		 */
@@ -69,15 +75,15 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 
 
 		/**
-		 * Options page output
+		 * Options page output.
 		 *
 		 * @since 0.7.0
 		 */
 		public function options_page_output() {
-		?>
+			?>
 
 			<div class="wrap">
-				<h2><?php echo get_admin_page_title() ?></h2>
+				<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
 				<form action="options.php" method="POST">
 					<?php
@@ -88,25 +94,25 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 				</form>
 			</div>
 
-		<?php
+			<?php
 		}
 
 
 		/**
-		 * Registering options
+		 * Registering options.
 		 *
 		 * @since 0.7.0
 		 */
 		public function plugin_settings() {
 			global $sllv;
 
-			// Add settings
+			// Add settings.
 			register_setting( 'sllv_settings', $sllv->get_settings_name(), array( $this, 'sanitize_callback' ) );
 
-			// Add section
+			// Add section.
 			add_settings_section( 'sllv_section_settings', __( 'Settings' ), '', $this->page_slug );
 
-			// Add fields
+			// Add fields.
 			add_settings_field(
 				'youtube_thumbnail_size',
 				__( 'YouTube Thumbnail Size', 'simple-lazy-load-videos' ),
@@ -126,38 +132,38 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 
 
 		/**
-		 * YouTube thumbnail size
+		 * YouTube thumbnail size.
 		 *
 		 * @since 0.7.0
 		 */
 		public function youtube_thumbnail_size() {
 			global $sllv;
 
-			$name           = 'youtube_thumbnail_size';
-			$values         = array(
+			$name          = 'youtube_thumbnail_size';
+			$values        = array(
 				'hqdefault'     => 'hqdefault (480×360)',
 				'sddefault'     => 'sddefault (640×480)',
 				'maxresdefault' => 'maxresdefault (1280x720)',
 			);
-			$current_value  = $sllv->get_settings( $name );
-		?>
+			$current_value = $sllv->get_settings( $name );
+			?>
 
-			<select name="<?php echo $sllv->get_settings_name(); ?>[<?php echo $name; ?>]">
+			<select name="<?php echo esc_attr( $sllv->get_settings_name() ); ?>[<?php echo esc_attr( $name ); ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
-					<option value="<?php echo $key; ?>" <?php selected( $current_value, $key ); ?>><?php echo $value; ?></option>
+					<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $current_value, $key ); ?>><?php echo esc_html( $value ); ?></option>
 
 				<?php endforeach; ?>
 
 			</select>
 
-		<?php
+			<?php
 		}
 
 
 		/**
-		 * Vimeo thumbnail size
+		 * Vimeo thumbnail size.
 		 *
 		 * @since 0.7.1
 		 */
@@ -170,36 +176,36 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 				'1280' => 'HD (1280×720)',
 			);
 			$current_value = $sllv->get_settings( $name );
-		?>
+			?>
 
-			<select name="<?php echo $sllv->get_settings_name(); ?>[<?php echo $name; ?>]">
+			<select name="<?php echo esc_attr( $sllv->get_settings_name() ); ?>[<?php echo esc_attr( $name ); ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
-					<option value="<?php echo $key; ?>" <?php selected( $current_value, $key ); ?>><?php echo $value; ?></option>
+					<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $current_value, $key ); ?>><?php echo esc_html( $value ); ?></option>
 
 				<?php endforeach; ?>
 
 			</select>
 
-		<?php
+			<?php
 		}
 
 
 		/**
-		 * Sanitize plugin settings
+		 * Sanitize plugin settings.
 		 *
 		 * @since 0.7.0
 		 *
-		 * @param  array $options Plugin settings
-		 * @return array          Returned plugin settings
+		 * @param  array $options Plugin settings.
+		 * @return array          Returned plugin settings.
 		 */
 		public function sanitize_callback( $options ) {
 			global $sllv;
 
 			if ( $options ) {
 				foreach ( $options as $name => & $value ) {
-					if ( in_array( $name, array( 'youtube_thumbnail_size', 'vimeo_thumbnail_size' ) ) ) {
+					if ( in_array( $name, array( 'youtube_thumbnail_size', 'vimeo_thumbnail_size' ), true ) ) {
 						$value = sanitize_text_field( $value );
 					}
 				}

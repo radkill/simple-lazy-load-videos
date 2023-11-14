@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Template
+ * Class Template.
  *
  * @package simple-lazy-load-videos
  * @since 0.2.0
@@ -10,16 +10,18 @@ namespace SLLV;
 
 if ( ! class_exists( '\SLLV\Template' ) ) {
 	/**
-	 * Template
+	 * Template.
 	 *
 	 * @since 0.2.0
 	 */
 	class Template {
 
 		/**
-		 * Youtube play button
+		 * Youtube play button.
 		 *
 		 * @since 0.2.0
+		 *
+		 * @var string $youtube YouTube button code.
 		 */
 		private $youtube = '
 			<svg width="68" height="48" viewBox="0 0 68 48">
@@ -29,9 +31,11 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 
 
 		/**
-		 * Vimeo play button
+		 * Vimeo play button.
 		 *
 		 * @since 0.2.0
+		 *
+		 * @var string $vimeo Vimeo button code.
 		 */
 		private $vimeo = '
 			<svg width="76" height="43" viewBox="0 0 76 43">
@@ -41,50 +45,50 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 
 
 		/**
-		 * Get YouTube button
+		 * Get YouTube button.
 		 *
 		 * @since 0.9.0
 		 *
-		 * @return string YouTube button SVG
+		 * @return string YouTube button SVG.
 		 */
 		public function get_youtube_button() {
 			/**
-			 * Filters the YouTube button code
+			 * Filters the YouTube button code.
 			 *
 			 * @since 1.2.0
 			 *
-			 * @param string $this->youtube YouTube button SVG
+			 * @param string $this->youtube YouTube button SVG.
 			 */
 			return apply_filters( 'sllv_youtube_button', $this->youtube );
 		}
 
 
 		/**
-		 * Get Vimeo button
+		 * Get Vimeo button.
 		 *
 		 * @since 0.9.0
 		 *
-		 * @return string Vimeo button SVG
+		 * @return string Vimeo button SVG.
 		 */
 		public function get_vimeo_button() {
 			/**
-			 * Filters the Vimeo button code
+			 * Filters the Vimeo button code.
 			 *
 			 * @since 1.2.0
 			 *
-			 * @param string $this->vimeo Vimeo button SVG
+			 * @param string $this->vimeo Vimeo button SVG.
 			 */
 			return apply_filters( 'sllv_vimeo_button', $this->vimeo );
 		}
 
 
 		/**
-		 * Get oEmbed HTML from URL
+		 * Get oEmbed HTML from URL.
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param  array  $args Arguments
-		 * @return string       Returned video HTML
+		 * @param  array $args Arguments.
+		 * @return string       Returned video HTML.
 		 */
 		public function get_html_from_url( $args = array() ) {
 			global $sllv;
@@ -98,10 +102,10 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			$output = false;
 
 			if ( $args['url'] ) {
-				// Determine video from URL
+				// Determine video from URL.
 				$determine_video = $functions->determine_video_url( $args['url'] );
 
-				// Build HTML if URL is video
+				// Build HTML if URL is video.
 				if ( $determine_video['type'] ) {
 					if ( 'youtube' === $determine_video['type'] ) {
 						$thumbnail = $functions->get_youtube_thumb( $determine_video['id'], $sllv->get_settings( 'youtube_thumbnail_size' ) );
@@ -127,12 +131,12 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 
 
 		/**
-		 * Video container
+		 * Video container.
 		 *
 		 * @since 0.2.0
 		 *
-		 * @param  array  $args Arguments
-		 * @return string       Returned video HTML
+		 * @param  array $args Arguments.
+		 * @return string       Returned video HTML.
 		 */
 		public function video( $args = array() ) {
 			$args = wp_parse_args( $args, array(
@@ -147,26 +151,25 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			ob_start();
 			?>
 
-			<div class="sllv-video -type_<?php echo $args['provider']; ?>" data-provider="<?php echo $args['provider']; ?>" data-video="<?php echo esc_attr( $args['id'] ); ?>">
+			<div class="sllv-video -type_<?php echo esc_attr( $args['provider'] ); ?>" data-provider="<?php echo esc_attr( $args['provider'] ); ?>" data-video="<?php echo esc_attr( $args['id'] ); ?>">
 				<a class="sllv-video__link" href="<?php echo esc_url( $args['url'] ); ?>" rel="external noopener" target="_blank">
-					<img class="sllv-video__media" src="<?php echo $args['thumbnail']; ?>" alt="<?php echo esc_attr( $args['title'] ); ?>">
+					<img class="sllv-video__media" src="<?php echo esc_attr( $args['thumbnail'] ); ?>" alt="<?php echo esc_attr( $args['title'] ); ?>">
 				</a>
-				<button class="sllv-video__button" type="button" aria-label="<?php _e( 'Play Video', 'simple-lazy-load-videos' ); ?>"><?php echo $args['play']; ?></button>
+				<button class="sllv-video__button" type="button" aria-label="<?php esc_attr_e( 'Play Video', 'simple-lazy-load-videos' ); ?>"><?php echo $args['play']; ?></button>
 			</div>
 
 			<?php
 			$output = ob_get_clean();
 
 			/**
-			 * Filters the video container HTML
+			 * Filters the video container HTML.
 			 *
 			 * @since 1.2.0
 			 *
-			 * @param string $output Returned video HTML
-			 * @param array  $args   Arguments
+			 * @param string $output Returned video HTML.
+			 * @param array  $args   Arguments.
 			 */
 			return apply_filters( 'sllv_video_template', $output, $args );
 		}
-
 	}
 }

@@ -12,12 +12,16 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       simple-lazy-load-videos
  * Domain Path:       /languages
+ *
+ * @package simple-lazy-load-videos
  */
 
 /**
  * Exit if accessed directly
  */
-defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'No script kiddies please!' );
+}
 
 
 /**
@@ -54,12 +58,12 @@ if ( ! defined( 'SLLV_PLUGIN_BASENAME' ) ) {
 }
 
 if ( ! defined( 'SLLV_VERSION' ) ) {
-	// include file with function 'get_plugin_data' if not exists
+	// include file with function 'get_plugin_data' if not exists.
 	if ( ! function_exists( 'get_plugin_data' ) ) {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 	}
 
-	// get plugin version from main plugin file
+	// get plugin version from main plugin file.
 	$plugin_data = get_plugin_data( __FILE__ );
 	define( 'SLLV_VERSION', $plugin_data['Version'] );
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Functions
+ * Class Functions.
  *
  * @package simple-lazy-load-videos
  * @since 0.8.0
@@ -10,24 +10,24 @@ namespace SLLV;
 
 if ( ! class_exists( '\SLLV\Functions' ) ) {
 	/**
-	 * Functions
+	 * Functions.
 	 *
 	 * @since 0.8.0
 	 */
 	class Functions {
 
 		/**
-		 * Get remote JSON & cache with Transients API
+		 * Get remote JSON & cache with Transients API.
 		 *
 		 * @since 0.8.0
 		 *
-		 * @param  string $api_url    URL of remote json file
-		 * @param  int    $expiration Time until expiration in seconds
-		 * @return object             Remote API as object
+		 * @param  string $api_url    URL of remote json file.
+		 * @param  int    $expiration Time until expiration in seconds.
+		 * @return object             Remote API as object.
 		 */
 		public function remote_api_get( $api_url, $expiration = DAY_IN_SECONDS ) {
 			$api_url_hash = 'sllv_cache_' . md5( $api_url );
-			$cache = get_transient( $api_url_hash );
+			$cache        = get_transient( $api_url_hash );
 
 			if ( $cache ) {
 				$body = $cache;
@@ -50,12 +50,12 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 
 
 		/**
-		 * Get YouTube/Vimeo video type & ID
+		 * Get YouTube/Vimeo video type & ID.
 		 *
 		 * @since 0.8.0
 		 *
-		 * @param  string $url YouTube or Vimeo video URL
-		 * @return array       Video type & ID
+		 * @param  string $url YouTube or Vimeo video URL.
+		 * @return array       Video type & ID.
 		 */
 		public function determine_video_url( $url ) {
 			$is_match_youtube = preg_match( '/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/', $url, $youtube_matches );
@@ -83,13 +83,13 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 
 
 		/**
-		 * Get YouTube thumbnail
+		 * Get YouTube thumbnail.
 		 *
 		 * @since 0.8.0
 		 *
-		 * @param  string $video_id YouTube video ID
-		 * @param  string $size     Thumbnail size: hqdefault / sddefault / maxresdefault
-		 * @return string           Thumbnail URL
+		 * @param  string $video_id YouTube video ID.
+		 * @param  string $size     Thumbnail size: hqdefault / sddefault / maxresdefault.
+		 * @return string           Thumbnail URL.
 		 */
 		public function get_youtube_thumb( $video_id, $size = 'sddefault' ) {
 			$thumbnail_url = 'https://i.ytimg.com/vi/' . $video_id . '/' . $size . '.jpg';
@@ -99,20 +99,19 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 
 
 		/**
-		 * Get Vimeo thumbnail
+		 * Get Vimeo thumbnail.
 		 *
 		 * @since 0.8.0
 		 *
-		 * @param  string $video_id Vimeo video ID
-		 * @param  string $size     Thumbnail size: 640 / 1280
-		 * @return string           Thumbnail URL
+		 * @param  string $video_id Vimeo video ID.
+		 * @param  string $size     Thumbnail size: 640 / 1280.
+		 * @return string           Thumbnail URL.
 		 */
 		public function get_vimeo_thumb( $video_id, $size = '640' ) {
-			$data = $this->remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
+			$data          = $this->remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
 			$thumbnail_url = str_replace( '-d_640', '-d_' . $size, $data[0]->thumbnail_large );
 
 			return $thumbnail_url;
 		}
-
 	}
 }

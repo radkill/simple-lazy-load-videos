@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Resources
+ * Class Resources.
  *
  * @package simple-lazy-load-videos
  * @since 0.7.2
@@ -10,14 +10,14 @@ namespace SLLV;
 
 if ( ! class_exists( '\SLLV\Resources' ) ) {
 	/**
-	 * Resources
+	 * Resources.
 	 *
 	 * @since 0.7.2
 	 */
 	class Resources {
 
 		/**
-		 * Class initialization
+		 * Class initialization.
 		 *
 		 * @since 0.7.2
 		 */
@@ -43,7 +43,7 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 
 
 		/**
-		 * Enqueue JavaScripts
+		 * Enqueue JavaScripts.
 		 *
 		 * @since 0.2.0
 		 */
@@ -61,7 +61,7 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 
 
 		/**
-		 * Enqueue CSS
+		 * Enqueue CSS.
 		 *
 		 * @since 0.2.0
 		 */
@@ -75,6 +75,5 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 				);
 			}
 		}
-
 	}
 }
