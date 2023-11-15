@@ -43,6 +43,16 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.3.0
+* Remove styles from admin_enqueue_scripts
+* Remove old admin styles from CSS
+* Replace dart-sass to sass
+* Change esversion in jshint config to 8
+* Update packages
+* Fix svg
+* Fix WPCS
+* Tested up to WordPress 6.4.1
+
 ### 1.2.0
 * Add filters: `sllv_youtube_button`, `sllv_vimeo_button`, `sllv_video_template`
 * Remove jQuery from depends scripts
@@ -58,22 +68,5 @@ You will need to pass the code into apply_shortcodes() function and display its 
 * New oEmbed template logic
 * Do template replacement only on frontend
 * Fix Vimeo thumbnail
-
-### 0.9.0
-* Stop all other video or HTML media if new video starts playing
-* Stop all video if HTML media starts playing
-* Code refactoring
-* Fix documentation standards
-
-### 0.8.2
-* Add a check if the link in the shortcode is a video link
-
-### 0.8.1
-* Fix the missing file problem
-
-### 0.8
-* Add shortcode to display SLLV in theme templates
-* Update Frequently Asked Questions
-* Small code refactor
 
 [View full changelog](https://github.com/radkill/simple-lazy-load-videos/blob/master/CHANGELOG.md)
