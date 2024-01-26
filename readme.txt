@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Requires at least: 4.9
 Tested up to: 6.4.2
 Requires PHP: 5.6
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,10 @@ You will need to pass the code into apply_shortcodes() function and display its 
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 1.4.0 =
+* Add BuddyPress support
+* Tested up to WordPress 6.4.2
+
 = 1.3.0 =
 * Remove styles from admin_enqueue_scripts
 * Remove old admin styles from CSS

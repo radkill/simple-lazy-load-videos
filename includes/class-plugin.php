@@ -174,7 +174,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		/**
 		 * Change video oEmbed HTML for BuddyPress.
 		 *
-		 * @since X.X.X
+		 * @since 1.4.0
 		 *
 		 * @param  string $cache   Cached HTML markup for embed.
 		 * @param  string $url     The URL being embedded.

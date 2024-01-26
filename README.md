@@ -43,6 +43,10 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.4.0
+* Add BuddyPress support
+* Tested up to WordPress 6.4.2
+
 ### 1.3.0
 * Remove styles from admin_enqueue_scripts
 * Remove old admin styles from CSS

@@ -26,7 +26,7 @@
 	/**
 	 * Refind videos on AJAX complete.
 	 *
-	 * @since X.X.X
+	 * @since 1.4.0
 	 */
 	function on_ajax_complete() {
 		jQuery( document ).ajaxComplete(function( event, request, settings ) {
