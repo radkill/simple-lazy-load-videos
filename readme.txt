@@ -3,7 +3,7 @@ Contributors: rad_, ideus
 Tags: performance, video, vimeo, youtube
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V5Q9SBB54LMDC&source=url
 Requires at least: 4.9
-Tested up to: 6.4.1
+Tested up to: 6.4.2
 Requires PHP: 5.6
 Stable tag: 1.3.0
 License: GPLv2 or later
