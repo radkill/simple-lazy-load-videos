@@ -2,6 +2,7 @@
 
 	find_videos();
 	media_playing();
+	on_ajax_complete();
 
 
 	/**
@@ -14,9 +15,25 @@
 
 		if ( videos.length > 0 ) {
 			videos.forEach( ( video ) => {
-				setup_video( video );
+				if ( ! video.classList.contains( '-state_enabled' ) ) {
+					setup_video( video );
+				}
 			} );
 		}
+	}
+
+
+	/**
+	 * Refind videos on AJAX complete.
+	 *
+	 * @since X.X.X
+	 */
+	function on_ajax_complete() {
+		jQuery( document ).ajaxComplete(function( event, request, settings ) {
+			setTimeout(function () {
+				find_videos();
+			}, 500);
+		});
 	}
 
 

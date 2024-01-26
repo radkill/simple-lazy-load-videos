@@ -57,6 +57,9 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 			// Change oEmbed HTML after cache by `embed_oembed_html`.
 			add_filter( 'embed_oembed_html', array( $this, 'change_oembed_html' ), 10, 4 );
 
+			// Change video oEmbed HTML for BuddyPress.
+			add_filter( 'bp_embed_oembed_html', array( $this, 'bp_change_oembed_html' ), 10, 4 );
+
 			// Add shortcodes.
 			add_shortcode( 'sllv_video', array( $this, 'shortcode' ) );
 
@@ -158,10 +161,38 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 					'url' => $url,
 				) );
 
-				// replace default HTML by custom if exist.
+				// Replace default HTML by custom if exist.
 				if ( $html ) {
 					$cache = $html;
 				}
+			}
+
+			return $cache;
+		}
+
+
+		/**
+		 * Change video oEmbed HTML for BuddyPress.
+		 *
+		 * @since X.X.X
+		 *
+		 * @param  string $cache   Cached HTML markup for embed.
+		 * @param  string $url     The URL being embedded.
+		 * @param  array  $attr    Parsed shortcode attributes.
+		 * @param  array  $rawattr Unparased shortcode attributes.
+		 * @return string          The returned oEmbed HTML.
+		 */
+		public function bp_change_oembed_html( $cache, $url, $attr, $rawattr ) {
+			$template = new \SLLV\Template();
+
+			// Get oEmbed HTML from URL.
+			$html = $template->get_html_from_url( array(
+				'url' => $url,
+			) );
+
+			// Replace default HTML by custom if exist.
+			if ( $html ) {
+				$cache = $html;
 			}
 
 			return $cache;
