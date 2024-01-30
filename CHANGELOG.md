@@ -1,3 +1,6 @@
+### 1.4.1
+* Fix missing jQuery error
+
 ### 1.4.0
 * Add BuddyPress support
 * Tested up to WordPress 6.4.2
