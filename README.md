@@ -43,6 +43,12 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.5.0
+* Add shortcode attributes: thumbnail, play, hide_play
+* Update FAQ
+* Update Grunt packages
+* Tested up to WordPress 6.6.2
+
 ### 1.4.1
 * Fix missing jQuery error
 
