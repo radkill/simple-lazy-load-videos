@@ -1,6 +1,10 @@
 module.exports = {
 	options: {
 		implementation: require('sass'),
+		silenceDeprecations: [
+			'legacy-js-api',
+			'import',
+		],
 		sourceMap: false,
 	},
 
