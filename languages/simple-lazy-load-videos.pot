@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Simple Lazy Load Videos\n"
-"POT-Creation-Date: 2024-01-30 16:25+0200\n"
+"POT-Creation-Date: 2024-10-21 03:52+0300\n"
 "PO-Revision-Date: 2020-01-08 15:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -38,15 +38,15 @@ msgstr ""
 msgid "Vimeo Thumbnail Size"
 msgstr ""
 
-#: includes/class-plugin.php:248
+#: includes/class-plugin.php:253
 msgid "GitHub"
 msgstr ""
 
-#: includes/class-template.php:118
+#: includes/class-template.php:135
 msgid "Video"
 msgstr ""
 
-#: includes/class-template.php:156
+#: includes/class-template.php:173
 msgid "Play Video"
 msgstr ""
 
