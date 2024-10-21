@@ -92,12 +92,19 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			global $sllv;
 
 			$args = wp_parse_args( $args, array(
-				'url' => '',
+				'url'       => '',
+				'thumbnail' => false,
+				'play'      => false,
+				'hide_play' => false,
 			) );
 
 			$functions = new \SLLV\Functions();
 
 			$output = false;
+
+			if ( $args['play'] ) {
+				$args['play'] = '<img class="" src="' . esc_url( $args['play'] ) . '">';
+			}
 
 			if ( $args['url'] ) {
 				// Determine video from URL.
@@ -106,11 +113,21 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 				// Build HTML if URL is video.
 				if ( $determine_video['type'] ) {
 					if ( 'youtube' === $determine_video['type'] ) {
-						$thumbnail = $functions->get_youtube_thumb( $determine_video['id'], $sllv->get_settings( 'youtube_thumbnail_size' ) );
-						$play      = $this->get_youtube_button();
+						if ( ! $args['thumbnail'] ) {
+							$args['thumbnail'] = $functions->get_youtube_thumb( $determine_video['id'], $sllv->get_settings( 'youtube_thumbnail_size' ) );
+						}
+
+						if ( ! $args['play'] && ! $args['hide_play'] ) {
+							$args['play'] = $this->get_youtube_button();
+						}
 					} elseif ( 'vimeo' === $determine_video['type'] ) {
-						$thumbnail = $functions->get_vimeo_thumb( $determine_video['id'], $sllv->get_settings( 'vimeo_thumbnail_size' ) );
-						$play      = $this->get_vimeo_button();
+						if ( ! $args['thumbnail'] ) {
+							$args['thumbnail'] = $functions->get_vimeo_thumb( $determine_video['id'], $sllv->get_settings( 'vimeo_thumbnail_size' ) );
+						}
+
+						if ( ! $args['play'] && ! $args['hide_play'] ) {
+							$args['play'] = $this->get_vimeo_button();
+						}
 					}
 
 					$output = $this->video( array(
@@ -118,8 +135,8 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 						'title'     => __( 'Video', 'simple-lazy-load-videos' ),
 						'id'        => $determine_video['id'],
 						'url'       => $args['url'],
-						'thumbnail' => $thumbnail,
-						'play'      => $play,
+						'thumbnail' => $args['thumbnail'],
+						'play'      => $args['play'],
 					) );
 				}
 			}
