@@ -29,6 +29,11 @@ Yes, you can use the `[sllv_video]` shortcode using a link to a YouTube or Vimeo
 
 `[sllv_video]https://youtu.be/GywDFkY3z-c[/sllv_video]`
 
+A shortcode can contain several additional attributes:
+`thumbnail` - alternate thumbnail URL, in case the auto-generated one doesn't suit you
+`play` - URL with an alternate image for the Play button, in case you're not happy with the default button
+`hide_play` - if you give any value to this attribute, such as "1", then the Play button will not be displayed
+
 = Can I embed a lazy loaded video into my template file? =
 Yes, but you cannot insert a shortcode `[sllv_video]` into your template file directly.
 You will need to pass the code into apply_shortcodes() function and display its output like this:
