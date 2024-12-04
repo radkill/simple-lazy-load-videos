@@ -6,12 +6,6 @@ module.exports = function(grunt) {
 	});
 
 	require('load-grunt-config')(grunt, {
-		jitGrunt: {
-			staticMappings: {
-				sprite: 'grunt-spritesmith',
-			},
-		},
-
 		data: {
 			// Data passed into config.  Can use with <%= test %>
 
