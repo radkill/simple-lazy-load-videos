@@ -85,7 +85,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 *
 		 * @since 0.6.0
 		 */
-		public function check_version() {
+		private function check_version() {
 			$version = get_option( 'sllv_version' );
 
 			// If version changed.
@@ -106,7 +106,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 *
 		 * @since 0.7.2
 		 */
-		public function check_options() {
+		private function check_options() {
 			if ( ! get_option( $this->get_settings_name() ) ) {
 				add_option( $this->get_settings_name(), $this->default );
 			}
