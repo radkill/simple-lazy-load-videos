@@ -3,8 +3,8 @@
 	"version": "1.5.0",
 	"description": "Simple Lazy Load Videos",
 	"devDependencies": {
-		"@babel/core": "7.25.8",
-		"@babel/preset-env": "7.25.8",
+		"@babel/core": "7.26.0",
+		"@babel/preset-env": "7.26.0",
 		"autoprefixer": "9.8.8",
 		"cssnano": "4.1.11",
 		"grunt": "1.6.1",
