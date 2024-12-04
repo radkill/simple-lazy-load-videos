@@ -51,6 +51,13 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.5.1
+* Fix Notice "Function \_load_textdomain_just_in_time was called incorrectly"
+* Fix visibility of some methods
+* Remove grunt-spritesmith
+* Update Grunt packages
+* Tested up to WordPress 6.7.1
+
 ### 1.5.0
 * Add shortcode attributes: thumbnail, play, hide_play
 * Update FAQ
