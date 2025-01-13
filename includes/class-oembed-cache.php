@@ -31,6 +31,7 @@ if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
 			$option_name = '|_transient_oembed|_%%';
 
 			// Flush common cache.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching -- Clearing old cache data
 			$wpdb->query(
 				$wpdb->prepare(
 					"DELETE FROM $wpdb->postmeta
@@ -42,6 +43,7 @@ if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
 			);
 
 			// Flush Gutenberg cache.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching -- Clearing old cache data
 			$wpdb->query(
 				$wpdb->prepare(
 					"DELETE FROM $wpdb->options

@@ -91,12 +91,15 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		public function get_html_from_url( $args = array() ) {
 			global $sllv;
 
-			$args = wp_parse_args( $args, array(
-				'url'       => '',
-				'thumbnail' => false,
-				'play'      => false,
-				'hide_play' => false,
-			) );
+			$args = wp_parse_args(
+				$args,
+				array(
+					'url'       => '',
+					'thumbnail' => false,
+					'play'      => false,
+					'hide_play' => false,
+				)
+			);
 
 			$functions = new \SLLV\Functions();
 
@@ -130,14 +133,16 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 						}
 					}
 
-					$output = $this->video( array(
-						'provider'  => $determine_video['type'],
-						'title'     => __( 'Video', 'simple-lazy-load-videos' ),
-						'id'        => $determine_video['id'],
-						'url'       => $args['url'],
-						'thumbnail' => $args['thumbnail'],
-						'play'      => $args['play'],
-					) );
+					$output = $this->video(
+						array(
+							'provider'  => $determine_video['type'],
+							'title'     => __( 'Video', 'simple-lazy-load-videos' ),
+							'id'        => $determine_video['id'],
+							'url'       => $args['url'],
+							'thumbnail' => $args['thumbnail'],
+							'play'      => $args['play'],
+						)
+					);
 				}
 			}
 
@@ -154,14 +159,17 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 * @return string       Returned video HTML.
 		 */
 		public function video( $args = array() ) {
-			$args = wp_parse_args( $args, array(
-				'provider'  => '',
-				'title'     => '',
-				'id'        => '',
-				'url'       => '',
-				'thumbnail' => '',
-				'play'      => '',
-			) );
+			$args = wp_parse_args(
+				$args,
+				array(
+					'provider'  => '',
+					'title'     => '',
+					'id'        => '',
+					'url'       => '',
+					'thumbnail' => '',
+					'play'      => '',
+				)
+			);
 
 			ob_start();
 			?>
