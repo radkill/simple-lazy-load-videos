@@ -51,6 +51,11 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.6.0
+*	Add new search key in preg_match for short YouTube videos (thanks @paulooliveirar)
+* Fix WPCS
+* Update Grunt packages
+
 ### 1.5.1
 * Fix Notice "Function \_load_textdomain_just_in_time was called incorrectly"
 * Fix visibility of some methods

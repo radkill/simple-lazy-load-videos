@@ -22,14 +22,19 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 		 * @since 0.7.2
 		 */
 		public function __construct() {
+			// Load plugin textdomain.
 			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+
+			// Enqueue JavaScripts.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
+			// Enqueue CSS.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		}
 
 
 		/**
-		 * Load plugin textdomain
+		 * Load plugin textdomain.
 		 *
 		 * @since 0.2.0
 		 */
@@ -52,7 +57,9 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 				wp_enqueue_script(
 					'sllv-main',
 					SLLV_URL . 'assets/js/scripts.js',
-					array( 'jquery' ),
+					array(
+						'jquery',
+					),
 					SLLV_VERSION,
 					true
 				);
@@ -70,7 +77,7 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 				wp_enqueue_style(
 					'sllv-main',
 					SLLV_URL . 'assets/css/main.min.css',
-					false,
+					array(),
 					SLLV_VERSION
 				);
 			}

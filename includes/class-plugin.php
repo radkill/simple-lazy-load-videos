@@ -157,9 +157,11 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 				// $url = 'https://youtu.be/D5LF3WChRrA';
 
 				// Get oEmbed HTML from URL.
-				$html = $template->get_html_from_url( array(
-					'url' => $url,
-				) );
+				$html = $template->get_html_from_url(
+					array(
+						'url' => $url,
+					)
+				);
 
 				// Replace default HTML by custom if exist.
 				if ( $html ) {
@@ -186,9 +188,11 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 			$template = new \SLLV\Template();
 
 			// Get oEmbed HTML from URL.
-			$html = $template->get_html_from_url( array(
-				'url' => $url,
-			) );
+			$html = $template->get_html_from_url(
+				array(
+					'url' => $url,
+				)
+			);
 
 			// Replace default HTML by custom if exist.
 			if ( $html ) {
@@ -209,21 +213,26 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return string          Returned shortcode HTML.
 		 */
 		public function shortcode( $atts, $content = '' ) {
-			$atts = shortcode_atts( array(
-				'thumbnail' => false,
-				'play'      => false,
-				'hide_play' => false,
-			), $atts );
+			$atts = shortcode_atts(
+				array(
+					'thumbnail' => false,
+					'play'      => false,
+					'hide_play' => false,
+				),
+				$atts
+			);
 
 			$template = new \SLLV\Template();
 
 			// Get oEmbed HTML from URL.
-			$html = $template->get_html_from_url( array(
-				'url'       => $content,
-				'thumbnail' => $atts['thumbnail'],
-				'play'      => $atts['play'],
-				'hide_play' => $atts['hide_play'],
-			) );
+			$html = $template->get_html_from_url(
+				array(
+					'url'       => $content,
+					'thumbnail' => $atts['thumbnail'],
+					'play'      => $atts['play'],
+					'hide_play' => $atts['hide_play'],
+				)
+			);
 
 			// if oEmbed HTML not exist then show shortcode content.
 			if ( $html ) {

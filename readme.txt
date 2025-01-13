@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Requires at least: 4.9
 Tested up to: 6.7.1
 Requires PHP: 5.6
-Stable tag: 1.5.1
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,11 @@ You will need to pass the code into apply_shortcodes() function and display its 
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 1.6.0 =
+*	Add new search key in preg_match for short YouTube videos (thanks @paulooliveirar)
+* Fix WPCS
+* Update Grunt packages
+
 = 1.5.1 =
 * Fix Notice "Function _load_textdomain_just_in_time was called incorrectly"
 * Fix visibility of some methods
