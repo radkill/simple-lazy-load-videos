@@ -85,7 +85,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param  array $args Arguments.
+		 * @param  array  $args Arguments.
 		 * @return string       Returned video HTML.
 		 */
 		public function get_html_from_url( $args = array() ) {
@@ -155,7 +155,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * @since 0.2.0
 		 *
-		 * @param  array $args Arguments.
+		 * @param  array  $args Arguments.
 		 * @return string       Returned video HTML.
 		 */
 		public function video( $args = array() ) {
