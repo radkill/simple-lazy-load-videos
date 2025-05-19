@@ -162,7 +162,8 @@ if ( ! class_exists( 'Plugin' ) ) {
 
 				// Replace default HTML by custom if exist.
 				if ( $html ) {
-					$cache = $html;
+					// Remove line breaks and tabs to fix extra <br> in the final code.
+					$cache = preg_replace( '/[\r\n\t]/', '', $html );
 				}
 			}
 
