@@ -25,14 +25,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /**
- * Exit if a duplicate of plugin is activated
- */
-if ( isset( $sllv ) ) {
-	return;
-}
-
-
-/**
  * Constants
  *
  * SLLV_PATH            = plugin dir path, like '/var/www/html/wp-content/plugins/simple-lazy-load-videos/'
@@ -86,7 +78,5 @@ register_uninstall_hook( __FILE__, array( 'SLLV\Actions', 'uninstall' ) );
  * Start plugin
  */
 add_action( 'plugins_loaded', function() {
-	global $sllv;
-
-	$sllv = new \SLLV\Plugin();
+	new \SLLV\Plugin();
 } );

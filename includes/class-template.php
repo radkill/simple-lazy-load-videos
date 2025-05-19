@@ -89,8 +89,6 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 * @return string       Returned video HTML.
 		 */
 		public function get_html_from_url( $args = array() ) {
-			global $sllv;
-
 			$args = wp_parse_args(
 				$args,
 				array(
@@ -117,7 +115,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 				if ( $determine_video['type'] ) {
 					if ( 'youtube' === $determine_video['type'] ) {
 						if ( ! $args['thumbnail'] ) {
-							$args['thumbnail'] = $functions->get_youtube_thumb( $determine_video['id'], $sllv->get_settings( 'youtube_thumbnail_size' ) );
+							$args['thumbnail'] = $functions->get_youtube_thumb( $determine_video['id'], Plugin::get_settings( 'youtube_thumbnail_size' ) );
 						}
 
 						if ( ! $args['play'] && ! $args['hide_play'] ) {
@@ -125,7 +123,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 						}
 					} elseif ( 'vimeo' === $determine_video['type'] ) {
 						if ( ! $args['thumbnail'] ) {
-							$args['thumbnail'] = $functions->get_vimeo_thumb( $determine_video['id'], $sllv->get_settings( 'vimeo_thumbnail_size' ) );
+							$args['thumbnail'] = $functions->get_vimeo_thumb( $determine_video['id'], Plugin::get_settings( 'vimeo_thumbnail_size' ) );
 						}
 
 						if ( ! $args['play'] && ! $args['hide_play'] ) {
