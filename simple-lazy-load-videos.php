@@ -17,7 +17,7 @@
  */
 
 /**
- * Exit if accessed directly
+ * Exit if accessed directly.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'No script kiddies please!' );
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /**
- * Constants
+ * Constants.
  *
  * SLLV_PATH            = plugin dir path, like '/var/www/html/wp-content/plugins/simple-lazy-load-videos/'
  * SLLV_URL             = plugin url, like 'https://sitename.com/wp-content/plugins/simple-lazy-load-videos/'
@@ -55,7 +55,7 @@ if ( ! defined( 'SLLV_VERSION' ) ) {
 
 
 /**
- * Classes
+ * Classes.
  */
 require_once SLLV_PATH . 'includes/class-actions.php';
 require_once SLLV_PATH . 'includes/class-plugin.php';
@@ -67,7 +67,7 @@ require_once SLLV_PATH . 'includes/class-functions.php';
 
 
 /**
- * Activation, deactivation and uninstalling actions
+ * Activation, deactivation and uninstalling actions.
  */
 register_activation_hook( __FILE__, array( 'SLLV\Actions', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'SLLV\Actions', 'deactivate' ) );
@@ -75,7 +75,7 @@ register_uninstall_hook( __FILE__, array( 'SLLV\Actions', 'uninstall' ) );
 
 
 /**
- * Start plugin
+ * Start plugin.
  */
 add_action( 'plugins_loaded', function() {
 	new \SLLV\Plugin();
