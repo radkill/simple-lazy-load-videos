@@ -21,18 +21,19 @@ if ( ! class_exists( 'Functions' ) ) {
 		 *
 		 * @since 0.8.0
 		 *
-		 * @param  string $api_url    URL of remote json file.
-		 * @param  int    $expiration Time until expiration in seconds.
-		 * @return object             Remote API as object.
+		 * @param  string $api_url    URL to retrieve.
+		 * @param  array  $args       Optional. Request arguments. Default empty array. See WP_Http::request() for information on accepted arguments.
+		 * @param  str    $expiration Time until expiration in seconds.
+		 * @return object|false       The response or WP_Error on failure.
 		 */
-		public static function remote_api_get( $api_url, $expiration = DAY_IN_SECONDS ) {
+		public static function remote_api_get( $api_url, $args = array(), $expiration = DAY_IN_SECONDS ) {
 			$api_url_hash = 'sllv_cache_' . md5( $api_url );
 			$cache        = get_transient( $api_url_hash );
 
 			if ( $cache ) {
 				$body = $cache;
 			} else {
-				$request = wp_remote_get( $api_url );
+				$request = wp_remote_get( $api_url, $args );
 
 				if ( is_wp_error( $request ) ) {
 					return false;
