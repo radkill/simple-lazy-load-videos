@@ -17,32 +17,6 @@ if ( ! class_exists( 'Template' ) ) {
 	class Template {
 
 		/**
-		 * Youtube play button.
-		 *
-		 * @since 0.2.0
-		 *
-		 * @var string $play_youtube YouTube button code.
-		 */
-		private static $play_youtube = '<svg width="68" height="48" viewBox="0 0 68 48">
-				<path class="sllv-video__button-shape" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"/>
-				<path class="sllv-video__button-icon" d="M 45,24 27,14 27,34"/>
-			</svg>';
-
-
-		/**
-		 * Vimeo play button.
-		 *
-		 * @since 0.2.0
-		 *
-		 * @var string $play_vimeo Vimeo button code.
-		 */
-		private static $play_vimeo = '<svg width="76" height="43" viewBox="0 0 76 43">
-				<path class="sllv-video__button-shape" d="M5,0H70.5a5.3,5.3,0,0,1,5.333,5V38A5.3,5.3,0,0,1,70.5,43H5a5,5,0,0,1-5-5V5A5,5,0,0,1,5,0Z"/>
-				<path class="sllv-video__button-icon" d="M31.034,30.98L31,31V12l15.834,9.456Z"/>
-			</svg>';
-
-
-		/**
 		 * Get YouTube button.
 		 *
 		 * @since 0.9.0
@@ -50,6 +24,8 @@ if ( ! class_exists( 'Template' ) ) {
 		 * @return string YouTube button SVG.
 		 */
 		private static function get_youtube_button() {
+			$play_youtube = Functions::get_svg( 'play-youtube' );
+
 			/**
 			 * Filters the YouTube button code.
 			 *
@@ -57,7 +33,7 @@ if ( ! class_exists( 'Template' ) ) {
 			 *
 			 * @param string $play_button YouTube button SVG.
 			 */
-			return apply_filters( 'sllv_youtube_button', self::$play_youtube );
+			return apply_filters( 'sllv_youtube_button', $play_youtube );
 		}
 
 
@@ -69,6 +45,8 @@ if ( ! class_exists( 'Template' ) ) {
 		 * @return string Vimeo button SVG.
 		 */
 		private static function get_vimeo_button() {
+			$play_vimeo = Functions::get_svg( 'play-vimeo' );
+
 			/**
 			 * Filters the Vimeo button code.
 			 *
@@ -76,7 +54,7 @@ if ( ! class_exists( 'Template' ) ) {
 			 *
 			 * @param string $play_button Vimeo button SVG.
 			 */
-			return apply_filters( 'sllv_vimeo_button', self::$play_vimeo );
+			return apply_filters( 'sllv_vimeo_button', $play_vimeo );
 		}
 
 

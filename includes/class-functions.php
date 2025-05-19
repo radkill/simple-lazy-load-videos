@@ -113,5 +113,26 @@ if ( ! class_exists( 'Functions' ) ) {
 
 			return $thumbnail_url;
 		}
+
+
+		/**
+		 * Get SVG code.
+		 *
+		 * @since X.X.X
+		 *
+		 * @param  string $file File name.
+		 * @return string       SVG code.
+		 */
+		public static function get_svg( $file ) {
+			$image_path = SLLV_PATH . 'assets/img/'. $file . '.svg';
+
+			if ( file_exists( $image_path ) ) {
+				$play_button = file_get_contents( $image_path );
+			} else {
+				$play_button = '';
+			}
+
+			return $play_button;
+		}
 	}
 }
