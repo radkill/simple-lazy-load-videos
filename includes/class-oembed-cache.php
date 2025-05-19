@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
+if ( ! class_exists( 'Oembed_Cache' ) ) {
 	/**
 	 * Oembed Cache.
 	 *
@@ -23,7 +23,7 @@ if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
 		 *
 		 * @since 1.0.0
 		 */
-		public function flush_old_cache() {
+		public static function flush_old_cache() {
 			global $wpdb;
 
 			$meta_key_1  = '|_oembed|_%%';

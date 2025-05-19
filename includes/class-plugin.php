@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( '\SLLV\Plugin' ) ) {
+if ( ! class_exists( 'Plugin' ) ) {
 	/**
 	 * Main plugin class.
 	 *
@@ -45,8 +45,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @since 0.6.0
 		 */
 		public function __construct() {
-			new \SLLV\Resources();
-			new \SLLV\Options();
+			new Resources();
+			new Options();
 
 			// Plugin version check & update.
 			$this->check_version();
@@ -95,8 +95,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 
 			// Flush oEmbed cache if plugin update from version 0.9.0 or older.
 			if ( ! $version || version_compare( $version, '0.9.0', '<=' ) ) {
-				$oembed_cache = new \SLLV\Oembed_Cache();
-				$oembed_cache->flush_old_cache();
+				Oembed_Cache::flush_old_cache();
 			}
 		}
 
@@ -149,15 +148,13 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return string                The returned oEmbed HTML.
 		 */
 		public function change_oembed_html( $cache, $url, $attr, $post_ID ) {
-			$template = new \SLLV\Template();
-
 			// do replacement only on frontend.
 			if ( ! is_admin() ) {
 				// Just some video for test.
 				// $url = 'https://youtu.be/D5LF3WChRrA';
 
 				// Get oEmbed HTML from URL.
-				$html = $template->get_html_from_url(
+				$html = Template::get_html_from_url(
 					array(
 						'url' => $url,
 					)
@@ -185,10 +182,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return string          The returned oEmbed HTML.
 		 */
 		public function bp_change_oembed_html( $cache, $url, $attr, $rawattr ) {
-			$template = new \SLLV\Template();
-
 			// Get oEmbed HTML from URL.
-			$html = $template->get_html_from_url(
+			$html = Template::get_html_from_url(
 				array(
 					'url' => $url,
 				)
@@ -222,10 +217,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 				$atts
 			);
 
-			$template = new \SLLV\Template();
-
 			// Get oEmbed HTML from URL.
-			$html = $template->get_html_from_url(
+			$html = Template::get_html_from_url(
 				array(
 					'url'       => $content,
 					'thumbnail' => $atts['thumbnail'],

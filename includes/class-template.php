@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( '\SLLV\Template' ) ) {
+if ( ! class_exists( 'Template' ) ) {
 	/**
 	 * Template.
 	 *
@@ -21,9 +21,9 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * @since 0.2.0
 		 *
-		 * @var string $youtube YouTube button code.
+		 * @var string $play_youtube YouTube button code.
 		 */
-		private $youtube = '<svg width="68" height="48" viewBox="0 0 68 48">
+		private static $play_youtube = '<svg width="68" height="48" viewBox="0 0 68 48">
 				<path class="sllv-video__button-shape" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"/>
 				<path class="sllv-video__button-icon" d="M 45,24 27,14 27,34"/>
 			</svg>';
@@ -34,9 +34,9 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * @since 0.2.0
 		 *
-		 * @var string $vimeo Vimeo button code.
+		 * @var string $play_vimeo Vimeo button code.
 		 */
-		private $vimeo = '<svg width="76" height="43" viewBox="0 0 76 43">
+		private static $play_vimeo = '<svg width="76" height="43" viewBox="0 0 76 43">
 				<path class="sllv-video__button-shape" d="M5,0H70.5a5.3,5.3,0,0,1,5.333,5V38A5.3,5.3,0,0,1,70.5,43H5a5,5,0,0,1-5-5V5A5,5,0,0,1,5,0Z"/>
 				<path class="sllv-video__button-icon" d="M31.034,30.98L31,31V12l15.834,9.456Z"/>
 			</svg>';
@@ -49,15 +49,15 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * @return string YouTube button SVG.
 		 */
-		private function get_youtube_button() {
+		private static function get_youtube_button() {
 			/**
 			 * Filters the YouTube button code.
 			 *
 			 * @since 1.2.0
 			 *
-			 * @param string $this->youtube YouTube button SVG.
+			 * @param string $play_button YouTube button SVG.
 			 */
-			return apply_filters( 'sllv_youtube_button', $this->youtube );
+			return apply_filters( 'sllv_youtube_button', self::$play_youtube );
 		}
 
 
@@ -68,15 +68,15 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * @return string Vimeo button SVG.
 		 */
-		private function get_vimeo_button() {
+		private static function get_vimeo_button() {
 			/**
 			 * Filters the Vimeo button code.
 			 *
 			 * @since 1.2.0
 			 *
-			 * @param string $this->vimeo Vimeo button SVG.
+			 * @param string $play_button Vimeo button SVG.
 			 */
-			return apply_filters( 'sllv_vimeo_button', $this->vimeo );
+			return apply_filters( 'sllv_vimeo_button', self::$play_vimeo );
 		}
 
 
@@ -88,7 +88,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 * @param  array  $args Arguments.
 		 * @return string       Returned video HTML.
 		 */
-		public function get_html_from_url( $args = array() ) {
+		public static function get_html_from_url( $args = array() ) {
 			$args = wp_parse_args(
 				$args,
 				array(
@@ -99,8 +99,6 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 				)
 			);
 
-			$functions = new \SLLV\Functions();
-
 			$output = false;
 
 			if ( $args['play'] ) {
@@ -109,29 +107,29 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 
 			if ( $args['url'] ) {
 				// Determine video from URL.
-				$determine_video = $functions->determine_video_url( $args['url'] );
+				$determine_video = Functions::determine_video_url( $args['url'] );
 
 				// Build HTML if URL is video.
 				if ( $determine_video['type'] ) {
 					if ( 'youtube' === $determine_video['type'] ) {
 						if ( ! $args['thumbnail'] ) {
-							$args['thumbnail'] = $functions->get_youtube_thumb( $determine_video['id'], Plugin::get_settings( 'youtube_thumbnail_size' ) );
+							$args['thumbnail'] = Functions::get_youtube_thumb( $determine_video['id'], Plugin::get_settings( 'youtube_thumbnail_size' ) );
 						}
 
 						if ( ! $args['play'] && ! $args['hide_play'] ) {
-							$args['play'] = $this->get_youtube_button();
+							$args['play'] = self::get_youtube_button();
 						}
 					} elseif ( 'vimeo' === $determine_video['type'] ) {
 						if ( ! $args['thumbnail'] ) {
-							$args['thumbnail'] = $functions->get_vimeo_thumb( $determine_video['id'], Plugin::get_settings( 'vimeo_thumbnail_size' ) );
+							$args['thumbnail'] = Functions::get_vimeo_thumb( $determine_video['id'], Plugin::get_settings( 'vimeo_thumbnail_size' ) );
 						}
 
 						if ( ! $args['play'] && ! $args['hide_play'] ) {
-							$args['play'] = $this->get_vimeo_button();
+							$args['play'] = self::get_vimeo_button();
 						}
 					}
 
-					$output = $this->video(
+					$output = self::video(
 						array(
 							'provider'  => $determine_video['type'],
 							'title'     => __( 'Video', 'simple-lazy-load-videos' ),
@@ -156,7 +154,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 * @param  array  $args Arguments.
 		 * @return string       Returned video HTML.
 		 */
-		private function video( $args = array() ) {
+		private static function video( $args = array() ) {
 			$args = wp_parse_args(
 				$args,
 				array(

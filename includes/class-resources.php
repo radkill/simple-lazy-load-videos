@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( '\SLLV\Resources' ) ) {
+if ( ! class_exists( 'Resources' ) ) {
 	/**
 	 * Resources.
 	 *
