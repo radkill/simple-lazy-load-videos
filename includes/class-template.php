@@ -49,7 +49,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * @return string YouTube button SVG.
 		 */
-		public function get_youtube_button() {
+		private function get_youtube_button() {
 			/**
 			 * Filters the YouTube button code.
 			 *
@@ -68,7 +68,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * @return string Vimeo button SVG.
 		 */
-		public function get_vimeo_button() {
+		private function get_vimeo_button() {
 			/**
 			 * Filters the Vimeo button code.
 			 *
@@ -156,7 +156,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 * @param  array  $args Arguments.
 		 * @return string       Returned video HTML.
 		 */
-		public function video( $args = array() ) {
+		private function video( $args = array() ) {
 			$args = wp_parse_args(
 				$args,
 				array(

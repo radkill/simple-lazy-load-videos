@@ -194,7 +194,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 * @param  array $options Plugin settings.
 		 * @return array          Returned plugin settings.
 		 */
-		public function sanitize_callback( $options ) {
+		private function sanitize_callback( $options ) {
 			if ( $options ) {
 				foreach ( $options as $name => & $value ) {
 					if ( in_array( $name, array( 'youtube_thumbnail_size', 'vimeo_thumbnail_size' ), true ) ) {
