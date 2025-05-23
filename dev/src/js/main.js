@@ -6,7 +6,7 @@
 
 
 	/**
-	 * Find videos
+	 * Find videos.
 	 *
 	 * @since 0.2.0
 	 */
@@ -38,7 +38,7 @@
 
 
 	/**
-	 * Do some actions if HTML media starts playing
+	 * Do some actions if HTML media starts playing.
 	 *
 	 * @since 0.9.0
 	 */
@@ -53,11 +53,11 @@
 
 
 	/**
-	 * Setup video
+	 * Setup video.
 	 *
 	 * @since 0.2.0
 	 *
-	 * @param {object} video Video container
+	 * @param {object} video Video container.
 	 */
 	function setup_video( video ) {
 		const link     = video.querySelector( '.sllv-video__link' );
@@ -80,13 +80,13 @@
 
 
 	/**
-	 * Generate iframe
+	 * Generate iframe.
 	 *
 	 * @since 0.2.0
 	 *
-	 * @param  {string} provider Video provider
-	 * @param  {string} id       Video ID
-	 * @return {string}          Returned video HTML
+	 * @param  {string} provider Video provider.
+	 * @param  {string} id       Video ID.
+	 * @return {string}          Returned video HTML.
 	 */
 	function create_iframe( provider, id ) {
 		const iframe = document.createElement( 'iframe' );
@@ -100,13 +100,13 @@
 	}
 
 	/**
-	 * Generate URL
+	 * Generate URL.
 	 *
 	 * @since 0.2.0
 	 *
-	 * @param  {string} provider Video provider
-	 * @param  {string} id       Video ID
-	 * @return {string}          Returned video URL
+	 * @param  {string} provider Video provider.
+	 * @param  {string} id       Video ID.
+	 * @return {string}          Returned video URL.
 	 */
 	function generate_url( provider, id ) {
 		let url = '';
@@ -122,7 +122,7 @@
 
 
 	/**
-	 * Stop all video (YouTube, Vimeo)
+	 * Stop all video (YouTube, Vimeo).
 	 *
 	 * @since 0.9.0
 	 */
@@ -142,7 +142,7 @@
 
 
 	/**
-	 * Pause all HTML media (video & audio)
+	 * Pause all HTML media (video & audio).
 	 *
 	 * @since 0.9.0
 	 */
