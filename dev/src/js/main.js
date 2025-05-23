@@ -64,7 +64,9 @@
 		const provider = video.getAttribute( 'data-provider' );
 		const id       = video.getAttribute( 'data-video' );
 
-		video.addEventListener( 'click', () => {
+		video.addEventListener( 'click', ( event ) => {
+			event.preventDefault();
+
 			const iframe = create_iframe( provider, id );
 
 			stop_all_video();
@@ -73,7 +75,6 @@
 			video.classList.add( '-state_started' );
 		} );
 
-		link.removeAttribute( 'href' );
 		video.classList.add( '-state_enabled' );
 	}
 
