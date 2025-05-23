@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( 'Template' ) ) {
+if ( ! class_exists( '\SLLV\Template' ) ) {
 	/**
 	 * Template.
 	 *

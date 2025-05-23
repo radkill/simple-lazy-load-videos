@@ -8,7 +8,7 @@
 
 namespace SLLV;
 
-if ( ! class_exists( 'Functions' ) ) {
+if ( ! class_exists( '\SLLV\Functions' ) ) {
 	/**
 	 * Functions.
 	 *
