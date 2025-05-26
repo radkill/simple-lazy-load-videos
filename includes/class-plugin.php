@@ -107,7 +107,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 */
 		private function check_options() {
 			if ( ! get_option( self::get_settings_name() ) ) {
-				add_option( self::get_settings_name(), self::default );
+				add_option( self::get_settings_name(), self::$default );
 			}
 
 			// Delete all plugin options (before v0.7.2).
