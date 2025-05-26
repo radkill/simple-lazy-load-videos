@@ -118,7 +118,7 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		/**
 		 * Check if thumbnail exists.
 		 *
-		 * @since X.X.X
+		 * @since 1.7.0
 		 *
 		 * @param  string $url        Thumbnail URL to check.
 		 * @param  int    $expiration Time until expiration in seconds.
@@ -186,7 +186,7 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		/**
 		 * Get SVG code.
 		 *
-		 * @since X.X.X
+		 * @since 1.7.0
 		 *
 		 * @param  string $file File name.
 		 * @return string       SVG code.

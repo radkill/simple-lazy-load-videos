@@ -5,16 +5,16 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Requires at least: 4.9
 Tested up to: 6.8.1
 Requires PHP: 5.6
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Lazy Load for embedded video from Youtube and Vimeo
+Simple Lazy Load for embedded video from YouTube and Vimeo
 
 == Description ==
 The plugin reduces page load time and increases your Google PageSpeed score.
 
-It replaces the embedded Youtube and Vimeo videos with a video preview image, third-party CSS & JS are downloaded only after a click.
+It replaces the embedded YouTube and Vimeo videos with a video preview image, third-party CSS & JS are downloaded only after a click.
 
 == Installation ==
 1. Upload the plugin to your WordPress site
@@ -45,6 +45,19 @@ You will need to pass the code into apply_shortcodes() function and display its 
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 1.7.0 =
+* Get YouTube thumbnails in WEBP format if exists
+* Fix "Links are not crawlable" issue
+* Remove line breaks and tabs to fix extra `<br>` in the final code.
+* Move SVG to separate files
+* Refactor Functions::remote_api_get() method
+* Replace creating new instance of classes with static methods
+* Fix methods visibility
+* Remove global $sllv variable
+* Fix WPCS compliance
+* Update Grunt packages
+* Tested up to WordPress 6.8.1
+
 = 1.6.0 =
 *	Add new search key in preg_match for short YouTube videos (thanks @paulooliveirar)
 * Fix WPCS
