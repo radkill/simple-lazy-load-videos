@@ -1,3 +1,6 @@
+### 1.7.1
+* Fix PHP error
+
 ### 1.7.0
 * Get YouTube thumbnails in WEBP format if exists
 * Fix "Links are not crawlable" issue
