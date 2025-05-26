@@ -104,10 +104,8 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 * @since 0.7.0
 		 */
 		public function plugin_settings() {
-			global $sllv;
-
 			// Add settings.
-			register_setting( 'sllv_settings', $sllv->get_settings_name(), array( $this, 'sanitize_callback' ) );
+			register_setting( 'sllv_settings', Plugin::get_settings_name(), array( $this, 'sanitize_callback' ) );
 
 			// Add section.
 			add_settings_section( 'sllv_section_settings', __( 'Settings' ), '', $this->page_slug );
@@ -137,18 +135,16 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 * @since 0.7.0
 		 */
 		public function youtube_thumbnail_size() {
-			global $sllv;
-
 			$name          = 'youtube_thumbnail_size';
 			$values        = array(
 				'hqdefault'     => 'hqdefault (480×360)',
 				'sddefault'     => 'sddefault (640×480)',
 				'maxresdefault' => 'maxresdefault (1280x720)',
 			);
-			$current_value = $sllv->get_settings( $name );
+			$current_value = Plugin::get_settings( $name );
 			?>
 
-			<select name="<?php echo esc_attr( $sllv->get_settings_name() ); ?>[<?php echo esc_attr( $name ); ?>]">
+			<select name="<?php echo esc_attr( Plugin::get_settings_name() ); ?>[<?php echo esc_attr( $name ); ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
@@ -168,17 +164,15 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 * @since 0.7.1
 		 */
 		public function vimeo_thumbnail_size() {
-			global $sllv;
-
 			$name          = 'vimeo_thumbnail_size';
 			$values        = array(
 				'640'  => 'default (640×360)',
 				'1280' => 'HD (1280×720)',
 			);
-			$current_value = $sllv->get_settings( $name );
+			$current_value = Plugin::get_settings( $name );
 			?>
 
-			<select name="<?php echo esc_attr( $sllv->get_settings_name() ); ?>[<?php echo esc_attr( $name ); ?>]">
+			<select name="<?php echo esc_attr( Plugin::get_settings_name() ); ?>[<?php echo esc_attr( $name ); ?>]">
 
 				<?php foreach ( $values as $key => $value ) : ?>
 
@@ -200,9 +194,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 * @param  array $options Plugin settings.
 		 * @return array          Returned plugin settings.
 		 */
-		public function sanitize_callback( $options ) {
-			global $sllv;
-
+		private function sanitize_callback( $options ) {
 			if ( $options ) {
 				foreach ( $options as $name => & $value ) {
 					if ( in_array( $name, array( 'youtube_thumbnail_size', 'vimeo_thumbnail_size' ), true ) ) {

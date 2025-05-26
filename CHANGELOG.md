@@ -1,6 +1,19 @@
+### 1.7.0
+* Get YouTube thumbnails in WEBP format if exists
+* Fix "Links are not crawlable" issue
+* Remove line breaks and tabs to fix extra `<br>` in the final code.
+* Move SVG to separate files
+* Refactor Functions::remote_api_get() method
+* Replace creating new instance of classes with static methods
+* Fix methods visibility
+* Remove global $sllv variable
+* Fix WPCS compliance
+* Update Grunt packages
+* Tested up to WordPress 6.8.1
+
 ### 1.6.0
 *	Add new search key in preg_match for short YouTube videos (thanks @paulooliveirar)
-* Fix WPCS
+* Fix WPCS compliance
 * Update Grunt packages
 
 ### 1.5.1
@@ -30,7 +43,7 @@
 * Change esversion in jshint config to 8
 * Update packages
 * Fix svg
-* Fix WPCS
+* Fix WPCS compliance
 * Tested up to WordPress 6.4.1
 
 ### 1.2.0

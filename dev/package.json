@@ -1,13 +1,13 @@
 {
 	"name": "simple-lazy-load-videos",
-	"version": "1.6.0",
+	"version": "1.7.0",
 	"description": "Simple Lazy Load Videos",
 	"devDependencies": {
-		"@babel/core": "7.26.0",
-		"@babel/preset-env": "7.26.0",
+		"@babel/core": "7.27.1",
+		"@babel/preset-env": "7.27.2",
 		"@lodder/grunt-postcss": "3.1.1",
-		"autoprefixer": "10.4.20",
-		"cssnano": "7.0.6",
+		"autoprefixer": "10.4.21",
+		"cssnano": "7.0.7",
 		"grunt": "1.6.1",
 		"grunt-babel": "8.0.0",
 		"grunt-concurrent": "3.0.0",
@@ -18,12 +18,12 @@
 		"grunt-contrib-jshint": "3.2.0",
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-jscs": "3.0.1",
-		"grunt-sass": "3.1.0",
+		"grunt-sass": "4.0.0",
 		"grunt-shell": "4.0.0",
 		"grunt-terser": "2.0.0",
 		"jshint-stylish": "2.2.1",
 		"load-grunt-config": "4.0.1",
-		"postcss": "8.5.0",
+		"postcss": "8.5.3",
 		"sass": "1.78.0"
 	},
 	"browserslist": [

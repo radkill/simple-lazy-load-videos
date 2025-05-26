@@ -23,7 +23,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 *
 		 * @var string $settings_name Settings name.
 		 */
-		private $settings_name = 'sllv_settings';
+		private static $settings_name = 'sllv_settings';
 
 
 		/**
@@ -33,7 +33,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 *
 		 * @var array $default Default settings.
 		 */
-		private $default = array(
+		private static $default = array(
 			'youtube_thumbnail_size' => 'sddefault',
 			'vimeo_thumbnail_size'   => '640',
 		);
@@ -45,8 +45,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @since 0.6.0
 		 */
 		public function __construct() {
-			new \SLLV\Resources();
-			new \SLLV\Options();
+			new Resources();
+			new Options();
 
 			// Plugin version check & update.
 			$this->check_version();
@@ -75,8 +75,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 *
 		 * @return string Option name for settings.
 		 */
-		public function get_settings_name() {
-			return $this->settings_name;
+		public static function get_settings_name() {
+			return self::$settings_name;
 		}
 
 
@@ -95,8 +95,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 
 			// Flush oEmbed cache if plugin update from version 0.9.0 or older.
 			if ( ! $version || version_compare( $version, '0.9.0', '<=' ) ) {
-				$oembed_cache = new \SLLV\Oembed_Cache();
-				$oembed_cache->flush_old_cache();
+				Oembed_Cache::flush_old_cache();
 			}
 		}
 
@@ -107,8 +106,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @since 0.7.2
 		 */
 		private function check_options() {
-			if ( ! get_option( $this->get_settings_name() ) ) {
-				add_option( $this->get_settings_name(), $this->default );
+			if ( ! get_option( self::get_settings_name() ) ) {
+				add_option( self::get_settings_name(), self::default );
 			}
 
 			// Delete all plugin options (before v0.7.2).
@@ -126,8 +125,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @param  string $option Option name.
 		 * @return array|string   Plugin settings.
 		 */
-		public function get_settings( $option = false ) {
-			$plugin_options = get_option( $this->get_settings_name(), $this->default );
+		public static function get_settings( $option = false ) {
+			$plugin_options = get_option( self::get_settings_name(), self::$default );
 
 			if ( $option ) {
 				return $plugin_options[ $option ];
@@ -149,15 +148,13 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return string                The returned oEmbed HTML.
 		 */
 		public function change_oembed_html( $cache, $url, $attr, $post_ID ) {
-			$template = new \SLLV\Template();
-
 			// do replacement only on frontend.
 			if ( ! is_admin() ) {
 				// Just some video for test.
 				// $url = 'https://youtu.be/D5LF3WChRrA';
 
 				// Get oEmbed HTML from URL.
-				$html = $template->get_html_from_url(
+				$html = Template::get_html_from_url(
 					array(
 						'url' => $url,
 					)
@@ -165,7 +162,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 
 				// Replace default HTML by custom if exist.
 				if ( $html ) {
-					$cache = $html;
+					// Remove line breaks and tabs to fix extra <br> in the final code.
+					$cache = preg_replace( '/[\r\n\t]/', '', $html );
 				}
 			}
 
@@ -185,10 +183,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return string          The returned oEmbed HTML.
 		 */
 		public function bp_change_oembed_html( $cache, $url, $attr, $rawattr ) {
-			$template = new \SLLV\Template();
-
 			// Get oEmbed HTML from URL.
-			$html = $template->get_html_from_url(
+			$html = Template::get_html_from_url(
 				array(
 					'url' => $url,
 				)
@@ -222,10 +218,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 				$atts
 			);
 
-			$template = new \SLLV\Template();
-
 			// Get oEmbed HTML from URL.
-			$html = $template->get_html_from_url(
+			$html = Template::get_html_from_url(
 				array(
 					'url'       => $content,
 					'thumbnail' => $atts['thumbnail'],

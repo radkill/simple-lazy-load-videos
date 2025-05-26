@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Simple Lazy Load Videos\n"
-"POT-Creation-Date: 2024-10-21 03:52+0300\n"
+"POT-Creation-Date: 2025-05-26 17:38+0300\n"
 "PO-Revision-Date: 2020-01-08 15:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/class-options.php:55 includes/class-options.php:113
+#: includes/class-options.php:55 includes/class-options.php:111
 msgid "Settings"
 msgstr ""
 
@@ -30,23 +30,23 @@ msgstr ""
 msgid "Simple Lazy Load Videos"
 msgstr ""
 
-#: includes/class-options.php:118
+#: includes/class-options.php:116
 msgid "YouTube Thumbnail Size"
 msgstr ""
 
-#: includes/class-options.php:126
+#: includes/class-options.php:124
 msgid "Vimeo Thumbnail Size"
 msgstr ""
 
-#: includes/class-plugin.php:253
+#: includes/class-plugin.php:256
 msgid "GitHub"
 msgstr ""
 
-#: includes/class-template.php:135
+#: includes/class-template.php:113
 msgid "Video"
 msgstr ""
 
-#: includes/class-template.php:173
+#: includes/class-template.php:155
 msgid "Play Video"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgid "https://github.com/radkill/simple-lazy-load-videos"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Simple Lazy Load for embedded video from Youtube and Vimeo."
+msgid "Simple Lazy Load for embedded video from YouTube and Vimeo."
 msgstr ""
 
 #. Author of the plugin/theme

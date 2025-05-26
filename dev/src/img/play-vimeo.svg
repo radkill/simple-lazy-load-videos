@@ -1,0 +1,4 @@
+<svg width="76" height="43" viewBox="0 0 76 43">
+	<path class="sllv-video__button-shape" d="M5,0H70.5a5.3,5.3,0,0,1,5.333,5V38A5.3,5.3,0,0,1,70.5,43H5a5,5,0,0,1-5-5V5A5,5,0,0,1,5,0Z"/>
+	<path class="sllv-video__button-icon" d="M31.034,30.98L31,31V12l15.834,9.456Z"/>
+</svg>

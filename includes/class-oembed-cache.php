@@ -19,11 +19,11 @@ if ( ! class_exists( '\SLLV\Oembed_Cache' ) ) {
 		/**
 		 * Flush all old oembed caches.
 		 *
-		 * Used if plugin version is 0.9.0 or older
+		 * Used if plugin version is 0.9.0 or older.
 		 *
 		 * @since 1.0.0
 		 */
-		public function flush_old_cache() {
+		public static function flush_old_cache() {
 			global $wpdb;
 
 			$meta_key_1  = '|_oembed|_%%';
