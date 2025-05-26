@@ -23,26 +23,31 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 *
 		 * @param  string $api_url    URL to retrieve.
 		 * @param  array  $args       Optional. Request arguments. Default empty array. See WP_Http::request() for information on accepted arguments.
-		 * @param  str    $expiration Time until expiration in seconds.
-		 * @return object|false       The response or WP_Error on failure.
+		 * @param  int    $expiration Time until expiration in seconds.
+		 * @return object|false       The response or false on failure.
 		 */
 		public static function remote_api_get( $api_url, $args = array(), $expiration = DAY_IN_SECONDS ) {
-			$api_url_hash = 'sllv_cache_' . md5( $api_url );
-			$cache        = get_transient( $api_url_hash );
+			// Create cache key based on URL.
+			$cache_key     = 'sllv_cache_' . md5( $api_url );
+			$cached_result = get_transient( $cache_key );
 
-			if ( $cache ) {
-				$body = $cache;
+			if ( false !== $cached_result ) {
+				// Get cached result if exists.
+				$body = $cached_result;
 			} else {
+				// Use WordPress HTTP API to get response.
 				$request = wp_remote_get( $api_url, $args );
 
+				// Check if request was successful.
 				if ( is_wp_error( $request ) ) {
 					return false;
 				}
 
 				$body = wp_remote_retrieve_body( $request );
 
+				// Cache result.
 				if ( $expiration ) {
-					set_transient( $api_url_hash, $body, $expiration );
+					set_transient( $cache_key, $body, $expiration );
 				}
 			}
 
@@ -86,6 +91,8 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		/**
 		 * Get YouTube thumbnail.
 		 *
+		 * Return WEBP if exists, otherwise fallback to JPG.
+		 *
 		 * @since 0.8.0
 		 *
 		 * @param  string $video_id YouTube video ID.
@@ -93,9 +100,69 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @return string           Thumbnail URL.
 		 */
 		public static function get_youtube_thumb( $video_id, $size = 'sddefault' ) {
-			$thumbnail_url = 'https://i.ytimg.com/vi/' . $video_id . '/' . $size . '.jpg';
+			// Build URLs for both formats.
+			$url_webp = 'https://i.ytimg.com/vi_webp/' . $video_id . '/' . $size . '.webp';
+			$url_jpg  = 'https://i.ytimg.com/vi/' . $video_id . '/' . $size . '.jpg';
+
+			// Use WEBP if exists, otherwise fallback to JPG.
+			if ( self::check_thumbnail_exists( $url_webp ) ) {
+				$thumbnail_url = $url_webp;
+			} else {
+				$thumbnail_url = $url_jpg;
+			}
 
 			return $thumbnail_url;
+		}
+
+
+		/**
+		 * Check if thumbnail exists.
+		 *
+		 * @since X.X.X
+		 *
+		 * @param  string $url        Thumbnail URL to check.
+		 * @param  int    $expiration Time until expiration in seconds.
+		 * @return bool               True if exists, false otherwise.
+		 */
+		private static function check_thumbnail_exists( $url, $expiration = DAY_IN_SECONDS ) {
+			// Create cache key based on URL.
+			$cache_key     = 'sllv_cache_' . md5( $url );
+			$cached_result = get_transient( $cache_key );
+
+			if ( false !== $cached_result ) {
+				// Get cached result if exists.
+				$exists = (bool) $cached_result;
+			} else {
+				// Use WordPress HTTP API to check URL.
+				$response = wp_remote_head(
+					$url,
+					array(
+						'timeout'     => 5,
+						'redirection' => 0,
+					)
+				);
+
+				// Check if request was successful.
+				if ( is_wp_error( $response ) ) {
+					$exists = false;
+				} else {
+					// Check HTTP status code.
+					$status_code = wp_remote_retrieve_response_code( $response );
+
+					if ( 200 === $status_code ) {
+						$exists = true;
+					} else {
+						$exists = false;
+					}
+				}
+
+				// Cache result.
+				if ( $expiration ) {
+					set_transient( $cache_key, $exists ? 1 : 0, $expiration );
+				}
+			}
+
+			return $exists;
 		}
 
 
@@ -125,7 +192,7 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @return string       SVG code.
 		 */
 		public static function get_svg( $file ) {
-			$image_path = SLLV_PATH . 'assets/img/'. $file . '.svg';
+			$image_path = SLLV_PATH . 'assets/img/' . $file . '.svg';
 
 			if ( file_exists( $image_path ) ) {
 				$play_button = file_get_contents( $image_path );
