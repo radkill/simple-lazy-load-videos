@@ -1,3 +1,8 @@
+### 1.7.2
+* Update Grunt config
+* Update Grunt packages
+* Tested up to WordPress 6.9
+
 ### 1.7.1
 * Fix PHP error
 
