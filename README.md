@@ -52,6 +52,7 @@ You will need to pass the code into apply_shortcodes() function and display its 
 
 ## Changelog
 ### 1.7.2
+* Update Grunt config
 * Update Grunt packages
 * Tested up to WordPress 6.9
 
