@@ -16,7 +16,7 @@ module.exports = {
 		files: [{
 			expand: true,
 			cwd: '<%= destCSSDir %>',
-			src: '*' + '<%= destCSSExt %>',
+			src: '**/*' + '<%= destCSSExt %>',
 			dest: '<%= destCSSDir %>',
 			ext: '<%= destMinCSSExt %>',
 		}],
