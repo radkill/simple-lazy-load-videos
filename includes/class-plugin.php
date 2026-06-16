@@ -46,13 +46,14 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 */
 		public function __construct() {
 			new Resources();
-			new Options();
 
-			// Plugin version check & update.
-			$this->check_version();
+			// Initialize admin components and database routines only in the dashboard.
+			if ( is_admin() ) {
+				new Options();
 
-			// Create plugin options if not exist.
-			$this->check_options();
+				// Admin initialization routine for DB updates and checks.
+				add_action( 'admin_init', array( $this, 'admin_routine' ) );
+			}
 
 			// Change oEmbed HTML after cache by `embed_oembed_html`.
 			add_filter( 'embed_oembed_html', array( $this, 'change_oembed_html' ), 10, 4 );
@@ -77,6 +78,17 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 */
 		public static function get_settings_name() {
 			return self::$settings_name;
+		}
+
+
+		/**
+		 * Admin initialization routine for DB updates and checks.
+		 *
+		 * @since X.X.X
+		 */
+		public function admin_routine() {
+			$this->check_version();
+			$this->check_options();
 		}
 
 
