@@ -60,7 +60,6 @@
 	 * @param {object} video Video container.
 	 */
 	function setup_video( video ) {
-		const link     = video.querySelector( '.sllv-video__link' );
 		const provider = video.getAttribute( 'data-provider' );
 		const id       = video.getAttribute( 'data-video' );
 
@@ -86,7 +85,7 @@
 	 *
 	 * @param  {string} provider Video provider.
 	 * @param  {string} id       Video ID.
-	 * @return {string}          Returned video HTML.
+	 * @return {object}          Returned video HTML element.
 	 */
 	function create_iframe( provider, id ) {
 		const iframe = document.createElement( 'iframe' );
@@ -98,6 +97,7 @@
 
 		return iframe;
 	}
+
 
 	/**
 	 * Generate URL.
@@ -111,9 +111,9 @@
 	function generate_url( provider, id ) {
 		let url = '';
 
-		if ( provider == 'youtube' ) {
+		if ( 'youtube' === provider ) {
 			url = 'https://www.youtube.com/embed/' + id + '?rel=0&showinfo=0&autoplay=1';
-		} else if ( provider == 'vimeo' ) {
+		} else if ( 'vimeo' === provider ) {
 			url = 'https://player.vimeo.com/video/' + id + '?autoplay=1';
 		}
 
@@ -129,12 +129,15 @@
 	function stop_all_video() {
 		const videos = document.querySelectorAll( '.sllv-video.-state_started' );
 
-		// Remove all the iframe videos
+		// Remove all the iframe videos.
 		if ( videos.length > 0 ) {
 			videos.forEach( ( video ) => {
-				let iframe = video.querySelector( '.sllv-video__iframe' );
+				const iframe = video.querySelector( '.sllv-video__iframe' );
 
-				iframe.remove();
+				if ( iframe ) {
+					iframe.remove();
+				}
+
 				video.classList.remove( '-state_started' );
 			} );
 		}
@@ -149,7 +152,7 @@
 	function pause_all_media() {
 		const html_media = document.querySelectorAll( 'video, audio' );
 
-		// Pause all the HTML video and audio
+		// Pause all the HTML video and audio.
 		if ( html_media.length > 0 ) {
 			html_media.forEach( ( media ) => {
 				media.pause();
