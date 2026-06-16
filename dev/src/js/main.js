@@ -2,7 +2,7 @@
 
 	find_videos();
 	media_playing();
-	on_ajax_complete();
+	on_dom_change();
 
 
 	/**
@@ -24,16 +24,26 @@
 
 
 	/**
-	 * Refind videos on AJAX complete.
+	 * Observe DOM changes to find new videos dynamically.
+	 * Replaces old jQuery ajaxComplete logic.
 	 *
 	 * @since 1.4.0
 	 */
-	function on_ajax_complete() {
-		jQuery( document ).ajaxComplete(function( event, request, settings ) {
-			setTimeout(function () {
-				find_videos();
-			}, 500);
-		});
+	function on_dom_change() {
+		let timer;
+
+		const observer = new MutationObserver( () => {
+			// Clear the timer on every new mutation.
+			clearTimeout( timer );
+
+			// Set a new timer to run find_videos after DOM calms down.
+			timer = setTimeout( find_videos, 300 );
+		} );
+
+		observer.observe( document.body, {
+			childList: true, // Listen only to added/removed elements.
+			subtree:   true, // Listen to changes deep inside the body.
+		} );
 	}
 
 
