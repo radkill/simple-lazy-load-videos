@@ -39,16 +39,18 @@
 
 	/**
 	 * Do some actions if HTML media starts playing.
+	 * Uses event delegation on the capture phase to handle dynamically added media.
 	 *
 	 * @since 0.9.0
 	 */
 	function media_playing() {
-		const html_media = document.querySelectorAll( 'video, audio' );
-		html_media.forEach( ( media ) => {
-			media.addEventListener( 'play', () => {
+		document.addEventListener( 'play', ( event ) => {
+			const tag_name = event.target.tagName;
+
+			if ( 'VIDEO' === tag_name || 'AUDIO' === tag_name ) {
 				stop_all_video();
-			} );
-		} );
+			}
+		}, true );
 	}
 
 
