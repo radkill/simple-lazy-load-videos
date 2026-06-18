@@ -1,3 +1,6 @@
+### 1.8.1
+* Update \*.pot file
+
 ### 1.8.0
 * Fix WPCS compliance  for JS
 * Improve media_playing() JS function, now it uses event delegation on the capture phase to handle dynamically added media
