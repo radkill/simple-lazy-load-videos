@@ -84,7 +84,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		/**
 		 * Admin initialization routine for DB updates and checks.
 		 *
-		 * @since X.X.X
+		 * @since 1.8.0
 		 */
 		public function admin_routine() {
 			$this->check_version();

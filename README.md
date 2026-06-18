@@ -51,6 +51,14 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.8.0
+* Fix WPCS compliance  for JS
+* Improve media_playing() JS function, now it uses event delegation on the capture phase to handle dynamically added media
+* Migrate from jQuery ajaxComplete to native MutationObserver
+* Optimize plugin initialization to reduce frontend load
+* Improve remote API data fetching robustness
+* Update packages
+
 ### 1.7.3
 * Update old changelog entries
 * Update Grunt configs
