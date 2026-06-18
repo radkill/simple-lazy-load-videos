@@ -2,7 +2,7 @@
 
 	find_videos();
 	media_playing();
-	on_ajax_complete();
+	on_dom_change();
 
 
 	/**
@@ -24,31 +24,43 @@
 
 
 	/**
-	 * Refind videos on AJAX complete.
+	 * Observe DOM changes to find new videos dynamically.
+	 * Replaces old jQuery ajaxComplete logic.
 	 *
 	 * @since 1.4.0
 	 */
-	function on_ajax_complete() {
-		jQuery( document ).ajaxComplete(function( event, request, settings ) {
-			setTimeout(function () {
-				find_videos();
-			}, 500);
-		});
+	function on_dom_change() {
+		let timer;
+
+		const observer = new MutationObserver( () => {
+			// Clear the timer on every new mutation.
+			clearTimeout( timer );
+
+			// Set a new timer to run find_videos after DOM calms down.
+			timer = setTimeout( find_videos, 300 );
+		} );
+
+		observer.observe( document.body, {
+			childList: true, // Listen only to added/removed elements.
+			subtree:   true, // Listen to changes deep inside the body.
+		} );
 	}
 
 
 	/**
 	 * Do some actions if HTML media starts playing.
+	 * Uses event delegation on the capture phase to handle dynamically added media.
 	 *
 	 * @since 0.9.0
 	 */
 	function media_playing() {
-		const html_media = document.querySelectorAll( 'video, audio' );
-		html_media.forEach( ( media ) => {
-			media.addEventListener( 'play', () => {
+		document.addEventListener( 'play', ( event ) => {
+			const tag_name = event.target.tagName;
+
+			if ( 'VIDEO' === tag_name || 'AUDIO' === tag_name ) {
 				stop_all_video();
-			} );
-		} );
+			}
+		}, true );
 	}
 
 
@@ -60,7 +72,6 @@
 	 * @param {object} video Video container.
 	 */
 	function setup_video( video ) {
-		const link     = video.querySelector( '.sllv-video__link' );
 		const provider = video.getAttribute( 'data-provider' );
 		const id       = video.getAttribute( 'data-video' );
 
@@ -86,7 +97,7 @@
 	 *
 	 * @param  {string} provider Video provider.
 	 * @param  {string} id       Video ID.
-	 * @return {string}          Returned video HTML.
+	 * @return {object}          Returned video HTML element.
 	 */
 	function create_iframe( provider, id ) {
 		const iframe = document.createElement( 'iframe' );
@@ -98,6 +109,7 @@
 
 		return iframe;
 	}
+
 
 	/**
 	 * Generate URL.
@@ -111,9 +123,9 @@
 	function generate_url( provider, id ) {
 		let url = '';
 
-		if ( provider == 'youtube' ) {
+		if ( 'youtube' === provider ) {
 			url = 'https://www.youtube.com/embed/' + id + '?rel=0&showinfo=0&autoplay=1';
-		} else if ( provider == 'vimeo' ) {
+		} else if ( 'vimeo' === provider ) {
 			url = 'https://player.vimeo.com/video/' + id + '?autoplay=1';
 		}
 
@@ -129,12 +141,15 @@
 	function stop_all_video() {
 		const videos = document.querySelectorAll( '.sllv-video.-state_started' );
 
-		// Remove all the iframe videos
+		// Remove all the iframe videos.
 		if ( videos.length > 0 ) {
 			videos.forEach( ( video ) => {
-				let iframe = video.querySelector( '.sllv-video__iframe' );
+				const iframe = video.querySelector( '.sllv-video__iframe' );
 
-				iframe.remove();
+				if ( iframe ) {
+					iframe.remove();
+				}
+
 				video.classList.remove( '-state_started' );
 			} );
 		}
@@ -149,7 +164,7 @@
 	function pause_all_media() {
 		const html_media = document.querySelectorAll( 'video, audio' );
 
-		// Pause all the HTML video and audio
+		// Pause all the HTML video and audio.
 		if ( html_media.length > 0 ) {
 			html_media.forEach( ( media ) => {
 				media.pause();
