@@ -57,9 +57,7 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 				wp_enqueue_script(
 					'sllv-main',
 					SLLV_URL . 'assets/js/scripts.js',
-					array(
-						'jquery',
-					),
+					array(),
 					SLLV_VERSION,
 					true
 				);
