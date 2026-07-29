@@ -19,7 +19,7 @@
 		"grunt-terser": "2.0.0",
 		"jshint-stylish": "2.2.1",
 		"load-grunt-config": "4.0.1",
-		"postcss": "8.5.24",
+		"postcss": "8.5.25",
 		"sass": "1.102.0"
 	},
 	"browserslist": [
