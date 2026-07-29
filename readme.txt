@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Requires at least: 4.9
 Tested up to: 7.0
 Requires PHP: 5.6
-Stable tag: 1.8.2
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,11 @@ You will need to pass the code into apply_shortcodes() function and display its 
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 1.9.0 =
+* Speed-related optimizations
+* Update packages (including sass)
+* Update browserslist rules
+
 = 1.8.2 =
 * Fix stable tag
 

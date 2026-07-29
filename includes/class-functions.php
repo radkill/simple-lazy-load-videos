@@ -64,14 +64,13 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @return array       Video type & ID.
 		 */
 		public static function determine_video_url( $url ) {
-			$is_match_youtube = preg_match( '/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/|shorts\/)?)([\w\-]+)(\S+)?$/', $url, $youtube_matches );
+			$youtube_pattern = '/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/|shorts\/)?)([\w\-]+)(\S+)?$/';
+			$vimeo_pattern   = '/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/';
 
-			$is_match_vimeo = preg_match( '/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/', $url, $vimeo_matches );
-
-			if ( $is_match_youtube ) {
+			if ( false !== strpos( $url, 'youtu' ) && preg_match( $youtube_pattern, $url, $youtube_matches )) {
 				$video_type = 'youtube';
 				$video_id   = $youtube_matches[5];
-			} elseif ( $is_match_vimeo ) {
+			} elseif ( false !== strpos( $url, 'vimeo' ) && preg_match( $vimeo_pattern, $url, $vimeo_matches )) {
 				$video_type = 'vimeo';
 				$video_id   = $vimeo_matches[5];
 			} else {
@@ -176,8 +175,13 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @return string           Thumbnail URL.
 		 */
 		public static function get_vimeo_thumb( $video_id, $size = '640' ) {
-			$data          = self::remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
-			$thumbnail_url = str_replace( '-d_640', '-d_' . $size, $data[0]->thumbnail_large );
+			$data = self::remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
+
+			if ( empty( $data ) || ! isset( $data[0]->thumbnail_large ) ) {
+				$thumbnail_url = '';
+			} else {
+				$thumbnail_url = str_replace( '-d_640', '-d_' . $size, $data[0]->thumbnail_large );
+			}
 
 			return $thumbnail_url;
 		}
@@ -192,6 +196,12 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @return string       SVG code.
 		 */
 		public static function get_svg( $file ) {
+			static $svg_cache = array();
+
+			if ( isset( $svg_cache[ $file ] ) ) {
+				return $svg_cache[ $file ];
+			}
+
 			$image_path = SLLV_PATH . 'assets/img/' . $file . '.svg';
 
 			if ( file_exists( $image_path ) ) {
@@ -199,6 +209,8 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 			} else {
 				$play_button = '';
 			}
+
+			$svg_cache[ $file ] = $play_button;
 
 			return $play_button;
 		}

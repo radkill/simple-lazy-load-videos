@@ -1,9 +1,5 @@
 @charset "utf-8";
 
-@import 'mixins';
-@import 'settings';
-
-
 /* ==|== primary styles =====================================================
 	 Authors: Valerii Bohdanov
 	 ========================================================================== */
@@ -11,10 +7,10 @@
 /**
  * Project only code
  */
-@import 'other/common';
+@use 'other/common';
 
 
 /**
  * Blocks
  */
-@import 'blocks/video';
+@use 'blocks/video';
