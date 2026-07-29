@@ -51,6 +51,11 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.9.0
+* Speed-related optimizations
+* Update packages (including sass)
+* Update browserslist rules
+
 ### 1.8.2
 * Fix stable tag
 

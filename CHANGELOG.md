@@ -1,3 +1,8 @@
+### 1.9.0
+* Speed-related optimizations
+* Update packages (including sass)
+* Update browserslist rules
+
 ### 1.8.2
 * Fix stable tag
 
