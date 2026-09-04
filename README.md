@@ -51,6 +51,11 @@ You will need to pass the code into apply_shortcodes() function and display its 
 ```
 
 ## Changelog
+### 1.9.1
+* Tested up to: 7.1
+* Fix SCSS codestyle
+* Update packages
+
 ### 1.9.0
 * Speed-related optimizations
 * Update packages (including sass)
