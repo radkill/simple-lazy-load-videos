@@ -79,7 +79,10 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 
 			$output = false;
 
-			if ( $args['play'] ) {
+			if ( $args['hide_play'] ) {
+				// `hide_play` wins over a custom `play` image.
+				$args['play'] = false;
+			} elseif ( $args['play'] ) {
 				// Decorative: the button already has an aria-label.
 				$args['play'] = '<img src="' . esc_url( $args['play'] ) . '" alt="">';
 			}

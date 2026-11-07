@@ -36,7 +36,7 @@ A shortcode can contain several additional attributes:
 
 = Can I embed a lazy loaded video into my template file? =
 Yes, but you cannot insert a shortcode `[sllv_video]` into your template file directly.
-You will need to pass the code into apply_shortcodes() function and display its output like this:
+You will need to pass the code into apply_shortcodes() function (WordPress 5.4+, or do_shortcode() in older versions) and display its output like this:
 
 `<?php echo apply_shortcodes( '[sllv_video]https://youtu.be/GywDFkY3z-c[/sllv_video]' ); ?>`
 
