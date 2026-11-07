@@ -112,7 +112,7 @@
 		const iframe = document.createElement( 'iframe' );
 
 		iframe.setAttribute( 'allowfullscreen', '' );
-		iframe.setAttribute( 'allow', 'autoplay' );
+		iframe.setAttribute( 'allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen' );
 		iframe.setAttribute( 'src', generate_url( provider, id, options ) );
 
 		if ( title ) {
