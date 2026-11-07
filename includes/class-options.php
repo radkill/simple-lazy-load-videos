@@ -27,6 +27,26 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 
 
 		/**
+		 * Allowed values for each setting.
+		 *
+		 * @since 1.9.2
+		 *
+		 * @var array $choices Setting name => array( value => label ).
+		 */
+		private $choices = array(
+			'youtube_thumbnail_size' => array(
+				'hqdefault'     => 'hqdefault (480×360)',
+				'sddefault'     => 'sddefault (640×480)',
+				'maxresdefault' => 'maxresdefault (1280x720)',
+			),
+			'vimeo_thumbnail_size'   => array(
+				'640'  => 'default (640×360)',
+				'1280' => 'HD (1280×720)',
+			),
+		);
+
+
+		/**
 		 * Class initialization.
 		 *
 		 * @since 0.7.0
@@ -136,11 +156,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 */
 		public function youtube_thumbnail_size() {
 			$name          = 'youtube_thumbnail_size';
-			$values        = array(
-				'hqdefault'     => 'hqdefault (480×360)',
-				'sddefault'     => 'sddefault (640×480)',
-				'maxresdefault' => 'maxresdefault (1280x720)',
-			);
+			$values        = $this->choices[ $name ];
 			$current_value = Plugin::get_settings( $name );
 			?>
 
@@ -165,10 +181,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 */
 		public function vimeo_thumbnail_size() {
 			$name          = 'vimeo_thumbnail_size';
-			$values        = array(
-				'640'  => 'default (640×360)',
-				'1280' => 'HD (1280×720)',
-			);
+			$values        = $this->choices[ $name ];
 			$current_value = Plugin::get_settings( $name );
 			?>
 
@@ -191,19 +204,28 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 *
 		 * @since 0.7.0
 		 *
+		 * Keeps only known settings with allowed values. An invalid or missing
+		 * value keeps the current setting (or its default).
+		 *
 		 * @param  array $options Plugin settings.
 		 * @return array          Returned plugin settings.
 		 */
 		public function sanitize_callback( $options ) {
-			if ( $options ) {
-				foreach ( $options as $name => & $value ) {
-					if ( in_array( $name, array( 'youtube_thumbnail_size', 'vimeo_thumbnail_size' ), true ) ) {
-						$value = sanitize_text_field( $value );
-					}
+			$options   = is_array( $options ) ? $options : array();
+			$sanitized = array();
+
+			foreach ( $this->choices as $name => $values ) {
+				$value = isset( $options[ $name ] ) ? sanitize_text_field( (string) $options[ $name ] ) : '';
+
+				if ( ! array_key_exists( $value, $values ) ) {
+					$current = (string) Plugin::get_settings( $name );
+					$value   = array_key_exists( $current, $values ) ? $current : Plugin::get_default_settings( $name );
 				}
+
+				$sanitized[ $name ] = $value;
 			}
 
-			return $options;
+			return $sanitized;
 		}
 	}
 }

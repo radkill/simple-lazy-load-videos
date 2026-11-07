@@ -82,6 +82,23 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 
 
 		/**
+		 * Get default settings.
+		 *
+		 * @since 1.9.2
+		 *
+		 * @param  string $option Optional. Setting name.
+		 * @return array|string   All default settings, or one default value.
+		 */
+		public static function get_default_settings( $option = false ) {
+			if ( $option ) {
+				return isset( self::$default[ $option ] ) ? self::$default[ $option ] : '';
+			}
+
+			return self::$default;
+		}
+
+
+		/**
 		 * Admin initialization routine for DB updates and checks.
 		 *
 		 * @since 1.8.0
