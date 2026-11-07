@@ -138,10 +138,17 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return array|string   Plugin settings.
 		 */
 		public static function get_settings( $option = false ) {
-			$plugin_options = get_option( self::get_settings_name(), self::$default );
+			$saved_options = get_option( self::get_settings_name(), array() );
+
+			if ( ! is_array( $saved_options ) ) {
+				$saved_options = array();
+			}
+
+			// Fill in any missing keys with defaults.
+			$plugin_options = wp_parse_args( $saved_options, self::$default );
 
 			if ( $option ) {
-				return $plugin_options[ $option ];
+				return isset( $plugin_options[ $option ] ) ? $plugin_options[ $option ] : '';
 			}
 
 			return $plugin_options;
@@ -263,7 +270,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 */
 		public function add_plugin_row_meta( $plugin_meta, $plugin_file ) {
 
-			if ( strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
+			if ( plugin_basename( SLLV_PATH . SLLV_PLUGIN_BASENAME ) === $plugin_file ) {
 				$custom_meta = array(
 					'changelog' => '<a href="https://github.com/radkill/simple-lazy-load-videos" target="_blank" style="font-weight: bold;">' . __( 'GitHub' ) . '</a>',
 				);

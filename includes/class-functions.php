@@ -64,13 +64,15 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @return array       Video type & ID.
 		 */
 		public static function determine_video_url( $url ) {
-			$youtube_pattern = '/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/|shorts\/)?)([\w\-]+)(\S+)?$/';
+			// Video ID may follow `v=` anywhere in the query string, or one of the known paths.
+			// Other URLs (e.g. playlists) don't match and keep the default WordPress embed.
+			$youtube_pattern = '~^(?:(?:https?:)?//)?(?:(?:www|m)\.)?(?:youtube\.com/(?:watch\?(?:\S*?&)?v=|embed/|v/|shorts/|live/)|youtu\.be/)([\w\-]+)~i';
 			$vimeo_pattern   = '/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/';
 
-			if ( false !== strpos( $url, 'youtu' ) && preg_match( $youtube_pattern, $url, $youtube_matches )) {
+			if ( false !== strpos( $url, 'youtu' ) && preg_match( $youtube_pattern, $url, $youtube_matches ) ) {
 				$video_type = 'youtube';
-				$video_id   = $youtube_matches[5];
-			} elseif ( false !== strpos( $url, 'vimeo' ) && preg_match( $vimeo_pattern, $url, $vimeo_matches )) {
+				$video_id   = $youtube_matches[1];
+			} elseif ( false !== strpos( $url, 'vimeo' ) && preg_match( $vimeo_pattern, $url, $vimeo_matches ) ) {
 				$video_type = 'vimeo';
 				$video_id   = $vimeo_matches[5];
 			} else {

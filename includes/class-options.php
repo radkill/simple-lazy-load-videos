@@ -48,7 +48,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 * @return string                An array of plugin action links.
 		 */
 		public function plugin_action_links( $actions, $plugin_file ) {
-			if ( false === strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
+			if ( plugin_basename( SLLV_PATH . SLLV_PLUGIN_BASENAME ) !== $plugin_file ) {
 				return $actions;
 			}
 
