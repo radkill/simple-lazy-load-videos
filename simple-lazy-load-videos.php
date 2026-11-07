@@ -50,7 +50,7 @@ if ( ! defined( 'SLLV_PLUGIN_BASENAME' ) ) {
 }
 
 if ( ! defined( 'SLLV_VERSION' ) ) {
-	define( 'SLLV_VERSION', '1.7.1' );
+	define( 'SLLV_VERSION', '1.9.1' );
 }
 
 
