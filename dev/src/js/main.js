@@ -91,6 +91,9 @@
 			pause_all_media();
 			video.appendChild( iframe );
 			video.classList.add( '-state_started' );
+
+			// The focused play button is now hidden, so move focus to the player for keyboard users.
+			iframe.focus();
 		} );
 
 		video.classList.add( '-state_enabled' );
