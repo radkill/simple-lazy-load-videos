@@ -154,8 +154,10 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			?>
 
 			<div class="sllv-video -type_<?php echo esc_attr( $args['provider'] ); ?>" data-provider="<?php echo esc_attr( $args['provider'] ); ?>" data-video="<?php echo esc_attr( $args['id'] ); ?>"<?php if ( $args['hash'] ) : ?> data-hash="<?php echo esc_attr( $args['hash'] ); ?>"<?php endif; ?><?php if ( $args['start'] ) : ?> data-start="<?php echo esc_attr( (int) $args['start'] ); ?>"<?php endif; ?>>
-				<a class="sllv-video__link" href="<?php echo esc_url( $args['url'] ); ?>" rel="external noopener" target="_blank">
-					<img class="sllv-video__media" src="<?php echo esc_url( $args['thumbnail'] ); ?>" alt="<?php echo esc_attr( $args['title'] ); ?>">
+				<a class="sllv-video__link" href="<?php echo esc_url( $args['url'] ); ?>" rel="external noopener" target="_blank"<?php if ( ! $args['thumbnail'] ) : ?> aria-label="<?php echo esc_attr( $args['title'] ); ?>"<?php endif; ?>>
+					<?php if ( $args['thumbnail'] ) : ?>
+						<img class="sllv-video__media" src="<?php echo esc_url( $args['thumbnail'] ); ?>" alt="<?php echo esc_attr( $args['title'] ); ?>">
+					<?php endif; ?>
 				</a>
 				<button class="sllv-video__button" type="button" aria-label="<?php esc_attr_e( 'Play Video', 'simple-lazy-load-videos' ); ?>"><?php echo $args['play']; ?></button>
 			</div>

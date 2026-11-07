@@ -79,7 +79,8 @@
 			start: video.getAttribute( 'data-start' ),
 		};
 		const media    = video.querySelector( '.sllv-video__media' );
-		const title    = media ? media.getAttribute( 'alt' ) : '';
+		const link     = video.querySelector( '.sllv-video__link' );
+		const title    = media ? media.getAttribute( 'alt' ) : ( link ? link.getAttribute( 'aria-label' ) : '' );
 
 		video.addEventListener( 'click', ( event ) => {
 			event.preventDefault();
