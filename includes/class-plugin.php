@@ -123,7 +123,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 			}
 
 			// Flush oEmbed cache if plugin update from version 0.9.0 or older.
-			if ( ! $version || version_compare( $version, '0.9.0', '<=' ) ) {
+			// Not on a fresh install: there is no old plugin cache to flush, only the site's own.
+			if ( $version && version_compare( $version, '0.9.0', '<=' ) ) {
 				Oembed_Cache::flush_old_cache();
 			}
 		}
