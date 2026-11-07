@@ -145,7 +145,9 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		/**
 		 * Get YouTube thumbnail.
 		 *
-		 * Return WEBP if exists, otherwise fallback to JPG.
+		 * Return WEBP if exists, otherwise JPG. If the requested size doesn't exist
+		 * (sddefault / maxresdefault are missing for some videos), fall back to hqdefault,
+		 * which always exists. Otherwise YouTube shows a gray placeholder.
 		 *
 		 * @since 0.8.0
 		 *
@@ -155,14 +157,16 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 */
 		public static function get_youtube_thumb( $video_id, $size = 'sddefault' ) {
 			// Build URLs for both formats.
-			$url_webp = 'https://i.ytimg.com/vi_webp/' . $video_id . '/' . $size . '.webp';
-			$url_jpg  = 'https://i.ytimg.com/vi/' . $video_id . '/' . $size . '.jpg';
+			$url_webp     = 'https://i.ytimg.com/vi_webp/' . $video_id . '/' . $size . '.webp';
+			$url_jpg      = 'https://i.ytimg.com/vi/' . $video_id . '/' . $size . '.jpg';
+			$url_fallback = 'https://i.ytimg.com/vi/' . $video_id . '/hqdefault.jpg';
 
-			// Use WEBP if exists, otherwise fallback to JPG.
 			if ( self::check_thumbnail_exists( $url_webp ) ) {
 				$thumbnail_url = $url_webp;
-			} else {
+			} elseif ( 'hqdefault' === $size || self::check_thumbnail_exists( $url_jpg ) ) {
 				$thumbnail_url = $url_jpg;
+			} else {
+				$thumbnail_url = $url_fallback;
 			}
 
 			return $thumbnail_url;
