@@ -121,7 +121,7 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @return int          Seconds.
 		 */
 		private static function parse_time( $time ) {
-			if ( ctype_digit( $time ) ) {
+			if ( preg_match( '/^\d+$/', $time ) ) {
 				return (int) $time;
 			}
 
