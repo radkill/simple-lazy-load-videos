@@ -185,8 +185,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return string                The returned oEmbed HTML.
 		 */
 		public function change_oembed_html( $cache, $url, $attr, $post_ID ) {
-			// do replacement only on frontend.
-			if ( ! is_admin() ) {
+			// Do replacement only on frontend, including content loaded via admin-ajax.php.
+			if ( ! is_admin() || self::is_frontend_ajax() ) {
 				// Just some video for test.
 				// $url = 'https://youtu.be/D5LF3WChRrA';
 
@@ -205,6 +205,30 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 			}
 
 			return $cache;
+		}
+
+
+		/**
+		 * Check if this is an AJAX request that may render frontend content.
+		 *
+		 * `is_admin()` is true in admin-ajax.php, so without this check videos in
+		 * AJAX-loaded content ("load more", infinite scroll, filters) stay as iframes.
+		 * The classic editor's embed preview (`parse-embed`) is excluded: there are
+		 * no plugin scripts or styles in the editor.
+		 *
+		 * @since X.X.X
+		 *
+		 * @return bool True for AJAX requests other than the editor embed preview.
+		 */
+		private static function is_frontend_ajax() {
+			if ( ! wp_doing_ajax() ) {
+				return false;
+			}
+
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only reading the action name.
+			$action = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : '';
+
+			return 'parse-embed' !== $action;
 		}
 
 
