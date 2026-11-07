@@ -29,7 +29,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		/**
 		 * Allowed values for each setting.
 		 *
-		 * @since 1.9.2
+		 * @since X.X.X
 		 *
 		 * @var array $choices Setting name => array( value => label ).
 		 */

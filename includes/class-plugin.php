@@ -84,7 +84,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		/**
 		 * Get default settings.
 		 *
-		 * @since 1.9.2
+		 * @since X.X.X
 		 *
 		 * @param  string $option Optional. Setting name.
 		 * @return array|string   All default settings, or one default value.
