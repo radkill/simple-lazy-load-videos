@@ -76,8 +76,8 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 			$video_start = 0;
 
 			// Video ID may follow `v=` anywhere in the query string, or one of the known paths.
-			// Other URLs (e.g. playlists) don't match and keep the default WordPress embed.
-			$youtube_pattern = '~^(?:(?:https?:)?//)?(?:(?:www|m)\.)?(?:youtube\.com/(?:watch\?(?:\S*?&)?v=|embed/|v/|shorts/|live/)|youtu\.be/)([\w\-]+)~i';
+			// Other URLs (e.g. playlists, including `embed/videoseries`) don't match and keep the default output.
+			$youtube_pattern = '~^(?:(?:https?:)?//)?(?:(?:www|m)\.)?(?:youtube\.com/(?:watch\?(?:\S*?&)?v=|embed/(?!videoseries\b)|v/|shorts/|live/)|youtu\.be/)([\w\-]+)~i';
 			$vimeo_pattern   = '/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/';
 
 			if ( false !== strpos( $url, 'youtu' ) && preg_match( $youtube_pattern, $url, $youtube_matches ) ) {
