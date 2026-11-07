@@ -31,7 +31,10 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 			$cache_key     = 'sllv_cache_' . md5( $api_url );
 			$cached_result = get_transient( $cache_key );
 
-			if ( false !== $cached_result ) {
+			if ( '' === $cached_result ) {
+				// Cached failure.
+				return false;
+			} elseif ( false !== $cached_result ) {
 				// Get cached result if exists.
 				$body = $cached_result;
 			} else {
@@ -40,6 +43,11 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 
 				// Check if request was successful and returned a valid 200 OK status.
 				if ( is_wp_error( $request ) || 200 !== wp_remote_retrieve_response_code( $request ) ) {
+					// Cache the failure for a shorter time, so the API isn't requested on every page view.
+					if ( $expiration ) {
+						set_transient( $cache_key, '', min( $expiration, HOUR_IN_SECONDS ) );
+					}
+
 					return false;
 				}
 
@@ -61,9 +69,12 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @since 0.8.0
 		 *
 		 * @param  string $url YouTube or Vimeo video URL.
-		 * @return array       Video type & ID.
+		 * @return array       Video type & ID, plus Vimeo privacy hash and YouTube start time (seconds) if present.
 		 */
 		public static function determine_video_url( $url ) {
+			$video_hash  = '';
+			$video_start = 0;
+
 			// Video ID may follow `v=` anywhere in the query string, or one of the known paths.
 			// Other URLs (e.g. playlists) don't match and keep the default WordPress embed.
 			$youtube_pattern = '~^(?:(?:https?:)?//)?(?:(?:www|m)\.)?(?:youtube\.com/(?:watch\?(?:\S*?&)?v=|embed/|v/|shorts/|live/)|youtu\.be/)([\w\-]+)~i';
@@ -72,20 +83,62 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 			if ( false !== strpos( $url, 'youtu' ) && preg_match( $youtube_pattern, $url, $youtube_matches ) ) {
 				$video_type = 'youtube';
 				$video_id   = $youtube_matches[1];
+
+				// Start time: `t=90`, `t=90s`, `t=1m30s` or `start=90`.
+				if ( preg_match( '~[?&#](?:t|start)=([0-9hms]+)~i', $url, $time_matches ) ) {
+					$video_start = self::parse_time( $time_matches[1] );
+				}
 			} elseif ( false !== strpos( $url, 'vimeo' ) && preg_match( $vimeo_pattern, $url, $vimeo_matches ) ) {
 				$video_type = 'vimeo';
 				$video_id   = $vimeo_matches[5];
+
+				// Unlisted videos have a privacy hash: `vimeo.com/ID/HASH` or `player.vimeo.com/video/ID?h=HASH`.
+				if ( preg_match( '~vimeo\.com/(?:[a-z]*/)*[0-9]{6,11}/([0-9a-f]+)~i', $url, $hash_matches ) || preg_match( '~[?&]h=([0-9a-f]+)~i', $url, $hash_matches ) ) {
+					$video_hash = $hash_matches[1];
+				}
 			} else {
 				$video_type = false;
 				$video_id   = 0;
 			}
 
 			$data = array(
-				'type' => $video_type,
-				'id'   => $video_id,
+				'type'  => $video_type,
+				'id'    => $video_id,
+				'hash'  => $video_hash,
+				'start' => $video_start,
 			);
 
 			return $data;
+		}
+
+
+		/**
+		 * Convert a time value like `90`, `90s` or `1h2m3s` to seconds.
+		 *
+		 * @since 1.9.2
+		 *
+		 * @param  string $time Time value.
+		 * @return int          Seconds.
+		 */
+		private static function parse_time( $time ) {
+			if ( ctype_digit( $time ) ) {
+				return (int) $time;
+			}
+
+			$seconds    = 0;
+			$multiplier = array(
+				'h' => 3600,
+				'm' => 60,
+				's' => 1,
+			);
+
+			if ( preg_match_all( '~(\d+)([hms])~i', $time, $parts, PREG_SET_ORDER ) ) {
+				foreach ( $parts as $part ) {
+					$seconds += (int) $part[1] * $multiplier[ strtolower( $part[2] ) ];
+				}
+			}
+
+			return $seconds;
 		}
 
 
@@ -174,9 +227,25 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 *
 		 * @param  string $video_id Vimeo video ID.
 		 * @param  string $size     Thumbnail size: 640 / 1280.
+		 * @param  string $hash     Optional. Privacy hash of an unlisted video.
 		 * @return string           Thumbnail URL.
 		 */
-		public static function get_vimeo_thumb( $video_id, $size = '640' ) {
+		public static function get_vimeo_thumb( $video_id, $size = '640', $hash = '' ) {
+			// The simple API doesn't return unlisted videos, so use oEmbed with the hash for them.
+			if ( $hash ) {
+				$data = self::remote_api_get(
+					add_query_arg(
+						array(
+							'url'   => rawurlencode( 'https://vimeo.com/' . $video_id . '/' . $hash ),
+							'width' => (int) $size,
+						),
+						'https://vimeo.com/api/oembed.json'
+					)
+				);
+
+				return isset( $data->thumbnail_url ) ? $data->thumbnail_url : '';
+			}
+
 			$data = self::remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
 
 			if ( empty( $data ) || ! isset( $data[0]->thumbnail_large ) ) {
