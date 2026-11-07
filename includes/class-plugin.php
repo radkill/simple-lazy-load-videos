@@ -307,7 +307,6 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * Appends additional links below each/specific plugin on the plugins page.
 		 *
 		 * @since 1.1.0
-		 * @link https://team.baeldung.com/browse/UX-6840
 		 *
 		 * @param  array  $plugin_meta An array of the plugin's metadata.
 		 * @param  string $plugin_file Path to the plugin file.
