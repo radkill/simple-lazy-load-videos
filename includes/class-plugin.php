@@ -279,10 +279,13 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 				$atts
 			);
 
+			// The editor and wptexturize may add tags, whitespace and encoded `&` around/inside the URL.
+			$url = str_replace( array( '&#038;', '&amp;' ), '&', wp_strip_all_tags( $content ) );
+
 			// Get oEmbed HTML from URL.
 			$html = Template::get_html_from_url(
 				array(
-					'url'       => $content,
+					'url'       => $url,
 					'thumbnail' => $atts['thumbnail'],
 					'play'      => $atts['play'],
 					'hide_play' => $atts['hide_play'],
