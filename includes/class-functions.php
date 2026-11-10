@@ -115,7 +115,7 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		/**
 		 * Convert a time value like `90`, `90s` or `1h2m3s` to seconds.
 		 *
-		 * @since X.X.X
+		 * @since 1.10.0
 		 *
 		 * @param  string $time Time value.
 		 * @return int          Seconds.

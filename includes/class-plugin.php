@@ -84,7 +84,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		/**
 		 * Get default settings.
 		 *
-		 * @since X.X.X
+		 * @since 1.10.0
 		 *
 		 * @param  string $option Optional. Setting name.
 		 * @return array|string   All default settings, or one default value.
@@ -216,7 +216,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * The classic editor's embed preview (`parse-embed`) is excluded: there are
 		 * no plugin scripts or styles in the editor.
 		 *
-		 * @since X.X.X
+		 * @since 1.10.0
 		 *
 		 * @return bool True for AJAX requests other than the editor embed preview.
 		 */
