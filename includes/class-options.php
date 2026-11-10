@@ -27,6 +27,26 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 
 
 		/**
+		 * Allowed values for each setting.
+		 *
+		 * @since 1.10.0
+		 *
+		 * @var array $choices Setting name => array( value => label ).
+		 */
+		private $choices = array(
+			'youtube_thumbnail_size' => array(
+				'hqdefault'     => 'hqdefault (480×360)',
+				'sddefault'     => 'sddefault (640×480)',
+				'maxresdefault' => 'maxresdefault (1280x720)',
+			),
+			'vimeo_thumbnail_size'   => array(
+				'640'  => 'default (640×360)',
+				'1280' => 'HD (1280×720)',
+			),
+		);
+
+
+		/**
 		 * Class initialization.
 		 *
 		 * @since 0.7.0
@@ -48,7 +68,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 * @return string                An array of plugin action links.
 		 */
 		public function plugin_action_links( $actions, $plugin_file ) {
-			if ( false === strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
+			if ( plugin_basename( SLLV_PATH . SLLV_PLUGIN_BASENAME ) !== $plugin_file ) {
 				return $actions;
 			}
 
@@ -83,7 +103,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 			?>
 
 			<div class="wrap">
-				<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
+				<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 				<form action="options.php" method="POST">
 					<?php
@@ -136,11 +156,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 */
 		public function youtube_thumbnail_size() {
 			$name          = 'youtube_thumbnail_size';
-			$values        = array(
-				'hqdefault'     => 'hqdefault (480×360)',
-				'sddefault'     => 'sddefault (640×480)',
-				'maxresdefault' => 'maxresdefault (1280x720)',
-			);
+			$values        = $this->choices[ $name ];
 			$current_value = Plugin::get_settings( $name );
 			?>
 
@@ -165,10 +181,7 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 */
 		public function vimeo_thumbnail_size() {
 			$name          = 'vimeo_thumbnail_size';
-			$values        = array(
-				'640'  => 'default (640×360)',
-				'1280' => 'HD (1280×720)',
-			);
+			$values        = $this->choices[ $name ];
 			$current_value = Plugin::get_settings( $name );
 			?>
 
@@ -191,19 +204,28 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 *
 		 * @since 0.7.0
 		 *
+		 * Keeps only known settings with allowed values. An invalid or missing
+		 * value keeps the current setting (or its default).
+		 *
 		 * @param  array $options Plugin settings.
 		 * @return array          Returned plugin settings.
 		 */
-		private function sanitize_callback( $options ) {
-			if ( $options ) {
-				foreach ( $options as $name => & $value ) {
-					if ( in_array( $name, array( 'youtube_thumbnail_size', 'vimeo_thumbnail_size' ), true ) ) {
-						$value = sanitize_text_field( $value );
-					}
+		public function sanitize_callback( $options ) {
+			$options   = is_array( $options ) ? $options : array();
+			$sanitized = array();
+
+			foreach ( $this->choices as $name => $values ) {
+				$value = isset( $options[ $name ] ) ? sanitize_text_field( (string) $options[ $name ] ) : '';
+
+				if ( ! array_key_exists( $value, $values ) ) {
+					$current = (string) Plugin::get_settings( $name );
+					$value   = array_key_exists( $current, $values ) ? $current : Plugin::get_default_settings( $name );
 				}
+
+				$sanitized[ $name ] = $value;
 			}
 
-			return $options;
+			return $sanitized;
 		}
 	}
 }

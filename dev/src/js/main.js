@@ -74,16 +74,26 @@
 	function setup_video( video ) {
 		const provider = video.getAttribute( 'data-provider' );
 		const id       = video.getAttribute( 'data-video' );
+		const options  = {
+			hash:  video.getAttribute( 'data-hash' ),
+			start: video.getAttribute( 'data-start' ),
+		};
+		const media    = video.querySelector( '.sllv-video__media' );
+		const link     = video.querySelector( '.sllv-video__link' );
+		const title    = media ? media.getAttribute( 'alt' ) : ( link ? link.getAttribute( 'aria-label' ) : '' );
 
 		video.addEventListener( 'click', ( event ) => {
 			event.preventDefault();
 
-			const iframe = create_iframe( provider, id );
+			const iframe = create_iframe( provider, id, options, title );
 
 			stop_all_video();
 			pause_all_media();
 			video.appendChild( iframe );
 			video.classList.add( '-state_started' );
+
+			// The focused play button is now hidden, so move focus to the player for keyboard users.
+			iframe.focus();
 		} );
 
 		video.classList.add( '-state_enabled' );
@@ -97,14 +107,21 @@
 	 *
 	 * @param  {string} provider Video provider.
 	 * @param  {string} id       Video ID.
+	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (YouTube).
+	 * @param  {string} title    Iframe title for screen readers.
 	 * @return {object}          Returned video HTML element.
 	 */
-	function create_iframe( provider, id ) {
+	function create_iframe( provider, id, options, title ) {
 		const iframe = document.createElement( 'iframe' );
 
 		iframe.setAttribute( 'allowfullscreen', '' );
-		iframe.setAttribute( 'allow', 'autoplay' );
-		iframe.setAttribute( 'src', generate_url( provider, id ) );
+		iframe.setAttribute( 'allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen' );
+		iframe.setAttribute( 'src', generate_url( provider, id, options ) );
+
+		if ( title ) {
+			iframe.setAttribute( 'title', title );
+		}
+
 		iframe.classList.add( 'sllv-video__iframe' );
 
 		return iframe;
@@ -118,15 +135,27 @@
 	 *
 	 * @param  {string} provider Video provider.
 	 * @param  {string} id       Video ID.
+	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (YouTube).
 	 * @return {string}          Returned video URL.
 	 */
-	function generate_url( provider, id ) {
+	function generate_url( provider, id, options ) {
 		let url = '';
 
+		options = options || {};
+
 		if ( 'youtube' === provider ) {
-			url = 'https://www.youtube.com/embed/' + id + '?rel=0&showinfo=0&autoplay=1';
+			url = 'https://www.youtube.com/embed/' + encodeURIComponent( id ) + '?rel=0&showinfo=0&autoplay=1';
+
+			if ( options.start ) {
+				url += '&start=' + encodeURIComponent( options.start );
+			}
 		} else if ( 'vimeo' === provider ) {
-			url = 'https://player.vimeo.com/video/' + id + '?autoplay=1';
+			url = 'https://player.vimeo.com/video/' + encodeURIComponent( id ) + '?autoplay=1';
+
+			// Required for unlisted videos.
+			if ( options.hash ) {
+				url += '&h=' + encodeURIComponent( options.hash );
+			}
 		}
 
 		return url;

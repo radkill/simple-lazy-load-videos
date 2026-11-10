@@ -45,12 +45,33 @@ A shortcode can contain several additional attributes:
 
 ### Can I embed a lazy loaded video into my template file?
 Yes, but you cannot insert a shortcode `[sllv_video]` into your template file directly.
-You will need to pass the code into apply_shortcodes() function and display its output like this:
+You will need to pass the code into apply_shortcodes() function (WordPress 5.4+, or do_shortcode() in older versions) and display its output like this:
 ```php
 <?php echo apply_shortcodes( '[sllv_video]https://youtu.be/GywDFkY3z-c[/sllv_video]' ); ?>
 ```
 
 ## Changelog
+### 1.10.0
+* Add support for unlisted Vimeo videos
+* Add support for YouTube start time (`t=` and `start=` parameters)
+* Add support for YouTube live links and share links with extra parameters
+* Lazy load videos in content loaded via AJAX (e.g. "Load more", infinite scroll)
+* Fix YouTube playlists being replaced with a broken video
+* Fix fatal error when saving settings on PHP 8
+* Fix outdated version in CSS/JS links, so browsers get the updated files
+* Fix plugin translations not loading
+* Fix gray YouTube placeholder when the selected thumbnail size does not exist, now falls back to hqdefault
+* Fix broken image when the video thumbnail is not available
+* Fix `[sllv_video]` shortcode with encoded or wrapped URLs
+* Fix `hide_play` shortcode attribute not working together with `play`
+* Fix "Settings" and "GitHub" links appearing for other plugins with the same file name
+* Fix PHP notices with incomplete plugin settings
+* Do not flush the site's oEmbed cache on a fresh install
+* Validate plugin settings against allowed values
+* Cache failed Vimeo API requests
+* Accessibility: add title to the player, move focus to the player after start
+* Allow picture-in-picture and encrypted media in the player
+
 ### 1.9.1
 * Tested up to: 7.1
 * Fix SCSS codestyle

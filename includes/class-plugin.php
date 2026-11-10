@@ -82,6 +82,23 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 
 
 		/**
+		 * Get default settings.
+		 *
+		 * @since 1.10.0
+		 *
+		 * @param  string $option Optional. Setting name.
+		 * @return array|string   All default settings, or one default value.
+		 */
+		public static function get_default_settings( $option = false ) {
+			if ( $option ) {
+				return isset( self::$default[ $option ] ) ? self::$default[ $option ] : '';
+			}
+
+			return self::$default;
+		}
+
+
+		/**
 		 * Admin initialization routine for DB updates and checks.
 		 *
 		 * @since 1.8.0
@@ -106,7 +123,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 			}
 
 			// Flush oEmbed cache if plugin update from version 0.9.0 or older.
-			if ( ! $version || version_compare( $version, '0.9.0', '<=' ) ) {
+			// Not on a fresh install: there is no old plugin cache to flush, only the site's own.
+			if ( $version && version_compare( $version, '0.9.0', '<=' ) ) {
 				Oembed_Cache::flush_old_cache();
 			}
 		}
@@ -138,10 +156,17 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return array|string   Plugin settings.
 		 */
 		public static function get_settings( $option = false ) {
-			$plugin_options = get_option( self::get_settings_name(), self::$default );
+			$saved_options = get_option( self::get_settings_name(), array() );
+
+			if ( ! is_array( $saved_options ) ) {
+				$saved_options = array();
+			}
+
+			// Fill in any missing keys with defaults.
+			$plugin_options = wp_parse_args( $saved_options, self::$default );
 
 			if ( $option ) {
-				return $plugin_options[ $option ];
+				return isset( $plugin_options[ $option ] ) ? $plugin_options[ $option ] : '';
 			}
 
 			return $plugin_options;
@@ -160,8 +185,8 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * @return string                The returned oEmbed HTML.
 		 */
 		public function change_oembed_html( $cache, $url, $attr, $post_ID ) {
-			// do replacement only on frontend.
-			if ( ! is_admin() ) {
+			// Do replacement only on frontend, including content loaded via admin-ajax.php.
+			if ( ! is_admin() || self::is_frontend_ajax() ) {
 				// Just some video for test.
 				// $url = 'https://youtu.be/D5LF3WChRrA';
 
@@ -180,6 +205,30 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 			}
 
 			return $cache;
+		}
+
+
+		/**
+		 * Check if this is an AJAX request that may render frontend content.
+		 *
+		 * `is_admin()` is true in admin-ajax.php, so without this check videos in
+		 * AJAX-loaded content ("load more", infinite scroll, filters) stay as iframes.
+		 * The classic editor's embed preview (`parse-embed`) is excluded: there are
+		 * no plugin scripts or styles in the editor.
+		 *
+		 * @since 1.10.0
+		 *
+		 * @return bool True for AJAX requests other than the editor embed preview.
+		 */
+		private static function is_frontend_ajax() {
+			if ( ! wp_doing_ajax() ) {
+				return false;
+			}
+
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only reading the action name.
+			$action = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : '';
+
+			return 'parse-embed' !== $action;
 		}
 
 
@@ -230,10 +279,13 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 				$atts
 			);
 
+			// The editor and wptexturize may add tags, whitespace and encoded `&` around/inside the URL.
+			$url = str_replace( array( '&#038;', '&amp;' ), '&', wp_strip_all_tags( $content ) );
+
 			// Get oEmbed HTML from URL.
 			$html = Template::get_html_from_url(
 				array(
-					'url'       => $content,
+					'url'       => $url,
 					'thumbnail' => $atts['thumbnail'],
 					'play'      => $atts['play'],
 					'hide_play' => $atts['hide_play'],
@@ -255,7 +307,6 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 * Appends additional links below each/specific plugin on the plugins page.
 		 *
 		 * @since 1.1.0
-		 * @link https://team.baeldung.com/browse/UX-6840
 		 *
 		 * @param  array  $plugin_meta An array of the plugin's metadata.
 		 * @param  string $plugin_file Path to the plugin file.
@@ -263,7 +314,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 		 */
 		public function add_plugin_row_meta( $plugin_meta, $plugin_file ) {
 
-			if ( strpos( $plugin_file, SLLV_PLUGIN_BASENAME ) ) {
+			if ( plugin_basename( SLLV_PATH . SLLV_PLUGIN_BASENAME ) === $plugin_file ) {
 				$custom_meta = array(
 					'changelog' => '<a href="https://github.com/radkill/simple-lazy-load-videos" target="_blank" style="font-weight: bold;">' . __( 'GitHub' ) . '</a>',
 				);

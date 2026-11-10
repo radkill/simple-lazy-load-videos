@@ -22,8 +22,8 @@ if ( ! class_exists( '\SLLV\Resources' ) ) {
 		 * @since 0.7.2
 		 */
 		public function __construct() {
-			// Load plugin textdomain.
-			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+			// Load plugin textdomain. Not `plugins_loaded`: this class is created during that hook, so it would never fire.
+			add_action( 'init', array( $this, 'load_textdomain' ) );
 
 			// Enqueue JavaScripts.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
