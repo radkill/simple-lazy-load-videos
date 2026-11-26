@@ -46,6 +46,33 @@ if ( ! class_exists( '\SLLV\Actions' ) ) {
 		public static function uninstall() {
 			delete_option( 'sllv_version' );
 			delete_option( 'sllv_settings' );
+
+			self::delete_cache();
+		}
+
+
+		/**
+		 * Delete cached remote requests (thumbnails, Vimeo API).
+		 *
+		 * Expired transients stay in the database until WordPress cleans them up,
+		 * so remove them all on uninstall. With a persistent object cache they are
+		 * not in the database and simply expire.
+		 *
+		 * @since X.X.X
+		 */
+		private static function delete_cache() {
+			global $wpdb;
+
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Removing plugin data on uninstall.
+			$wpdb->query(
+				$wpdb->prepare(
+					"DELETE FROM $wpdb->options
+						WHERE `option_name` LIKE %s
+							OR `option_name` LIKE %s",
+					$wpdb->esc_like( '_transient_sllv_cache_' ) . '%',
+					$wpdb->esc_like( '_transient_timeout_sllv_cache_' ) . '%'
+				)
+			);
 		}
 	}
 }
