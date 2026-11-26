@@ -69,7 +69,7 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @since 0.8.0
 		 *
 		 * @param  string $url YouTube or Vimeo video URL.
-		 * @return array       Video type & ID, plus Vimeo privacy hash and YouTube start time (seconds) if present.
+		 * @return array       Video type & ID, plus Vimeo privacy hash and start time (seconds) if present.
 		 */
 		public static function determine_video_url( $url ) {
 			$video_hash  = '';
@@ -86,11 +86,6 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 			if ( false !== strpos( $url, 'youtu' ) && preg_match( $youtube_pattern, $url, $youtube_matches ) ) {
 				$video_type = 'youtube';
 				$video_id   = $youtube_matches[1];
-
-				// Start time: `t=90`, `t=90s`, `t=1m30s` or `start=90`.
-				if ( preg_match( '~[?&#](?:t|start)=([0-9hms]+)~i', $url, $time_matches ) ) {
-					$video_start = self::parse_time( $time_matches[1] );
-				}
 			} elseif ( false !== strpos( $url, 'vimeo' ) && preg_match( $vimeo_pattern, $url, $vimeo_matches ) ) {
 				$video_type = 'vimeo';
 				$video_id   = $vimeo_matches[1];
@@ -104,6 +99,11 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 			} else {
 				$video_type = false;
 				$video_id   = 0;
+			}
+
+			// Start time: `t=90`, `t=90s`, `t=1m30s` or `start=90` (YouTube), `#t=1m30s` (Vimeo).
+			if ( $video_type && preg_match( '~[?&#](?:t|start)=([0-9hms]+)~i', $url, $time_matches ) ) {
+				$video_start = self::parse_time( $time_matches[1] );
 			}
 
 			$data = array(

@@ -107,7 +107,7 @@
 	 *
 	 * @param  {string} provider Video provider.
 	 * @param  {string} id       Video ID.
-	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (YouTube).
+	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (seconds).
 	 * @param  {string} title    Iframe title for screen readers.
 	 * @return {object}          Returned video HTML element.
 	 */
@@ -138,7 +138,7 @@
 	 *
 	 * @param  {string} provider Video provider.
 	 * @param  {string} id       Video ID.
-	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (YouTube).
+	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (seconds).
 	 * @return {string}          Returned video URL.
 	 */
 	function generate_url( provider, id, options ) {
@@ -158,6 +158,11 @@
 			// Required for unlisted videos.
 			if ( options.hash ) {
 				url += '&h=' + encodeURIComponent( options.hash );
+			}
+
+			// Vimeo takes the start time in the URL fragment.
+			if ( options.start ) {
+				url += '#t=' + encodeURIComponent( options.start ) + 's';
 			}
 		}
 
