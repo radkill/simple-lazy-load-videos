@@ -65,14 +65,15 @@ if ( ! class_exists( '\SLLV\Options' ) ) {
 		 *
 		 * @param  string[] $actions     An array of plugin action links.
 		 * @param  string   $plugin_file Path to the plugin file relative to the plugins directory.
-		 * @return string                An array of plugin action links.
+		 * @return string[]              An array of plugin action links.
 		 */
 		public function plugin_action_links( $actions, $plugin_file ) {
 			if ( plugin_basename( SLLV_PATH . SLLV_PLUGIN_BASENAME ) !== $plugin_file ) {
 				return $actions;
 			}
 
-			$settings_link = '<a href="options-general.php?page=' . $this->page_slug . '">' . __( 'Settings' ) . '</a>';
+			$settings_url  = add_query_arg( 'page', $this->page_slug, admin_url( 'options-general.php' ) );
+			$settings_link = '<a href="' . esc_url( $settings_url ) . '">' . esc_html__( 'Settings' ) . '</a>';
 			array_unshift( $actions, $settings_link );
 			return $actions;
 		}

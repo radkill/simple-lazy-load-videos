@@ -316,7 +316,7 @@ if ( ! class_exists( '\SLLV\Plugin' ) ) {
 
 			if ( plugin_basename( SLLV_PATH . SLLV_PLUGIN_BASENAME ) === $plugin_file ) {
 				$custom_meta = array(
-					'changelog' => '<a href="https://github.com/radkill/simple-lazy-load-videos" target="_blank" style="font-weight: bold;">' . __( 'GitHub' ) . '</a>',
+					'changelog' => '<a href="' . esc_url( 'https://github.com/radkill/simple-lazy-load-videos' ) . '" target="_blank" rel="noopener noreferrer" style="font-weight: bold;">' . esc_html__( 'GitHub' ) . '</a>',
 				);
 				$plugin_meta = array_merge( $plugin_meta, $custom_meta );
 			}
