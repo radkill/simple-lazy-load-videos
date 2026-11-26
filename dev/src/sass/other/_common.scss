@@ -4,3 +4,16 @@
 .wpb_video_wrapper {
 	padding-top: 0 !important;
 }
+
+/**
+ * Fix for Gutenberg embeds with responsive-embeds theme support.
+ *
+ * Core reserves the height via `.wp-block-embed__wrapper::before` padding
+ * and positions only `iframe` absolutely on top of it.
+ */
+.wp-embed-responsive .wp-has-aspect-ratio .wp-block-embed__wrapper > .sllv-video {
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	height: 100% !important;
+}

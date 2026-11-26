@@ -69,7 +69,7 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 		 * @since 0.8.0
 		 *
 		 * @param  string $url YouTube or Vimeo video URL.
-		 * @return array       Video type & ID, plus Vimeo privacy hash and YouTube start time (seconds) if present.
+		 * @return array       Video type & ID, plus Vimeo privacy hash and start time (seconds) if present.
 		 */
 		public static function determine_video_url( $url ) {
 			$video_hash  = '';
@@ -78,27 +78,32 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 			// Video ID may follow `v=` anywhere in the query string, or one of the known paths.
 			// Other URLs (e.g. playlists, including `embed/videoseries`) don't match and keep the default output.
 			$youtube_pattern = '~^(?:(?:https?:)?//)?(?:(?:www|m)\.)?(?:youtube\.com/(?:watch\?(?:\S*?&)?v=|embed/(?!videoseries\b)|v/|shorts/|live/)|youtu\.be/)([\w\-]+)~i';
-			$vimeo_pattern   = '/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/([a-z]*\/)*([0-9]{6,11})[?]?.*/';
+
+			// Vimeo video ID may follow named path segments (e.g. `channels/NAME/`, `video/`) or `showcase/ID/video/`.
+			// Showcases, albums and events without a video ID don't match and keep the default output.
+			$vimeo_pattern = '~(?:https?:)?(?://)?(?:(?:www|player)\.)?vimeo\.com/(?:(?:showcase|album)/[0-9]+/video/|(?:(?!(?:showcase|album|event)/)[a-z]*/)*)([0-9]{6,11})(?:/([0-9a-f]+)(?![0-9a-z]))?~i';
 
 			if ( false !== strpos( $url, 'youtu' ) && preg_match( $youtube_pattern, $url, $youtube_matches ) ) {
 				$video_type = 'youtube';
 				$video_id   = $youtube_matches[1];
-
-				// Start time: `t=90`, `t=90s`, `t=1m30s` or `start=90`.
-				if ( preg_match( '~[?&#](?:t|start)=([0-9hms]+)~i', $url, $time_matches ) ) {
-					$video_start = self::parse_time( $time_matches[1] );
-				}
 			} elseif ( false !== strpos( $url, 'vimeo' ) && preg_match( $vimeo_pattern, $url, $vimeo_matches ) ) {
 				$video_type = 'vimeo';
-				$video_id   = $vimeo_matches[5];
+				$video_id   = $vimeo_matches[1];
 
 				// Unlisted videos have a privacy hash: `vimeo.com/ID/HASH` or `player.vimeo.com/video/ID?h=HASH`.
-				if ( preg_match( '~vimeo\.com/(?:[a-z]*/)*[0-9]{6,11}/([0-9a-f]+)~i', $url, $hash_matches ) || preg_match( '~[?&]h=([0-9a-f]+)~i', $url, $hash_matches ) ) {
+				if ( ! empty( $vimeo_matches[2] ) ) {
+					$video_hash = $vimeo_matches[2];
+				} elseif ( preg_match( '~[?&]h=([0-9a-f]+)~i', $url, $hash_matches ) ) {
 					$video_hash = $hash_matches[1];
 				}
 			} else {
 				$video_type = false;
 				$video_id   = 0;
+			}
+
+			// Start time: `t=90`, `t=90s`, `t=1m30s` or `start=90` (YouTube), `#t=1m30s` (Vimeo).
+			if ( $video_type && preg_match( '~[?&#](?:t|start)=([0-9hms]+)~i', $url, $time_matches ) ) {
+				$video_start = self::parse_time( $time_matches[1] );
 			}
 
 			$data = array(

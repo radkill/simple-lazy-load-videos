@@ -107,7 +107,7 @@
 	 *
 	 * @param  {string} provider Video provider.
 	 * @param  {string} id       Video ID.
-	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (YouTube).
+	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (seconds).
 	 * @param  {string} title    Iframe title for screen readers.
 	 * @return {object}          Returned video HTML element.
 	 */
@@ -116,6 +116,9 @@
 
 		iframe.setAttribute( 'allowfullscreen', '' );
 		iframe.setAttribute( 'allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen' );
+
+		// YouTube requires the Referer header, which a site-wide `no-referrer` policy would strip (error 153).
+		iframe.setAttribute( 'referrerpolicy', 'strict-origin-when-cross-origin' );
 		iframe.setAttribute( 'src', generate_url( provider, id, options ) );
 
 		if ( title ) {
@@ -135,7 +138,7 @@
 	 *
 	 * @param  {string} provider Video provider.
 	 * @param  {string} id       Video ID.
-	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (YouTube).
+	 * @param  {object} options  Optional `hash` (Vimeo) and `start` (seconds).
 	 * @return {string}          Returned video URL.
 	 */
 	function generate_url( provider, id, options ) {
@@ -144,7 +147,7 @@
 		options = options || {};
 
 		if ( 'youtube' === provider ) {
-			url = 'https://www.youtube.com/embed/' + encodeURIComponent( id ) + '?rel=0&showinfo=0&autoplay=1';
+			url = 'https://www.youtube.com/embed/' + encodeURIComponent( id ) + '?rel=0&autoplay=1';
 
 			if ( options.start ) {
 				url += '&start=' + encodeURIComponent( options.start );
@@ -155,6 +158,11 @@
 			// Required for unlisted videos.
 			if ( options.hash ) {
 				url += '&h=' + encodeURIComponent( options.hash );
+			}
+
+			// Vimeo takes the start time in the URL fragment.
+			if ( options.start ) {
+				url += '#t=' + encodeURIComponent( options.start ) + 's';
 			}
 		}
 

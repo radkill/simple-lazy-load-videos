@@ -153,11 +153,38 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 				)
 			);
 
+			// Container attributes: the data attributes are read by the frontend JS.
+			$video_attributes = array(
+				'class'         => 'sllv-video -type_' . $args['provider'],
+				'data-provider' => $args['provider'],
+				'data-video'    => $args['id'],
+			);
+
+			if ( $args['hash'] ) {
+				$video_attributes['data-hash'] = $args['hash'];
+			}
+
+			if ( $args['start'] ) {
+				$video_attributes['data-start'] = (int) $args['start'];
+			}
+
+			$link_attributes = array(
+				'class'  => 'sllv-video__link',
+				'href'   => $args['url'],
+				'rel'    => 'external noopener',
+				'target' => '_blank',
+			);
+
+			// Without a thumbnail the link has no content, so give it an accessible name.
+			if ( ! $args['thumbnail'] ) {
+				$link_attributes['aria-label'] = $args['title'];
+			}
+
 			ob_start();
 			?>
 
-			<div class="sllv-video -type_<?php echo esc_attr( $args['provider'] ); ?>" data-provider="<?php echo esc_attr( $args['provider'] ); ?>" data-video="<?php echo esc_attr( $args['id'] ); ?>"<?php if ( $args['hash'] ) : ?> data-hash="<?php echo esc_attr( $args['hash'] ); ?>"<?php endif; ?><?php if ( $args['start'] ) : ?> data-start="<?php echo esc_attr( (int) $args['start'] ); ?>"<?php endif; ?>>
-				<a class="sllv-video__link" href="<?php echo esc_url( $args['url'] ); ?>" rel="external noopener" target="_blank"<?php if ( ! $args['thumbnail'] ) : ?> aria-label="<?php echo esc_attr( $args['title'] ); ?>"<?php endif; ?>>
+			<div<?php echo self::get_attributes( $video_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in get_attributes(). ?>>
+				<a<?php echo self::get_attributes( $link_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in get_attributes(). ?>>
 					<?php if ( $args['thumbnail'] ) : ?>
 						<img class="sllv-video__media" src="<?php echo esc_url( $args['thumbnail'] ); ?>" alt="<?php echo esc_attr( $args['title'] ); ?>">
 					<?php endif; ?>
@@ -177,6 +204,33 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 			 * @param array  $args   Arguments.
 			 */
 			return apply_filters( 'sllv_video_template', $output, $args );
+		}
+
+
+		/**
+		 * Build an escaped HTML attributes string.
+		 *
+		 * `href` and `src` values are escaped as URLs, all others as attributes.
+		 *
+		 * @since 1.11.0
+		 *
+		 * @param  array $attributes Attribute name => value.
+		 * @return string            Attributes with a leading space, like ` class="a" href="b"`.
+		 */
+		private static function get_attributes( $attributes ) {
+			$output = '';
+
+			foreach ( $attributes as $name => $value ) {
+				if ( 'href' === $name || 'src' === $name ) {
+					$value = esc_url( $value );
+				} else {
+					$value = esc_attr( $value );
+				}
+
+				$output .= ' ' . sanitize_key( $name ) . '="' . $value . '"';
+			}
+
+			return $output;
 		}
 	}
 }

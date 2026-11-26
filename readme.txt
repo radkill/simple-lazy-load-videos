@@ -3,9 +3,9 @@ Contributors: rad_, ideus
 Tags: performance, video, vimeo, youtube
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V5Q9SBB54LMDC&source=url
 Requires at least: 4.9
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 5.6
-Stable tag: 1.10.0
+Stable tag: 1.11.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,18 @@ You will need to pass the code into apply_shortcodes() function (WordPress 5.4+,
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 1.11.0 =
+* Tested up to: 7.2
+* Add support for Vimeo start time (`#t=` parameter)
+* Fix gap above videos inserted with the Embed block in themes that support responsive embeds
+* Fix Vimeo showcase, album and event links being replaced with a broken video
+* Fix YouTube "Error 153" on sites with a `no-referrer` Referrer-Policy
+* Delete cached thumbnails and Vimeo API responses on uninstall
+* Escape the "Settings" and "GitHub" links on the Plugins screen
+* Remove the deprecated YouTube `showinfo` parameter
+* Code refactoring
+* Update packages
+
 = 1.10.0 =
 * Add support for unlisted Vimeo videos
 * Add support for YouTube start time (`t=` and `start=` parameters)
