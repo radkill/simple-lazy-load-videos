@@ -58,7 +58,7 @@ if ( ! class_exists( '\SLLV\Actions' ) ) {
 		 * so remove them all on uninstall. With a persistent object cache they are
 		 * not in the database and simply expire.
 		 *
-		 * @since X.X.X
+		 * @since 1.11.0
 		 */
 		private static function delete_cache() {
 			global $wpdb;

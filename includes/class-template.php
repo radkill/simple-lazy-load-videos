@@ -212,7 +212,7 @@ if ( ! class_exists( '\SLLV\Template' ) ) {
 		 *
 		 * `href` and `src` values are escaped as URLs, all others as attributes.
 		 *
-		 * @since X.X.X
+		 * @since 1.11.0
 		 *
 		 * @param  array $attributes Attribute name => value.
 		 * @return string            Attributes with a leading space, like ` class="a" href="b"`.

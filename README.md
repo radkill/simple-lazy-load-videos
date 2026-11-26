@@ -51,6 +51,18 @@ You will need to pass the code into apply_shortcodes() function (WordPress 5.4+,
 ```
 
 ## Changelog
+### 1.11.0
+* Tested up to: 7.2
+* Add support for Vimeo start time (`#t=` parameter)
+* Fix gap above videos inserted with the Embed block in themes that support responsive embeds
+* Fix Vimeo showcase, album and event links being replaced with a broken video
+* Fix YouTube "Error 153" on sites with a `no-referrer` Referrer-Policy
+* Delete cached thumbnails and Vimeo API responses on uninstall
+* Escape the "Settings" and "GitHub" links on the Plugins screen
+* Remove the deprecated YouTube `showinfo` parameter
+* Code refactoring
+* Update packages
+
 ### 1.10.0
 * Add support for unlisted Vimeo videos
 * Add support for YouTube start time (`t=` and `start=` parameters)
