@@ -116,6 +116,9 @@
 
 		iframe.setAttribute( 'allowfullscreen', '' );
 		iframe.setAttribute( 'allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen' );
+
+		// YouTube requires the Referer header, which a site-wide `no-referrer` policy would strip (error 153).
+		iframe.setAttribute( 'referrerpolicy', 'strict-origin-when-cross-origin' );
 		iframe.setAttribute( 'src', generate_url( provider, id, options ) );
 
 		if ( title ) {
@@ -144,7 +147,7 @@
 		options = options || {};
 
 		if ( 'youtube' === provider ) {
-			url = 'https://www.youtube.com/embed/' + encodeURIComponent( id ) + '?rel=0&showinfo=0&autoplay=1';
+			url = 'https://www.youtube.com/embed/' + encodeURIComponent( id ) + '?rel=0&autoplay=1';
 
 			if ( options.start ) {
 				url += '&start=' + encodeURIComponent( options.start );
