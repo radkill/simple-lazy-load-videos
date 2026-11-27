@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Requires at least: 4.9
 Tested up to: 7.2
 Requires PHP: 5.6
-Stable tag: 1.11.0
+Stable tag: 1.11.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,12 @@ You will need to pass the code into apply_shortcodes() function (WordPress 5.4+,
 1. Admin settings on the Settings -> Simple Lazy Load Videos screen.
 
 == Changelog ==
+= 1.11.1 =
+* Add support for youtube-nocookie.com links
+* Fix a bogus video ID for YouTube links with extra characters after the ID
+* Fix fatal error when the Vimeo API returns an unexpected response
+* Update packages
+
 = 1.11.0 =
 * Tested up to: 7.2
 * Add support for Vimeo start time (`#t=` parameter)

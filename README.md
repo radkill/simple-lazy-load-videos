@@ -12,9 +12,6 @@
 [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/)
 [![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/rating/simple-lazy-load-videos)](https://wordpress.org/plugins/simple-lazy-load-videos/#reviews)
 
-[![WP compatibility](https://plugintests.com/plugins/wporg/simple-lazy-load-videos/wp-badge.svg)](https://plugintests.com/plugins/wporg/simple-lazy-load-videos/latest)
-[![PHP compatibility](https://plugintests.com/plugins/wporg/simple-lazy-load-videos/php-badge.svg)](https://plugintests.com/plugins/wporg/simple-lazy-load-videos/latest)
-
 ## Description
 The plugin reduces page load time and increases your Google PageSpeed score.
 
@@ -51,6 +48,12 @@ You will need to pass the code into apply_shortcodes() function (WordPress 5.4+,
 ```
 
 ## Changelog
+### 1.11.1
+* Add support for youtube-nocookie.com links
+* Fix a bogus video ID for YouTube links with extra characters after the ID
+* Fix fatal error when the Vimeo API returns an unexpected response
+* Update packages
+
 ### 1.11.0
 * Tested up to: 7.2
 * Add support for Vimeo start time (`#t=` parameter)
