@@ -75,9 +75,9 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 			$video_hash  = '';
 			$video_start = 0;
 
-			// Video ID may follow `v=` anywhere in the query string, or one of the known paths.
+			// Video ID is always 11 characters and may follow `v=` anywhere in the query string, or one of the known paths.
 			// Other URLs (e.g. playlists, including `embed/videoseries`) don't match and keep the default output.
-			$youtube_pattern = '~^(?:(?:https?:)?//)?(?:(?:www|m)\.)?(?:youtube\.com/(?:watch\?(?:\S*?&)?v=|embed/(?!videoseries\b)|v/|shorts/|live/)|youtu\.be/)([\w\-]+)~i';
+			$youtube_pattern = '~^(?:(?:https?:)?//)?(?:(?:www|m)\.)?(?:youtube(?:-nocookie)?\.com/(?:watch\?(?:\S*?&)?v=|embed/(?!videoseries\b)|v/|shorts/|live/)|youtu\.be/)([\w\-]{11})(?![\w\-])~i';
 
 			// Vimeo video ID may follow named path segments (e.g. `channels/NAME/`, `video/`) or `showcase/ID/video/`.
 			// Showcases, albums and events without a video ID don't match and keep the default output.
@@ -257,11 +257,12 @@ if ( ! class_exists( '\SLLV\Functions' ) ) {
 
 			$data = self::remote_api_get( 'https://vimeo.com/api/v2/video/' . $video_id . '.json' );
 
-			if ( empty( $data ) || ! isset( $data[0]->thumbnail_large ) ) {
-				$thumbnail_url = '';
-			} else {
-				$thumbnail_url = str_replace( '-d_640', '-d_' . $size, $data[0]->thumbnail_large );
+			// Request failed or unexpected response.
+			if ( ! is_array( $data ) || empty( $data[0]->thumbnail_large ) ) {
+				return '';
 			}
+
+			$thumbnail_url = str_replace( '-d_640', '-d_' . $size, $data[0]->thumbnail_large );
 
 			return $thumbnail_url;
 		}
