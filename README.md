@@ -51,6 +51,12 @@ You will need to pass the code into apply_shortcodes() function (WordPress 5.4+,
 ```
 
 ## Changelog
+### 1.11.1
+* Add support for youtube-nocookie.com links
+* Fix a bogus video ID for YouTube links with extra characters after the ID
+* Fix fatal error when the Vimeo API returns an unexpected response
+* Update packages
+
 ### 1.11.0
 * Tested up to: 7.2
 * Add support for Vimeo start time (`#t=` parameter)
